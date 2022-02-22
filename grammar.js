@@ -31,6 +31,7 @@ module.exports = grammar({
             seq(
                 choice(
                     $.select_statement,
+                    $.delete_statement,
                 ),
                 optional(";"),
             ),
@@ -240,6 +241,41 @@ module.exports = grammar({
         relalationContains : $ => seq( $.object_name, kw("CONTAINS"), $.constant),
         order_spec : $ => seq ( kw("ORDER BY"), $.order_spec_element),
         order_spec_element : $ => seq( $.object_name, optional( choice( kw( "ASC"), kw("DESC")))),
+        delete_statement : $ =>
+            seq(
+                optional( $.begin_batch ),
+                kw("DELETE"),
+                optional( $.delete_column_list ),
+                $.from_spec,
+                optional( $.using_timestamp_spec),
+                $.where_spec,
+                optional( choice( $.if_exist, $.if_spec))
+            ),
+        begin_batch : $ =>
+            seq(
+                kw("BEGIN"),
+                optional( choice( kw("LOGGED"), kw("UNLOGGED"))),
+                kw( "BATCH"),
+                optional( $.using_timestamp_spec),
+            ),
+        delete_column_list : $ => seq( $.delete_column_item, repeat( seq( ",", $.delete_column_item))),
+        delete_column_item : $ =>
+            seq(
+                $.object_name,
+                optional(
+                    seq(
+                        "[",
+                        choice( $._string_literal, $._decimal_literal),
+                        "]"
+                    )
+                ),
+            ),
+        using_timestamp_spec : $ => seq( kw("USING"), $.timestamp ),
+        timestamp : $ => seq( kw("TIMESTAMP"), $._decimal_literal),
+        if_exist : $ => kw( "IF EXISTS"),
+        if_spec : $ => seq( kw("IF"), $.if_condition_list),
+        if_condition_list : $ => seq( $.if_condition, repeat( seq( kw("AND"), $.if_condition))),
+        if_condition : $ => seq( $.object_name, "=", $.constant),
 
     },
 });

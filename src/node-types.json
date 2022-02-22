@@ -19,9 +19,93 @@
     }
   },
   {
+    "type": "begin_batch",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "using_timestamp_spec",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "constant",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "delete_column_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "object_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "delete_column_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "delete_column_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "delete_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "begin_batch",
+          "named": true
+        },
+        {
+          "type": "delete_column_list",
+          "named": true
+        },
+        {
+          "type": "from_spec",
+          "named": true
+        },
+        {
+          "type": "if_exist",
+          "named": true
+        },
+        {
+          "type": "if_spec",
+          "named": true
+        },
+        {
+          "type": "using_timestamp_spec",
+          "named": true
+        },
+        {
+          "type": "where_spec",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "from_spec",
@@ -100,6 +184,60 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "if_condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "object_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if_condition_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "if_condition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if_exist",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "if_spec",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "if_condition_list",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -294,7 +432,31 @@
       "required": false,
       "types": [
         {
+          "type": "delete_statement",
+          "named": true
+        },
+        {
           "type": "select_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "timestamp",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "using_timestamp_spec",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "timestamp",
           "named": true
         }
       ]
@@ -392,11 +554,23 @@
     "named": false
   },
   {
+    "type": "BATCH",
+    "named": false
+  },
+  {
+    "type": "BEGIN",
+    "named": false
+  },
+  {
     "type": "CONTAINS",
     "named": false
   },
   {
     "type": "CONTAINS_KEY",
+    "named": false
+  },
+  {
+    "type": "DELETE",
     "named": false
   },
   {
@@ -412,6 +586,14 @@
     "named": false
   },
   {
+    "type": "IF",
+    "named": false
+  },
+  {
+    "type": "IF_EXISTS",
+    "named": false
+  },
+  {
     "type": "IN",
     "named": false
   },
@@ -421,6 +603,10 @@
   },
   {
     "type": "LIMIT",
+    "named": false
+  },
+  {
+    "type": "LOGGED",
     "named": false
   },
   {
@@ -436,11 +622,31 @@
     "named": false
   },
   {
+    "type": "TIMESTAMP",
+    "named": false
+  },
+  {
+    "type": "UNLOGGED",
+    "named": false
+  },
+  {
+    "type": "USING",
+    "named": false
+  },
+  {
     "type": "WHERE",
     "named": false
   },
   {
     "type": "X'",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
     "named": false
   },
   {
