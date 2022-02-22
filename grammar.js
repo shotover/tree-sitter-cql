@@ -30,8 +30,43 @@ module.exports = grammar({
         _statement: $ =>
             seq(
                 choice(
-                    $.select_statement,
+                    //alterKeyspace
+                    // alterMaterializedView
+                    // alterRole
+                    // alterTable
+                    // alterType
+                    // alterUser
+                    // applyBatch
+                    // createAggregate
+                    // createFunction
+                    //$.create_index,
+                    // createKeyspace
+                    // createMaterializedView
+                    // createRole
+                    // createTable
+                    // createTrigger
+                    // createType
+                    // createUser
                     $.delete_statement,
+                    // dropAggregate
+                    // dropFunction
+                    // dropIndex
+                    // dropKeyspace
+                    // dropMaterializedView
+                    // dropRole
+                    // dropTable
+                    // dropTrigger
+                    // dropType
+                    // dropUser
+                    // grant
+                    $.insert_statement,
+                    // listPermissions
+                    // listRoles
+                    // revoke
+                    $.select_statement,
+                    $.truncate,
+                    // update
+                    // use_
                 ),
                 optional(";"),
             ),
@@ -201,24 +236,20 @@ module.exports = grammar({
 
                 seq(
                     "(",
-                    $.object_name,
-                    repeat( seq( ",", $.object_name)),
+                    commaSep1( $.object_name ),
                     ")",
                     kw("IN"),
                     "(",
-                    $.assignment_tuple,
-                    repeat( seq(",", $.assignment_tuple)),
+                    commaSep1($.assignment_tuple),
                     ")",
                 ),
                 seq(
                     "(",
-                    $.object_name,
-                    repeat( seq( ",", $.object_name)),
+                    commaSep1( $.object_name ),
                     ")",
                     choice( "=","<",">","<=",">="),
                     "(",
-                    $.assignment_tuple,
-                    repeat( seq(",", $.assignment_tuple)),
+                    commaSep1($.assignment_tuple),
                     ")",
                 ),
                 $.relalationContainsKey,
@@ -276,7 +307,89 @@ module.exports = grammar({
         if_spec : $ => seq( kw("IF"), $.if_condition_list),
         if_condition_list : $ => seq( $.if_condition, repeat( seq( kw("AND"), $.if_condition))),
         if_condition : $ => seq( $.object_name, "=", $.constant),
+        insert_statement : $ =>
+            seq(
+                optional( $.begin_batch),
+                kw("INSERT INTO"),
+                optional( seq( $.keyspace, ".")),
+                $.table,
+                optional( $.insert_column_spec ),
+                $.insert_values_spec,
+                optional( $.if_not_exist ),
+                optional( $.using_ttl_timestamp )
+            ),
+        keyspace : $ => field( "keyspace",
+            choice(
+                $.object_name,
+                seq( $._dquote, $.object_name, $._dquote)
+            )),
+        _dquote : $ => "\"",
+        table : $ => field( "table",
+            choice(
+                $.object_name,
+                seq( $._dquote, $.object_name, $._dquote)
+            )),
+        insert_column_spec : $ => seq( "(", $.column_list, ")" ),
+        column_list : $ => commaSep1( $.column),
+        column : $ => field( "column",
+            choice(
+                $.object_name,
+                seq( $._dquote, $.object_name, $._dquote)
+            )),
+        insert_values_spec : $ =>
+            choice(
+                seq( kw("VALUES"), "(", $.expression_list, ")", ),
+                seq( kw("JSON"), $.constant),
+            ),
+        expression_list : $ => commaSep1( $.expression ),
+        expression : $ =>
+            choice(
+                $.constant,
+                $.assignment_map,
+                $.assignment_set,
+                $.assignment_list,
+                $.assignment_tuple,
+            ),
+        assignment_map : $ => seq("{", commaSep1( seq( $.constant, ":", $.constant)),"}"),
+        assignment_set : $ => seq("{", optional( commaSep1( $.constant ) ),"}"),
+        assignment_list : $  => seq( "[", commaSep1( $.constant ), "]"),
+        assignment_tuple : $ =>
+            seq(
+                "(",
+                $.constant,
+                choice(
+                    repeat( seq( ",", $.constant)),
+                    repeat( seq( ",", $.assignment_tuple)),
+                    commaSep1( $.assignment_tuple ),
+                ),
+                ")",
+            ),
+        if_not_exist : $ => kw( "IF NOT EXISTS"),
+        using_ttl_timestamp : $ =>
+            seq(
+                kw( "USING"),
+                choice(
+                    seq( $.ttl, optional( seq(kw("AND"), $.timestamp))),
+                    seq( $.timestamp, optional( seq(kw("AND"), $.ttl))),
+                )
+            ),
+        ttl : $ => seq( kw("TTL"), $._decimal_literal),
+        truncate : $ =>
+            seq(
+                kw("TRUNCATE"),
+                optional( kw ("TABLE")),
+                optional( seq( $.keyspace, ".")),
+                $.table
+            ),
 
-    },
+},
 });
+
+function commaSep1(rule) {
+    return sep1(rule, ",");
+}
+
+function sep1(rule, separator) {
+    return seq(rule, repeat(seq(separator, rule)));
+}
 
