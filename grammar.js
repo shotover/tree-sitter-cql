@@ -44,7 +44,7 @@ module.exports = grammar({
                     // createMaterializedView
                     $.create_role,
                     $.create_table,
-                    // createTrigger
+                    $.create_trigger,
                     // createType
                     $.create_user,
                     $.delete_statement,
@@ -55,7 +55,7 @@ module.exports = grammar({
                     // dropMaterializedView
                     $.drop_role,
                     $.drop_table,
-                    // dropTrigger
+                    $.drop_trigger,
                     // dropType
                     $.drop_user,
                     $.grant,
@@ -501,6 +501,17 @@ module.exports = grammar({
                 optional( seq( $.keyspace, ".")),
                 $.table
             ),
+        drop_trigger : $ =>
+            seq(
+                kw( "DROP"),
+                kw( "TRIGGER"),
+                optional( $.if_exist ),
+                optional( seq( $.keyspace, ".")),
+                $.trigger,
+                kw( "ON"),
+                optional( seq( $.keyspace, ".")),
+                $.table,
+            ),
         drop_user : $ =>
             seq(
                 kw( "DROP"),
@@ -686,6 +697,18 @@ module.exports = grammar({
                 ")",
             ),
         order_direction : $ => choice( kw( "ASC"), kw("DESC")),
+        create_trigger : $ =>
+            seq (
+                kw("CREATE"),
+                kw("TRIGGER"),
+                optional( $.if_not_exist),
+                optional( seq( $.keyspace, ".")),
+                $.trigger,
+                kw( "USING"),
+                $.trigger_class,
+            ),
+        trigger : $ => field( "trigger", $.object_name),
+        trigger_class : $ => $._string_literal,
         create_user : $ =>
             seq(
                 kw("CREATE"),

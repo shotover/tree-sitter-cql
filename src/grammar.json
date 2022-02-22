@@ -56,6 +56,10 @@
             },
             {
               "type": "SYMBOL",
+              "name": "create_trigger"
+            },
+            {
+              "type": "SYMBOL",
               "name": "create_user"
             },
             {
@@ -81,6 +85,10 @@
             {
               "type": "SYMBOL",
               "name": "drop_table"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "drop_trigger"
             },
             {
               "type": "SYMBOL",
@@ -3925,6 +3933,100 @@
         }
       ]
     },
+    "drop_trigger": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[dD][rR][oO][pP]"
+          },
+          "named": false,
+          "value": "DROP"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[tT][rR][iI][gG][gG][eE][rR]"
+          },
+          "named": false,
+          "value": "TRIGGER"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "if_exist"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "keyspace"
+                },
+                {
+                  "type": "STRING",
+                  "value": "."
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "trigger"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[oO][nN]"
+          },
+          "named": false,
+          "value": "ON"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "keyspace"
+                },
+                {
+                  "type": "STRING",
+                  "value": "."
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "table"
+        }
+      ]
+    },
     "drop_user": {
       "type": "SEQ",
       "members": [
@@ -5524,6 +5626,91 @@
           "value": "DESC"
         }
       ]
+    },
+    "create_trigger": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[cC][rR][eE][aA][tT][eE]"
+          },
+          "named": false,
+          "value": "CREATE"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[tT][rR][iI][gG][gG][eE][rR]"
+          },
+          "named": false,
+          "value": "TRIGGER"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "if_not_exist"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "keyspace"
+                },
+                {
+                  "type": "STRING",
+                  "value": "."
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "trigger"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[uU][sS][iI][nN][gG]"
+          },
+          "named": false,
+          "value": "USING"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "trigger_class"
+        }
+      ]
+    },
+    "trigger": {
+      "type": "FIELD",
+      "name": "trigger",
+      "content": {
+        "type": "SYMBOL",
+        "name": "object_name"
+      }
+    },
+    "trigger_class": {
+      "type": "SYMBOL",
+      "name": "_string_literal"
     },
     "create_user": {
       "type": "SEQ",

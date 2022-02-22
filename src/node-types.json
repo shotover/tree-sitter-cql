@@ -669,6 +669,33 @@
     }
   },
   {
+    "type": "create_trigger",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "if_not_exist",
+          "named": true
+        },
+        {
+          "type": "keyspace",
+          "named": true
+        },
+        {
+          "type": "trigger",
+          "named": true
+        },
+        {
+          "type": "trigger_class",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "create_user",
     "named": true,
     "fields": {},
@@ -915,6 +942,33 @@
         },
         {
           "type": "table",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "drop_trigger",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "if_exist",
+          "named": true
+        },
+        {
+          "type": "keyspace",
+          "named": true
+        },
+        {
+          "type": "table",
+          "named": true
+        },
+        {
+          "type": "trigger",
           "named": true
         }
       ]
@@ -1902,6 +1956,10 @@
           "named": true
         },
         {
+          "type": "create_trigger",
+          "named": true
+        },
+        {
           "type": "create_user",
           "named": true
         },
@@ -1927,6 +1985,10 @@
         },
         {
           "type": "drop_table",
+          "named": true
+        },
+        {
+          "type": "drop_trigger",
           "named": true
         },
         {
@@ -2049,6 +2111,27 @@
   },
   {
     "type": "timestamp",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "trigger",
+    "named": true,
+    "fields": {
+      "trigger": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "object_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "trigger_class",
     "named": true,
     "fields": {}
   },
@@ -2674,6 +2757,10 @@
   },
   {
     "type": "TO",
+    "named": false
+  },
+  {
+    "type": "TRIGGER",
     "named": false
   },
   {
