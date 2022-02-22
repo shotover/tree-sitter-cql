@@ -1,5 +1,36 @@
 [
   {
+    "type": "assignment_element",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment_list",
+          "named": true
+        },
+        {
+          "type": "assignment_map",
+          "named": true
+        },
+        {
+          "type": "assignment_set",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "object_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assignment_list",
     "named": true,
     "fields": {},
@@ -811,6 +842,10 @@
         {
           "type": "truncate",
           "named": true
+        },
+        {
+          "type": "update",
+          "named": true
         }
       ]
     }
@@ -859,6 +894,49 @@
     "type": "ttl",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "update",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment_element",
+          "named": true
+        },
+        {
+          "type": "begin_batch",
+          "named": true
+        },
+        {
+          "type": "if_exist",
+          "named": true
+        },
+        {
+          "type": "if_spec",
+          "named": true
+        },
+        {
+          "type": "keyspace",
+          "named": true
+        },
+        {
+          "type": "table",
+          "named": true
+        },
+        {
+          "type": "using_ttl_timestamp",
+          "named": true
+        },
+        {
+          "type": "where_spec",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "using_timestamp_spec",
@@ -927,6 +1005,10 @@
   },
   {
     "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
     "named": false
   },
   {
@@ -1090,6 +1172,10 @@
     "named": false
   },
   {
+    "type": "SET",
+    "named": false
+  },
+  {
     "type": "TABLE",
     "named": false
   },
@@ -1107,6 +1193,10 @@
   },
   {
     "type": "UNLOGGED",
+    "named": false
+  },
+  {
+    "type": "UPDATE",
     "named": false
   },
   {

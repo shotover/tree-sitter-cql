@@ -65,7 +65,7 @@ module.exports = grammar({
                     // revoke
                     $.select_statement,
                     $.truncate,
-                    // update
+                    $.update,
                     // use_
                 ),
                 optional(";"),
@@ -404,6 +404,30 @@ module.exports = grammar({
                 optional( $.if_exist),
                 optional( seq( $.keyspace, ".")),
                 $.index_name,
+            ),
+        update : $ =>
+            seq (
+                optional( $.begin_batch),
+                kw( "UPDATE"),
+                optional( seq( $.keyspace, ".")),
+                $.table,
+                optional( $.using_ttl_timestamp),
+                kw( "SET"),
+                commaSep1( $.assignment_element),
+                $.where_spec,
+                optional( choice( $.if_exist, $.if_spec))
+            ),
+        assignment_element : $ =>
+            choice(
+                seq( $.object_name, "=", choice( $.constant, $.assignment_map, $.assignment_set, $.assignment_list )),
+                seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $._decimal_literal),
+                seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_set),
+                seq( $.object_name, "=", $.assignment_set, choice( "+", "-" ), $.object_name),
+                seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_map),
+                seq( $.object_name, "=", $.assignment_map, choice( "+", "-" ), $.object_name),
+                seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_list),
+                seq( $.object_name, "=", $.assignment_list, choice( "+", "-" ), $.object_name),
+                seq( $.object_name, "[", $._decimal_literal, "]", "=", $.constant),
             ),
     },
 });
