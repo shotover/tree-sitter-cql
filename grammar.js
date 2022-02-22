@@ -37,7 +37,7 @@ module.exports = grammar({
                     $.alter_type,
                     $.alter_user,
                     $.apply_batch,
-                    // createAggregate
+                    $.create_aggregate,
                     $.create_function,
                     $.create_index,
                     $.create_keyspace,
@@ -471,6 +471,14 @@ module.exports = grammar({
                 optional( seq( kw("ON"), $.resource)),
                 optional( seq( kw( "OF"), $.role))
             ),
+        drop_aggregate : $ =>
+            seq(
+                kw( "DROP"),
+                kw( "AGGREGATE"),
+                optional( $.if_exist ),
+                optional( seq( $.keyspace, ".")),
+                $.aggregate
+            ),
         drop_function : $ =>
             seq(
                 kw( "DROP"),
@@ -529,7 +537,50 @@ module.exports = grammar({
                 $.user
             ),
         user : $ => field( "user", $.object_name),
-
+        create_aggregate : $ =>
+            seq(
+                kw("CREATE"),
+                optional( kw( "OR REPLACE")),
+                kw("AGGREGATE"),
+                optional( $.if_not_exist),
+                optional( seq( $.keyspace, ".")),
+                $.aggregate,
+                "(",
+                $.data_type,
+                ")",
+                kw( "SFUNC"),
+                $.function,
+                kw( "STYPE"),
+                $.data_type,
+                kw( "FINALFUNC"),
+                $.function,
+                kw("INITCOND"),
+                $.init_cond_definition,
+            ),
+        aggregate : $ => $.object_name,
+        init_cond_definition : $ =>
+            choice(
+                $.constant,
+                $.init_cond_list,
+                $.init_cond_list_nested,
+                $.init_cond_hash,
+            ),
+        init_cond_list : $ => seq( "(", commaSep1( $.constant), ")"),
+        init_cond_list_nested : $ =>
+            seq(
+                "(",
+                $.init_cond_list,
+                repeat( seq( ",", choice( $.constant, $.init_cond_list))),
+                ")"
+            ),
+        init_cond_hash : $ =>
+            seq(
+                "(",
+                commaSep1( $.init_cond_hash_item ),
+                ")"
+            ),
+        init_cond_hash_item : $ => seq( $.hash_key, ":", $.init_cond_definition ),
+        hash_key : $ => $.object_name,
         create_function : $ =>
             seq(
                 kw("CREATE"),
