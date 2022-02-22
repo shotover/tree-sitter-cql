@@ -34,7 +34,7 @@ module.exports = grammar({
                     // alterMaterializedView
                     $.alter_role,
                     $.alter_table,
-                    // alterType
+                    $.alter_type,
                     $.alter_user,
                     $.apply_batch,
                     // createAggregate
@@ -45,7 +45,7 @@ module.exports = grammar({
                     $.create_role,
                     $.create_table,
                     $.create_trigger,
-                    // createType
+                    $.create_type,
                     $.create_user,
                     $.delete_statement,
                     // dropAggregate
@@ -512,6 +512,14 @@ module.exports = grammar({
                 optional( seq( $.keyspace, ".")),
                 $.table,
             ),
+        drop_type : $ =>
+            seq(
+                kw( "DROP"),
+                kw( "TYPE"),
+                optional( $.if_exist ),
+                optional( seq( $.keyspace, ".")),
+                $.type
+            ),
         drop_user : $ =>
             seq(
                 kw( "DROP"),
@@ -709,6 +717,18 @@ module.exports = grammar({
             ),
         trigger : $ => field( "trigger", $.object_name),
         trigger_class : $ => $._string_literal,
+        create_type : $ =>
+            seq(
+                kw("CREATE"),
+                kw("TYPE"),
+                optional( $.if_not_exist),
+                optional( seq( $.keyspace, ".")),
+                $.type,
+                "(",
+                $.type_member_column_list,
+                ")",
+            ),
+        type_member_column_list : $ => commaSep1( seq( $.column, $.data_type) ),
         create_user : $ =>
             seq(
                 kw("CREATE"),
@@ -763,6 +783,36 @@ module.exports = grammar({
         alter_table_drop_compact_storage : $ => seq( kw("DROP"), kw("COMPACT"), kw("STORAGE") ),
         alter_table_rename : $ => seq( kw("RENAME"), $.column, kw("TO"), $.column ),
         alter_table_with : $ => seq( kw("WITH"), $.table_options ),
+        alter_type : $ =>
+            seq(
+                kw("ALTER"),
+                kw( "TYPE"),
+                optional( seq( $.keyspace, ".")),
+                $.type,
+                $.alter_type_operation,
+            ),
+        type : $ => $.object_name,
+        alter_type_operation : $ =>
+            choice(
+                $.alter_type_alter_type,
+                $.alter_type_add,
+                $.alter_type_rename,
+            ),
+        alter_type_alter_type : $ =>
+            seq(
+                kw("ALTER"),
+                $.column,
+                kw("TYPE"),
+                $.data_type,
+            ),
+        alter_type_add : $ =>
+            seq(
+                kw("ADD"),
+                commaSep1( seq($.column, $.data_type,)),
+            ),
+        alter_type_rename : $ => seq( kw("RENAME"), $.alter_type_rename_list ),
+        alter_type_rename_list : $ => sep1( $.alter_type_rename_item, kw( "AND")),
+        alter_type_rename_item : $ => seq( $.column, kw("TO"), $.column ),
         alter_user : $ =>
             seq(
                 kw("ALTER"),

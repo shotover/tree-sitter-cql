@@ -195,6 +195,135 @@
     }
   },
   {
+    "type": "alter_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alter_type_operation",
+          "named": true
+        },
+        {
+          "type": "keyspace",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "alter_type_add",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "column",
+          "named": true
+        },
+        {
+          "type": "data_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "alter_type_alter_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "column",
+          "named": true
+        },
+        {
+          "type": "data_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "alter_type_operation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "alter_type_add",
+          "named": true
+        },
+        {
+          "type": "alter_type_alter_type",
+          "named": true
+        },
+        {
+          "type": "alter_type_rename",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "alter_type_rename",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "alter_type_rename_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "alter_type_rename_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "column",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "alter_type_rename_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "alter_type_rename_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "alter_user",
     "named": true,
     "fields": {},
@@ -690,6 +819,33 @@
         },
         {
           "type": "trigger_class",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "create_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "if_not_exist",
+          "named": true
+        },
+        {
+          "type": "keyspace",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "type_member_column_list",
           "named": true
         }
       ]
@@ -1928,6 +2084,10 @@
           "named": true
         },
         {
+          "type": "alter_type",
+          "named": true
+        },
+        {
           "type": "alter_user",
           "named": true
         },
@@ -1957,6 +2117,10 @@
         },
         {
           "type": "create_trigger",
+          "named": true
+        },
+        {
+          "type": "create_type",
           "named": true
         },
         {
@@ -2158,6 +2322,40 @@
     "type": "ttl",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "object_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_member_column_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "column",
+          "named": true
+        },
+        {
+          "type": "data_type",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "update",
@@ -2773,6 +2971,10 @@
   },
   {
     "type": "TUPLE",
+    "named": false
+  },
+  {
+    "type": "TYPE",
     "named": false
   },
   {
