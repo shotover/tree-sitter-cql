@@ -1131,6 +1131,29 @@
     }
   },
   {
+    "type": "drop_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "if_exist",
+          "named": true
+        },
+        {
+          "type": "keyspace",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "drop_user",
     "named": true,
     "fields": {},
@@ -2153,6 +2176,10 @@
         },
         {
           "type": "drop_trigger",
+          "named": true
+        },
+        {
+          "type": "drop_type",
           "named": true
         },
         {

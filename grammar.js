@@ -56,7 +56,7 @@ module.exports = grammar({
                     $.drop_role,
                     $.drop_table,
                     $.drop_trigger,
-                    // dropType
+                    $.drop_type,
                     $.drop_user,
                     $.grant,
                     $.insert_statement,
