@@ -80,6 +80,10 @@
             },
             {
               "type": "SYMBOL",
+              "name": "drop_aggregate"
+            },
+            {
+              "type": "SYMBOL",
               "name": "drop_function"
             },
             {

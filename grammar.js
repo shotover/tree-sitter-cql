@@ -48,7 +48,7 @@ module.exports = grammar({
                     $.create_type,
                     $.create_user,
                     $.delete_statement,
-                    // dropAggregate
+                    $.drop_aggregate,
                     $.drop_function,
                     $.drop_index,
                     $.drop_keyspace,
