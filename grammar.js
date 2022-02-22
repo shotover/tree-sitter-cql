@@ -50,7 +50,7 @@ module.exports = grammar({
                     $.delete_statement,
                     // dropAggregate
                     // dropFunction
-                    // dropIndex
+                    $.drop_index,
                     // dropKeyspace
                     // dropMaterializedView
                     // dropRole
@@ -398,7 +398,14 @@ module.exports = grammar({
         index_keys_spec : $ => seq( kw("KEYS"), "(", $.object_name, ")"),
         index_entries_s_spec : $ => seq( kw( "ENTRIES"), "(", $.object_name, ")"),
         index_full_spec : $ => seq( kw( "FULL"), "(", $.object_name, ")"),
-},
+        drop_index : $ =>
+            seq(
+                kw( "DROP INDEX"),
+                optional( $.if_exist),
+                optional( seq( $.keyspace, ".")),
+                $.index_name,
+            ),
+    },
 });
 
 function commaSep1(rule) {

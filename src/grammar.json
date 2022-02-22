@@ -24,6 +24,10 @@
             },
             {
               "type": "SYMBOL",
+              "name": "drop_index"
+            },
+            {
+              "type": "SYMBOL",
               "name": "insert_statement"
             },
             {
@@ -2559,6 +2563,66 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "drop_index": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[dD][rR][oO][pP]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[iI][nN][dD][eE][xX]"
+              }
+            ]
+          },
+          "named": false,
+          "value": "DROP_INDEX"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "if_exist"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "keyspace"
+                },
+                {
+                  "type": "STRING",
+                  "value": "."
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "index_name"
         }
       ]
     }

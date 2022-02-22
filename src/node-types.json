@@ -215,6 +215,29 @@
     }
   },
   {
+    "type": "drop_index",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "if_exist",
+          "named": true
+        },
+        {
+          "type": "index_name",
+          "named": true
+        },
+        {
+          "type": "keyspace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "expression",
     "named": true,
     "fields": {},
@@ -774,6 +797,10 @@
           "named": true
         },
         {
+          "type": "drop_index",
+          "named": true
+        },
+        {
           "type": "insert_statement",
           "named": true
         },
@@ -992,6 +1019,10 @@
   },
   {
     "type": "DISTINCT",
+    "named": false
+  },
+  {
+    "type": "DROP_INDEX",
     "named": false
   },
   {
