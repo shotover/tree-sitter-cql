@@ -49,24 +49,24 @@ module.exports = grammar({
                     // createUser
                     $.delete_statement,
                     // dropAggregate
-                    // dropFunction
+                    $.drop_function,
                     $.drop_index,
-                    // dropKeyspace
+                    $.drop_keyspace,
                     // dropMaterializedView
-                    // dropRole
-                    // dropTable
+                    $.drop_role,
+                    $.drop_table,
                     // dropTrigger
                     // dropType
-                    // dropUser
-                    // grant
+                    $.drop_user,
+                    $.grant,
                     $.insert_statement,
-                    // listPermissions
-                    // listRoles
-                    // revoke
+                    $.list_permissions,
+                    $.list_roles,
+                    $.revoke,
                     $.select_statement,
                     $.truncate,
                     $.update,
-                    // use_
+                    $.use,
                 ),
                 optional(";"),
             ),
@@ -429,6 +429,86 @@ module.exports = grammar({
                 seq( $.object_name, "=", $.assignment_list, choice( "+", "-" ), $.object_name),
                 seq( $.object_name, "[", $._decimal_literal, "]", "=", $.constant),
             ),
+        use : $ => seq( kw("USE"), $.keyspace),
+        grant : $ => seq( kw("GRANT"), $.priviledge,  kw("ON"), $.resource, kw("TO"), $.role ),
+        priviledge : $ =>
+            choice(
+                choice( kw("ALL"), kw( "ALL PERMISSIONS")),
+                kw( "ALTER"),
+                kw( "AUTHORIZE"),
+                kw( "DESCRIBE"),
+                kw( "EXECUTE"),
+                kw( "CREATE"),
+                kw( "DROP"),
+                kw( "MODIFY"),
+                kw( "SELECT"),
+            ),
+        resource : $ =>
+            choice(
+                kw("ALL FUNCTIONS"),
+                seq( kw("ALL FUNCTIONS IN KEYSPACE"), $.keyspace),
+                seq( kw("FUNCTION"), optional( seq( $.keyspace, ".")), $.function ),
+                kw("ALL KEYSPACES"),
+                seq( kw("KEYSPACE"), $.keyspace),
+                seq( optional( kw("TABLE")), optional( seq( $.keyspace, ".")), $.table ),
+                kw("ALL ROLES"),
+                seq( kw("ROLE"), $.role ),
+            ),
+        role : $ => field( "role", $.object_name),
+        function : $ => field( "function", $.object_name),
+        revoke : $ => seq( kw("REVOKE"), $.priviledge, kw("ON"), $.resource, kw("FROM"), $.role),
+        list_roles : $ =>
+            seq(
+                kw("LIST ROLES"),
+                optional( seq( kw("OF"), $.role)),
+                optional( kw( "NORECURSIVE")),
+            ),
+        list_permissions : $ =>
+            seq(
+                kw("LIST"),
+                $.priviledge,
+                optional( seq( kw("ON"), $.resource)),
+                optional( seq( kw( "OF"), $.role))
+            ),
+        drop_function : $ =>
+            seq(
+                kw( "DROP"),
+                kw( "FUNCTION"),
+                optional( $.if_exist ),
+                optional( seq( $.keyspace, ".")),
+                $.function
+            ),
+        drop_keyspace : $ =>
+            seq(
+                kw( "DROP"),
+                kw( "KEYSPACE"),
+                optional( $.if_exist ),
+                $.keyspace
+            ),
+        drop_role : $ =>
+            seq(
+                kw( "DROP"),
+                kw( "ROLE"),
+                optional( $.if_exist ),
+                $.role
+            ),
+        drop_table : $ =>
+            seq(
+                kw( "DROP"),
+                kw( "TABLE"),
+                optional( $.if_exist ),
+                optional( seq( $.keyspace, ".")),
+                $.table
+            ),
+        drop_user : $ =>
+            seq(
+                kw( "DROP"),
+                kw( "USER"),
+                optional( $.if_exist ),
+                optional( seq( $.keyspace, ".")),
+                $.user
+            ),
+        user : $ => field( "user", $.object_name),
     },
 });
 
@@ -439,4 +519,3 @@ function commaSep1(rule) {
 function sep1(rule, separator) {
     return seq(rule, repeat(seq(separator, rule)));
 }
-
