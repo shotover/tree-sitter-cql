@@ -31,7 +31,7 @@ module.exports = grammar({
             seq(
                 choice(
                     $.alter_keyspace,
-                    // alterMaterializedView
+                    $.alter_materialized_view,
                     $.alter_role,
                     $.alter_table,
                     $.alter_type,
@@ -41,7 +41,7 @@ module.exports = grammar({
                     $.create_function,
                     $.create_index,
                     $.create_keyspace,
-                    // createMaterializedView
+                    $.create_materialized_view,
                     $.create_role,
                     $.create_table,
                     $.create_trigger,
@@ -52,7 +52,7 @@ module.exports = grammar({
                     $.drop_function,
                     $.drop_index,
                     $.drop_keyspace,
-                    // dropMaterializedView
+                    $.drop_materialized_view,
                     $.drop_role,
                     $.drop_table,
                     $.drop_trigger,
@@ -479,6 +479,15 @@ module.exports = grammar({
                 optional( seq( $.keyspace, ".")),
                 $.aggregate
             ),
+        drop_materialized_view : $ =>
+            seq(
+                kw( "DROP"),
+                kw( "MATERIALIZED"),
+                kw( "VIEW"),
+                optional( $.if_exist ),
+                optional( seq( $.keyspace, ".")),
+                $.materialized_view,
+            ),
         drop_function : $ =>
             seq(
                 kw( "DROP"),
@@ -581,6 +590,42 @@ module.exports = grammar({
             ),
         init_cond_hash_item : $ => seq( $.hash_key, ":", $.init_cond_definition ),
         hash_key : $ => $.object_name,
+        create_materialized_view : $ =>
+            seq(
+                kw("CREATE"),
+                kw("MATERIALIZED"),
+                kw("VIEW"),
+                optional( $.if_not_exist),
+                optional( seq( $.keyspace, ".")),
+                $.materialized_view,
+                kw( "AS"),
+                kw( "SELECT"),
+                $.column_list,
+                kw( "FROM"),
+                optional( seq( $.keyspace, ".")),
+                $.table,
+                $.materialized_view_where,
+                kw( "PRIMARY"),
+                kw( "KEY"),
+                "(",
+                $.column_list,
+                ")",
+                optional( seq( kw("WITH"), $.materialized_view_options)),
+            ),
+        materialized_view_where : $ =>
+            seq(
+                kw("WHERE"),
+                $.column_not_null_list,
+                optional( seq( kw("AND"), $.relation_element)),
+            ),
+        column_not_null_list : $ => prec.left(2,sep1( $.column_not_null, kw("AND"))),
+        column_not_null : $ => seq( $.column, kw("IS"), kw("NOT"), kw("NULL")),
+        materialized_view_options : $ =>
+            choice(
+                $.table_options,
+                seq( $.table_options, kw("AND"), $.clustering_order ),
+                $.clustering_order
+            ),
         create_function : $ =>
             seq(
                 kw("CREATE"),
@@ -737,7 +782,7 @@ module.exports = grammar({
             ),
         partition_key_list : $ => commaSep1( $.partition_key),
         with_element : $ => seq( kw("WITH"), optional( $.table_options), optional( $.clustering_order)),
-        table_options : $ => sep1( $.table_option_item, kw("AND")),
+        table_options : $ => prec.left(2,sep1( $.table_option_item, kw("AND"))),
         table_option_item : $ =>
             choice(
                 seq( $.table_option_name, "=", $.table_option_value ),
@@ -790,6 +835,16 @@ module.exports = grammar({
                 $.user_password,
                 optional( $.user_super_user),
             ),
+        alter_materialized_view : $ =>
+            seq(
+                kw("ALTER"),
+                kw( "MATERIALIZED"),
+                kw( "VIEW"),
+                optional( seq( $.keyspace, ".")),
+                $.materialized_view,
+                optional( seq( kw("WITH"), $.table_options))
+            ),
+        materialized_view : $ => $.object_name,
         alter_keyspace : $ =>
             seq(
                 kw("ALTER"),

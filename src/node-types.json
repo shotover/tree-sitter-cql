@@ -38,6 +38,29 @@
     }
   },
   {
+    "type": "alter_materialized_view",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "keyspace",
+          "named": true
+        },
+        {
+          "type": "materialized_view",
+          "named": true
+        },
+        {
+          "type": "table_options",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "alter_role",
     "named": true,
     "fields": {},
@@ -615,6 +638,36 @@
     }
   },
   {
+    "type": "column_not_null",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "column",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "column_not_null_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "column_not_null",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "composite_key",
     "named": true,
     "fields": {},
@@ -788,6 +841,45 @@
         },
         {
           "type": "replication_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "create_materialized_view",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "column_list",
+          "named": true
+        },
+        {
+          "type": "if_not_exist",
+          "named": true
+        },
+        {
+          "type": "keyspace",
+          "named": true
+        },
+        {
+          "type": "materialized_view",
+          "named": true
+        },
+        {
+          "type": "materialized_view_options",
+          "named": true
+        },
+        {
+          "type": "materialized_view_where",
+          "named": true
+        },
+        {
+          "type": "table",
           "named": true
         }
       ]
@@ -1129,6 +1221,29 @@
         },
         {
           "type": "keyspace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "drop_materialized_view",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "if_exist",
+          "named": true
+        },
+        {
+          "type": "keyspace",
+          "named": true
+        },
+        {
+          "type": "materialized_view",
           "named": true
         }
       ]
@@ -1818,6 +1933,59 @@
     }
   },
   {
+    "type": "materialized_view",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "object_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "materialized_view_options",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "clustering_order",
+          "named": true
+        },
+        {
+          "type": "table_options",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "materialized_view_where",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "column_not_null_list",
+          "named": true
+        },
+        {
+          "type": "relation_element",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "option_hash",
     "named": true,
     "fields": {},
@@ -2282,6 +2450,10 @@
           "named": true
         },
         {
+          "type": "alter_materialized_view",
+          "named": true
+        },
+        {
           "type": "alter_role",
           "named": true
         },
@@ -2315,6 +2487,10 @@
         },
         {
           "type": "create_keyspace",
+          "named": true
+        },
+        {
+          "type": "create_materialized_view",
           "named": true
         },
         {
@@ -2355,6 +2531,10 @@
         },
         {
           "type": "drop_keyspace",
+          "named": true
+        },
+        {
+          "type": "drop_materialized_view",
           "named": true
         },
         {
@@ -3028,6 +3208,10 @@
     "named": false
   },
   {
+    "type": "IS",
+    "named": false
+  },
+  {
     "type": "JSON",
     "named": false
   },
@@ -3068,6 +3252,10 @@
     "named": false
   },
   {
+    "type": "MATERIALIZED",
+    "named": false
+  },
+  {
     "type": "MODIFY",
     "named": false
   },
@@ -3077,6 +3265,10 @@
   },
   {
     "type": "NOSUPERUSER",
+    "named": false
+  },
+  {
+    "type": "NOT",
     "named": false
   },
   {
@@ -3249,6 +3441,10 @@
   },
   {
     "type": "VARINT",
+    "named": false
+  },
+  {
+    "type": "VIEW",
     "named": false
   },
   {
