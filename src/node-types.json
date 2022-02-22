@@ -115,6 +115,37 @@
     "fields": {}
   },
   {
+    "type": "create_index",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "if_not_exist",
+          "named": true
+        },
+        {
+          "type": "index_column_spec",
+          "named": true
+        },
+        {
+          "type": "index_name",
+          "named": true
+        },
+        {
+          "type": "keyspace",
+          "named": true
+        },
+        {
+          "type": "table",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "delete_column_item",
     "named": true,
     "fields": {},
@@ -362,6 +393,93 @@
       "types": [
         {
           "type": "if_condition_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "index_column_spec",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "column",
+          "named": true
+        },
+        {
+          "type": "index_entries_s_spec",
+          "named": true
+        },
+        {
+          "type": "index_full_spec",
+          "named": true
+        },
+        {
+          "type": "index_keys_spec",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "index_entries_s_spec",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "object_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "index_full_spec",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "object_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "index_keys_spec",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "object_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "index_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "object_name",
           "named": true
         }
       ]
@@ -648,6 +766,10 @@
       "required": false,
       "types": [
         {
+          "type": "create_index",
+          "named": true
+        },
+        {
           "type": "delete_statement",
           "named": true
         },
@@ -657,6 +779,10 @@
         },
         {
           "type": "select_statement",
+          "named": true
+        },
+        {
+          "type": "truncate",
           "named": true
         }
       ]
@@ -682,6 +808,25 @@
     "type": "timestamp",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "truncate",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "keyspace",
+          "named": true
+        },
+        {
+          "type": "table",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "ttl",
@@ -834,6 +979,10 @@
     "named": false
   },
   {
+    "type": "CREATE_INDEX",
+    "named": false
+  },
+  {
     "type": "DELETE",
     "named": false
   },
@@ -846,7 +995,15 @@
     "named": false
   },
   {
+    "type": "ENTRIES",
+    "named": false
+  },
+  {
     "type": "FROM",
+    "named": false
+  },
+  {
+    "type": "FULL",
     "named": false
   },
   {
@@ -874,6 +1031,10 @@
     "named": false
   },
   {
+    "type": "KEYS",
+    "named": false
+  },
+  {
     "type": "LIMIT",
     "named": false
   },
@@ -886,6 +1047,10 @@
     "named": false
   },
   {
+    "type": "ON",
+    "named": false
+  },
+  {
     "type": "ORDER_BY",
     "named": false
   },
@@ -894,7 +1059,15 @@
     "named": false
   },
   {
+    "type": "TABLE",
+    "named": false
+  },
+  {
     "type": "TIMESTAMP",
+    "named": false
+  },
+  {
+    "type": "TRUNCATE",
     "named": false
   },
   {

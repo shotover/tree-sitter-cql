@@ -39,7 +39,7 @@ module.exports = grammar({
                     // applyBatch
                     // createAggregate
                     // createFunction
-                    //$.create_index,
+                    $.create_index,
                     // createKeyspace
                     // createMaterializedView
                     // createRole
@@ -381,7 +381,23 @@ module.exports = grammar({
                 optional( seq( $.keyspace, ".")),
                 $.table
             ),
-
+        create_index : $ =>
+            seq(
+                kw( "CREATE INDEX"),
+                optional( $.if_not_exist),
+                optional( $.index_name ),
+                kw( "ON"),
+                optional( seq( $.keyspace, ".")),
+                $.table,
+                "(",
+                $.index_column_spec,
+                ")"
+            ),
+        index_name : $ => choice( $.object_name, $._string_literal),
+        index_column_spec : $ => choice( $.column, $.index_keys_spec, $.index_entries_s_spec, $.index_full_spec),
+        index_keys_spec : $ => seq( kw("KEYS"), "(", $.object_name, ")"),
+        index_entries_s_spec : $ => seq( kw( "ENTRIES"), "(", $.object_name, ")"),
+        index_full_spec : $ => seq( kw( "FULL"), "(", $.object_name, ")"),
 },
 });
 
