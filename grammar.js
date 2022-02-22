@@ -81,7 +81,7 @@ module.exports = grammar({
                 optional($.where_spec),
                 optional($.order_spec),
                 optional(seq( kw("LIMIT"), $._decimal_literal)),
-                optional(kw("ALLOW FILTERING")),
+                optional(seq( kw("ALLOW"), kw("FILTERING"))),
             ),
         select_elements: $ =>
             seq(
@@ -268,9 +268,9 @@ module.exports = grammar({
                 ),
                 ")",
             ),
-        relalationContainsKey : $ => seq( $.object_name, kw("CONTAINS KEY"), $.constant),
+        relalationContainsKey : $ => seq( $.object_name, kw("CONTAINS"),kw("KEY"), $.constant),
         relalationContains : $ => seq( $.object_name, kw("CONTAINS"), $.constant),
-        order_spec : $ => seq ( kw("ORDER BY"), $.order_spec_element),
+        order_spec : $ => seq ( kw("ORDER"),kw("BY"), $.order_spec_element),
         order_spec_element : $ => seq( $.object_name, optional( $.order_direction)),
         delete_statement : $ =>
             seq(
@@ -303,14 +303,15 @@ module.exports = grammar({
             ),
         using_timestamp_spec : $ => seq( kw("USING"), $.timestamp ),
         timestamp : $ => seq( kw("TIMESTAMP"), $._decimal_literal),
-        if_exist : $ => kw( "IF EXISTS"),
+        if_exist : $ => seq( kw( "IF"), kw("EXISTS")),
         if_spec : $ => seq( kw("IF"), $.if_condition_list),
         if_condition_list : $ => seq( $.if_condition, repeat( seq( kw("AND"), $.if_condition))),
         if_condition : $ => seq( $.object_name, "=", $.constant),
         insert_statement : $ =>
             seq(
                 optional( $.begin_batch),
-                kw("INSERT INTO"),
+                kw("INSERT"),
+                kw("INTO"),
                 optional( seq( $.keyspace, ".")),
                 $.table,
                 optional( $.insert_column_spec ),
@@ -364,7 +365,7 @@ module.exports = grammar({
                 ),
                 ")",
             ),
-        if_not_exist : $ => kw( "IF NOT EXISTS"),
+        if_not_exist : $ => seq(kw( "IF"),kw("NOT"),kw("EXISTS")),
         using_ttl_timestamp : $ =>
             seq(
                 kw( "USING"),
@@ -383,7 +384,8 @@ module.exports = grammar({
             ),
         create_index : $ =>
             seq(
-                kw( "CREATE INDEX"),
+                kw( "CREATE"),
+                kw("INDEX"),
                 optional( $.if_not_exist),
                 optional( $.index_name ),
                 kw( "ON"),
@@ -400,7 +402,8 @@ module.exports = grammar({
         index_full_spec : $ => seq( kw( "FULL"), "(", $.object_name, ")"),
         drop_index : $ =>
             seq(
-                kw( "DROP INDEX"),
+                kw( "DROP"),
+                kw("INDEX"),
                 optional( $.if_exist),
                 optional( seq( $.keyspace, ".")),
                 $.index_name,
@@ -433,7 +436,10 @@ module.exports = grammar({
         grant : $ => seq( kw("GRANT"), $.priviledge,  kw("ON"), $.resource, kw("TO"), $.role ),
         priviledge : $ =>
             choice(
-                choice( kw("ALL"), kw( "ALL PERMISSIONS")),
+                choice(
+                    kw("ALL"),
+                    seq( kw( "ALL"),kw("PERMISSIONS")),
+                ),
                 kw( "ALTER"),
                 kw( "AUTHORIZE"),
                 kw( "DESCRIBE"),
@@ -445,13 +451,13 @@ module.exports = grammar({
             ),
         resource : $ =>
             choice(
-                kw("ALL FUNCTIONS"),
-                seq( kw("ALL FUNCTIONS IN KEYSPACE"), $.keyspace),
+                seq( kw("ALL"),kw("FUNCTIONS")),
+                seq( kw("ALL"),kw("FUNCTIONS"),kw("IN"),kw("KEYSPACE"), $.keyspace),
                 seq( kw("FUNCTION"), optional( seq( $.keyspace, ".")), $.function ),
-                kw("ALL KEYSPACES"),
+                seq(kw("ALL"),kw("KEYSPACES")),
                 seq( kw("KEYSPACE"), $.keyspace),
                 seq( optional( kw("TABLE")), optional( seq( $.keyspace, ".")), $.table ),
-                kw("ALL ROLES"),
+                seq( kw("ALL"), kw("ROLES")),
                 seq( kw("ROLE"), $.role ),
             ),
         role : $ => field( "role", $.object_name),
@@ -549,7 +555,7 @@ module.exports = grammar({
         create_aggregate : $ =>
             seq(
                 kw("CREATE"),
-                optional( kw( "OR REPLACE")),
+                optional( $.or_replace ),
                 kw("AGGREGATE"),
                 optional( $.if_not_exist),
                 optional( seq( $.keyspace, ".")),
@@ -566,6 +572,7 @@ module.exports = grammar({
                 kw("INITCOND"),
                 $.init_cond_definition,
             ),
+        or_replace : $ => seq(kw( "OR"),kw("REPLACE")),
         aggregate : $ => $.object_name,
         init_cond_definition : $ =>
             choice(
@@ -629,7 +636,7 @@ module.exports = grammar({
         create_function : $ =>
             seq(
                 kw("CREATE"),
-                optional( kw("OR REPLACE")),
+                optional( $.or_replace ),
                 kw( "FUNCTION"),
                 optional( $.if_not_exist),
                 optional( seq( $.keyspace, ".")),
@@ -717,7 +724,7 @@ module.exports = grammar({
             ),
         durable_writes : $ =>
             seq(
-                kw("DURABLE WRITES"),
+                kw("DURABLE_WRITES"),
                 "=",
                 $._boolean_literal,
             ),

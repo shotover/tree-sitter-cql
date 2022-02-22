@@ -741,6 +741,10 @@
         {
           "type": "keyspace",
           "named": true
+        },
+        {
+          "type": "or_replace",
+          "named": true
         }
       ]
     }
@@ -775,6 +779,10 @@
         },
         {
           "type": "language",
+          "named": true
+        },
+        {
+          "type": "or_replace",
           "named": true
         },
         {
@@ -2006,6 +2014,11 @@
     "fields": {}
   },
   {
+    "type": "or_replace",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "order_direction",
     "named": true,
     "fields": {}
@@ -2988,27 +3001,7 @@
     "named": false
   },
   {
-    "type": "ALLOW_FILTERING",
-    "named": false
-  },
-  {
-    "type": "ALL_FUNCTIONS",
-    "named": false
-  },
-  {
-    "type": "ALL_FUNCTIONS_IN_KEYSPACE",
-    "named": false
-  },
-  {
-    "type": "ALL_KEYSPACES",
-    "named": false
-  },
-  {
-    "type": "ALL_PERMISSIONS",
-    "named": false
-  },
-  {
-    "type": "ALL_ROLES",
+    "type": "ALLOW",
     "named": false
   },
   {
@@ -3080,19 +3073,11 @@
     "named": false
   },
   {
-    "type": "CONTAINS_KEY",
-    "named": false
-  },
-  {
     "type": "COUNTER",
     "named": false
   },
   {
     "type": "CREATE",
-    "named": false
-  },
-  {
-    "type": "CREATE_INDEX",
     "named": false
   },
   {
@@ -3128,10 +3113,6 @@
     "named": false
   },
   {
-    "type": "DROP_INDEX",
-    "named": false
-  },
-  {
     "type": "DURABLE_WRITES",
     "named": false
   },
@@ -3141,6 +3122,14 @@
   },
   {
     "type": "EXECUTE",
+    "named": false
+  },
+  {
+    "type": "EXISTS",
+    "named": false
+  },
+  {
+    "type": "FILTERING",
     "named": false
   },
   {
@@ -3168,6 +3157,10 @@
     "named": false
   },
   {
+    "type": "FUNCTIONS",
+    "named": false
+  },
+  {
     "type": "GRANT",
     "named": false
   },
@@ -3176,15 +3169,11 @@
     "named": false
   },
   {
-    "type": "IF_EXISTS",
-    "named": false
-  },
-  {
-    "type": "IF_NOT_EXISTS",
-    "named": false
-  },
-  {
     "type": "IN",
+    "named": false
+  },
+  {
+    "type": "INDEX",
     "named": false
   },
   {
@@ -3200,11 +3189,15 @@
     "named": false
   },
   {
-    "type": "INSERT_INTO",
+    "type": "INSERT",
     "named": false
   },
   {
     "type": "INT",
+    "named": false
+  },
+  {
+    "type": "INTO",
     "named": false
   },
   {
@@ -3225,6 +3218,10 @@
   },
   {
     "type": "KEYSPACE",
+    "named": false
+  },
+  {
+    "type": "KEYSPACES",
     "named": false
   },
   {
@@ -3288,19 +3285,19 @@
     "named": false
   },
   {
+    "type": "OR",
+    "named": false
+  },
+  {
     "type": "ORDER",
     "named": false
   },
   {
-    "type": "ORDER_BY",
-    "named": false
-  },
-  {
-    "type": "OR_REPLACE",
-    "named": false
-  },
-  {
     "type": "PASSWORD",
+    "named": false
+  },
+  {
+    "type": "PERMISSIONS",
     "named": false
   },
   {
@@ -3309,6 +3306,10 @@
   },
   {
     "type": "RENAME",
+    "named": false
+  },
+  {
+    "type": "REPLACE",
     "named": false
   },
   {
