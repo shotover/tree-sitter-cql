@@ -38,15 +38,15 @@ module.exports = grammar({
                     // alterUser
                     // applyBatch
                     // createAggregate
-                    // createFunction
+                    $.create_function,
                     $.create_index,
-                    // createKeyspace
+                    $.create_keyspace,
                     // createMaterializedView
-                    // createRole
-                    // createTable
+                    $.create_role,
+                    $.create_table,
                     // createTrigger
                     // createType
-                    // createUser
+                    $.create_user,
                     $.delete_statement,
                     // dropAggregate
                     $.drop_function,
@@ -191,7 +191,7 @@ module.exports = grammar({
                 ),
             ),
         _boolean_literal : $ => token(choice( kw("TRUE"), kw("FALSE"))),
-        //code_block : $ => seq( "$$",field("content", /(\$?[^$]+)+/), "$$"),
+        code_block : $ => field( "code_block", seq( "$$",field("content", /(\$?[^$]+)+/), "$$")),
         object_name : $ => token(
             choice(
                 /[a-zA-Z][A-Za-z0-9_$]*/,
@@ -271,7 +271,7 @@ module.exports = grammar({
         relalationContainsKey : $ => seq( $.object_name, kw("CONTAINS KEY"), $.constant),
         relalationContains : $ => seq( $.object_name, kw("CONTAINS"), $.constant),
         order_spec : $ => seq ( kw("ORDER BY"), $.order_spec_element),
-        order_spec_element : $ => seq( $.object_name, optional( choice( kw( "ASC"), kw("DESC")))),
+        order_spec_element : $ => seq( $.object_name, optional( $.order_direction)),
         delete_statement : $ =>
             seq(
                 optional( $.begin_batch ),
@@ -459,7 +459,8 @@ module.exports = grammar({
         revoke : $ => seq( kw("REVOKE"), $.priviledge, kw("ON"), $.resource, kw("FROM"), $.role),
         list_roles : $ =>
             seq(
-                kw("LIST ROLES"),
+                kw("LIST"),
+                kw("ROLES"),
                 optional( seq( kw("OF"), $.role)),
                 optional( kw( "NORECURSIVE")),
             ),
@@ -509,6 +510,194 @@ module.exports = grammar({
                 $.user
             ),
         user : $ => field( "user", $.object_name),
+
+        create_function : $ =>
+            seq(
+                kw("CREATE"),
+                optional( kw("OR REPLACE")),
+                kw( "FUNCTION"),
+                optional( $.if_not_exist),
+                optional( seq( $.keyspace, ".")),
+                $.function,
+                "(",
+                optional( commaSep1( $.param ) ),
+                ")",
+                $.return_mode,
+                kw( "RETURNS"),
+                $.data_type,
+                kw("LANGUAGE"),
+                $.language,
+                kw( "AS"),
+                $.code_block,
+            ),
+        param : $ =>
+            seq(
+                field( "param_name", $.object_name),
+                $.data_type
+            ),
+        data_type : $ => seq( $.data_type_name, optional($.data_type_definition)),
+        data_type_name : $ =>
+            choice (
+                $.object_name,
+                kw( "TIMESTAMP"),
+                kw( "SET"),
+                kw( "ASCII"),
+                kw( "BIGINT"),
+                kw( "BLOB"),
+                kw( "BOOLEAN"),
+                kw( "COUNTER"),
+                kw( "DATE"),
+                kw( "DECIMAL"),
+                kw( "DOUBLE"),
+                kw( "FLOAT"),
+                kw( "FROZEN"),
+                kw( "INET"),
+                kw( "INT"),
+                kw( "LIST"),
+                kw( "MAP"),
+                kw( "SMALLINT"),
+                kw( "TEXT"),
+                kw( "TIME"),
+                kw( "TIMEUUID"),
+                kw( "TINYINT"),
+                kw( "TUPLE"),
+                kw( "VARCHAR"),
+                kw( "VARINT"),
+                kw( "TIMESTAMP"),
+                kw( "UUID"),
+            ),
+        data_type_definition : $ => seq( "<", commaSep1( $.data_type_name), ">"),
+        return_mode : $ =>
+            seq(
+                choice(
+                    kw("CALLED"),
+                    seq(
+                        kw( "RETURNS"),
+                        kw( "NULL"),
+                    ),
+                ),
+                kw( "ON"),
+                kw( "NULL"),
+                kw( "INPUT"),
+            ),
+        language : $ => field( "language", $.object_name),
+        create_keyspace : $ =>
+            seq(
+                kw("CREATE"),
+                kw( "KEYSPACE"),
+                optional( $.if_not_exist),
+                $.keyspace,
+                kw( "WITH"),
+                kw( "REPLICATION"),
+                ">",
+                "{",
+                commaSep1( $.replication_list_item),
+                "}",
+                optional( seq( kw("AND"), $.durable_writes)),
+            ),
+        replication_list_item : $ =>
+            choice(
+                seq( $._string_literal, ":", $._string_literal),
+                seq( $._string_literal, ":", $._decimal_literal),
+            ),
+        durable_writes : $ =>
+            seq(
+                kw("DURABLE WRITES"),
+                "=",
+                $._boolean_literal,
+            ),
+        create_role : $ =>
+            seq(
+                kw("CREATE"),
+                kw("ROLE"),
+                optional( $.if_not_exist),
+                $.role,
+                optional( $.role_with ),
+            ),
+        role_with : $ => seq( kw("WITH"), commaSep1( $.role_with_options)),
+        role_with_options : $ =>
+            choice(
+                seq( kw("PASSWORD"), "=", $._string_literal),
+                seq( kw("LOGIN"), "=", $._boolean_literal),
+                seq( kw("SUPERUSER"), "=", $._boolean_literal),
+                seq( kw("OPTIONS"), "=", $.option_hash),
+            ),
+        option_hash : $ => seq( "(", commaSep1( $.option_hash_item), ")"),
+        option_hash_item : $ => seq( $._string_literal, ":", choice( $._string_literal, $._float_literal), ")"),
+        create_table : $ =>
+            seq(
+                kw("CREATE"),
+                kw("TABLE"),
+                optional( $.if_not_exist),
+                optional( seq( $.keyspace, ".")),
+                $.table,
+                "(",
+                $.column_definition_list,
+                ")",
+                optional( $.with_element),
+            ),
+        column_definition_list : $ =>
+            seq(
+                commaSep1( $.column_definition),
+                optional( seq( ",", $.primary_key_element)),
+            ),
+        column_definition : $ => seq( $.column, $.data_type, optional( $.primary_key_column)),
+        primary_key_column : $ => seq( kw("PRIMARY"), kw("KEY")),
+        primary_key_element : $ =>
+            seq(
+                kw("PRIMARY"),
+                kw("KEY"),
+                "(",
+                $.primary_key_definition,
+                ")",
+            ),
+        primary_key_definition : $ => choice( $.single_primary_key, $.compound_key, $.composite_key ),
+        single_primary_key : $ => $.column,
+        compound_key : $ => seq( $.partition_key, ",", $.clustering_key_list ),
+        partition_key : $ => $.column,
+        clustering_key_list : $ => commaSep1( $.clustering_key ),
+        clustering_key : $ => $.column,
+        composite_key : $ =>
+            seq(
+                "(",
+                $.partition_key_list,
+                ")",
+                ",",
+                $.clustering_key_list
+            ),
+        partition_key_list : $ => commaSep1( $.partition_key),
+        with_element : $ => seq( kw("WITH"), optional( $.table_options), optional( $.clustering_order)),
+        table_options : $ => sep1( $.table_option_item, kw("AND")),
+        table_option_item : $ =>
+            choice(
+                seq( $.table_option_name, "=", $.table_option_value ),
+                seq( $.table_option_name, "=", $.option_hash ),
+            ),
+        table_option_name : $ => field( "option", $.object_name),
+        table_option_value : $ => choice( $._string_literal, $._float_literal ),
+        clustering_order : $ =>
+            seq(
+                kw("CLUSTERING"),
+                kw( "ORDER"),
+                kw( "BY"),
+                "(",
+                $.column,
+                optional( $.order_direction ),
+                ")",
+            ),
+        order_direction : $ => choice( kw( "ASC"), kw("DESC")),
+        create_user : $ =>
+            seq(
+                kw("CREATE"),
+                kw("USER"),
+                optional( $.if_not_exist),
+                $.user,
+                kw( "WITH"),
+                kw( "PASSWORD"),
+                $._string_literal,
+                optional( choice( kw("SUPERUSER"), kw("NOSUPERUSER"))),
+            ),
+
     },
 });
 
