@@ -30,13 +30,13 @@ module.exports = grammar({
         _statement: $ =>
             seq(
                 choice(
-                    //alterKeyspace
+                    $.alter_keyspace,
                     // alterMaterializedView
-                    // alterRole
-                    // alterTable
+                    $.alter_role,
+                    $.alter_table,
                     // alterType
-                    // alterUser
-                    // applyBatch
+                    $.alter_user,
+                    $.apply_batch,
                     // createAggregate
                     $.create_function,
                     $.create_index,
@@ -591,7 +591,7 @@ module.exports = grammar({
                 kw( "REPLICATION"),
                 ">",
                 "{",
-                commaSep1( $.replication_list_item),
+                $.replication_list,
                 "}",
                 optional( seq( kw("AND"), $.durable_writes)),
             ),
@@ -693,11 +693,65 @@ module.exports = grammar({
                 optional( $.if_not_exist),
                 $.user,
                 kw( "WITH"),
-                kw( "PASSWORD"),
-                $._string_literal,
-                optional( choice( kw("SUPERUSER"), kw("NOSUPERUSER"))),
+                $.user_password,
+                optional( $.user_super_user),
             ),
-
+        alter_keyspace : $ =>
+            seq(
+                kw("ALTER"),
+                kw( "KEYSPACE"),
+                $.keyspace,
+                kw("WITH"),
+                kw("REPLICATION"),
+                "=",
+                "{",
+                $.replication_list,
+                "}",
+                optional( seq( kw("AND"),$.durable_writes) ),
+            ),
+        replication_list : $ => commaSep1( $.replication_list_item ),
+        alter_role : $ =>
+            seq(
+                kw("ALTER"),
+                kw( "ROLE"),
+                $.role,
+                optional( $.role_with ),
+            ),
+        alter_table : $ =>
+            seq(
+                kw("ALTER"),
+                kw( "TABLE"),
+                optional( seq( $.keyspace, ".")),
+                $.table,
+                $.alter_table_operation,
+            ),
+        alter_table_operation : $ =>
+            choice(
+                $.alter_table_add,
+                $.alter_table_drop_columns,
+                $.alter_table_drop_compact_storage,
+                $.alter_table_rename,
+                $.alter_table_with,
+            ),
+        alter_table_add : $ => seq( kw("ADD"), $.alter_table_column_definition ),
+        alter_table_column_definition : $ => commaSep1( seq( $.column, $.data_type)),
+        alter_table_drop_columns : $ => seq( kw("DROP"), $.alter_table_drop_column_list ),
+        alter_table_drop_column_list : $ => commaSep1( $.column ),
+        alter_table_drop_compact_storage : $ => seq( kw("DROP"), kw("COMPACT"), kw("STORAGE") ),
+        alter_table_rename : $ => seq( kw("RENAME"), $.column, kw("TO"), $.column ),
+        alter_table_with : $ => seq( kw("WITH"), $.table_options ),
+        alter_user : $ =>
+            seq(
+                kw("ALTER"),
+                kw( "USER"),
+                $.user,
+                kw("WITH"),
+                $.user_password,
+                optional( $.user_super_user ),
+            ),
+        user_password : $ => seq( kw("PASSWORD"), $._string_literal),
+        user_super_user : $ => choice( kw("SUPERUSER"), kw("NOSUPERUSER")),
+        apply_batch : $ => seq( kw("APPLY"), kw("BATCH")),
     },
 });
 
