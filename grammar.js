@@ -80,9 +80,10 @@ module.exports = grammar({
                 $.from_spec,
                 optional($.where_spec),
                 optional($.order_spec),
-                optional(seq( kw("LIMIT"), $._decimal_literal)),
+                optional($.limit_spec ),
                 optional(seq( kw("ALLOW"), kw("FILTERING"))),
             ),
+        limit_spec: $ => seq( kw("LIMIT"),$.decimal_literal),
         select_elements: $ =>
             seq(
             choice( "*", $.select_element),
@@ -130,17 +131,18 @@ module.exports = grammar({
             ),
         constant: $ => prec.left( 2,
             choice(
-                $._uuid,
-                $._string_literal,
-                $._decimal_literal,
-                $._float_literal,
-                $._hexadecimal_literal,
-                $._boolean_literal,
+                $.uuid,
+                $.string_literal,
+                $.decimal_literal,
+                $.float_literal,
+                $.hexadecimal_literal,
+                $.boolean_literal,
                 //$.code_block,
                 kw("NULL")
             ) ),
-        _uuid : $ =>
+        uuid : $ =>
             seq (
+                $._hex_4digit,
                 $._hex_4digit,
                 "-",
                 $._hex_4digit,
@@ -155,25 +157,25 @@ module.exports = grammar({
             ),
         _hex_4digit : $ => /[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]/,
         _hex_digit : $ => /[0-9a-fA-F]/,
-        _string_literal: $ =>
+        string_literal: $ =>
             choice(
                 seq("'", field("content", /[^']*/), "'"),
                 seq("$$", field("content", /(\$?[^$]+)+/), "$$"), // FIXME empty string test, maybe read a bit more into c comments answer
             ),
-        _decimal_literal : $ =>  repeat1( $._dec_digit ),
+        decimal_literal : $ =>  repeat1( $._dec_digit ),
         _dec_digit : $ => /[0-9]/,
-        _float_literal : $ =>
+        float_literal : $ =>
             seq(
                 optional("-"),
-                $._decimal_literal,
+                $.decimal_literal,
                 optional(
                     seq (
                         ".",
-                        $._decimal_literal,
+                        $.decimal_literal,
                     )
                 ),
             ),
-        _hexadecimal_literal : $ =>
+        hexadecimal_literal : $ =>
             choice(
                 seq(
                     "X'",
@@ -190,7 +192,7 @@ module.exports = grammar({
                     repeat1( $._hex_digit ),
                 ),
             ),
-        _boolean_literal : $ => token(choice( kw("TRUE"), kw("FALSE"))),
+        boolean_literal : $ => token(choice( kw("TRUE"), kw("FALSE"))),
         code_block : $ => field( "code_block", seq( "$$",field("content", /(\$?[^$]+)+/), "$$")),
         object_name : $ => token(
             choice(
@@ -296,13 +298,13 @@ module.exports = grammar({
                 optional(
                     seq(
                         "[",
-                        choice( $._string_literal, $._decimal_literal),
+                        choice( $.string_literal, $.decimal_literal),
                         "]"
                     )
                 ),
             ),
         using_timestamp_spec : $ => seq( kw("USING"), $.timestamp ),
-        timestamp : $ => seq( kw("TIMESTAMP"), $._decimal_literal),
+        timestamp : $ => seq( kw("TIMESTAMP"), $.decimal_literal),
         if_exist : $ => seq( kw( "IF"), kw("EXISTS")),
         if_spec : $ => seq( kw("IF"), $.if_condition_list),
         if_condition_list : $ => seq( $.if_condition, repeat( seq( kw("AND"), $.if_condition))),
@@ -374,7 +376,7 @@ module.exports = grammar({
                     seq( $.timestamp, optional( seq(kw("AND"), $.ttl))),
                 )
             ),
-        ttl : $ => seq( kw("TTL"), $._decimal_literal),
+        ttl : $ => seq( kw("TTL"), $.decimal_literal),
         truncate : $ =>
             seq(
                 kw("TRUNCATE"),
@@ -395,7 +397,7 @@ module.exports = grammar({
                 $.index_column_spec,
                 ")"
             ),
-        index_name : $ => choice( $.object_name, $._string_literal),
+        index_name : $ => choice( $.object_name, $.string_literal),
         index_column_spec : $ => choice( $.column, $.index_keys_spec, $.index_entries_s_spec, $.index_full_spec),
         index_keys_spec : $ => seq( kw("KEYS"), "(", $.object_name, ")"),
         index_entries_s_spec : $ => seq( kw( "ENTRIES"), "(", $.object_name, ")"),
@@ -423,14 +425,14 @@ module.exports = grammar({
         assignment_element : $ =>
             choice(
                 seq( $.object_name, "=", choice( $.constant, $.assignment_map, $.assignment_set, $.assignment_list )),
-                seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $._decimal_literal),
+                seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.decimal_literal),
                 seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_set),
                 seq( $.object_name, "=", $.assignment_set, choice( "+", "-" ), $.object_name),
                 seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_map),
                 seq( $.object_name, "=", $.assignment_map, choice( "+", "-" ), $.object_name),
                 seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_list),
                 seq( $.object_name, "=", $.assignment_list, choice( "+", "-" ), $.object_name),
-                seq( $.object_name, "[", $._decimal_literal, "]", "=", $.constant),
+                seq( $.object_name, "[", $.decimal_literal, "]", "=", $.constant),
             ),
         use : $ => seq( kw("USE"), $.keyspace),
         grant : $ => seq( kw("GRANT"), $.priviledge,  kw("ON"), $.resource, kw("TO"), $.role ),
@@ -719,14 +721,14 @@ module.exports = grammar({
             ),
         replication_list_item : $ =>
             choice(
-                seq( $._string_literal, ":", $._string_literal),
-                seq( $._string_literal, ":", $._decimal_literal),
+                seq( $.string_literal, ":", $.string_literal),
+                seq( $.string_literal, ":", $.decimal_literal),
             ),
         durable_writes : $ =>
             seq(
                 kw("DURABLE_WRITES"),
                 "=",
-                $._boolean_literal,
+                $.boolean_literal,
             ),
         create_role : $ =>
             seq(
@@ -739,13 +741,13 @@ module.exports = grammar({
         role_with : $ => seq( kw("WITH"), commaSep1( $.role_with_options)),
         role_with_options : $ =>
             choice(
-                seq( kw("PASSWORD"), "=", $._string_literal),
-                seq( kw("LOGIN"), "=", $._boolean_literal),
-                seq( kw("SUPERUSER"), "=", $._boolean_literal),
+                seq( kw("PASSWORD"), "=", $.string_literal),
+                seq( kw("LOGIN"), "=", $.boolean_literal),
+                seq( kw("SUPERUSER"), "=", $.boolean_literal),
                 seq( kw("OPTIONS"), "=", $.option_hash),
             ),
         option_hash : $ => seq( "(", commaSep1( $.option_hash_item), ")"),
-        option_hash_item : $ => seq( $._string_literal, ":", choice( $._string_literal, $._float_literal), ")"),
+        option_hash_item : $ => seq( $.string_literal, ":", choice( $.string_literal, $.float_literal), ")"),
         create_table : $ =>
             seq(
                 kw("CREATE"),
@@ -796,7 +798,7 @@ module.exports = grammar({
                 seq( $.table_option_name, "=", $.option_hash ),
             ),
         table_option_name : $ => field( "option", $.object_name),
-        table_option_value : $ => choice( $._string_literal, $._float_literal ),
+        table_option_value : $ => choice( $.string_literal, $.float_literal ),
         clustering_order : $ =>
             seq(
                 kw("CLUSTERING"),
@@ -819,7 +821,7 @@ module.exports = grammar({
                 $.trigger_class,
             ),
         trigger : $ => field( "trigger", $.object_name),
-        trigger_class : $ => $._string_literal,
+        trigger_class : $ => $.string_literal,
         create_type : $ =>
             seq(
                 kw("CREATE"),
@@ -935,7 +937,7 @@ module.exports = grammar({
                 $.user_password,
                 optional( $.user_super_user ),
             ),
-        user_password : $ => seq( kw("PASSWORD"), $._string_literal),
+        user_password : $ => seq( kw("PASSWORD"), $.string_literal),
         user_super_user : $ => choice( kw("SUPERUSER"), kw("NOSUPERUSER")),
         apply_batch : $ => seq( kw("APPLY"), kw("BATCH")),
     },
