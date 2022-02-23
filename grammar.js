@@ -103,78 +103,42 @@ module.exports = grammar({
             ),
         function_call: $ =>
             seq(
-                field("function", $.object_name),
+                $.function_name,
                 "(",
                 choice(
                     "*",
-                    optional(field("arguments", $.function_args)),
+                    $.function_args,
                 ),
                 ")",
             ),
+        function_name: $ =>  $.object_name,
         function_args: $ =>
-            seq (
-                choice(
-                    $.constant,
-                    $.object_name,
-                    $.function_call
-                ),
-                repeat(
-                    seq(
-                        ",",
-                        choice(
-                            $.constant,
-                            $.object_name,
-                            $.function_call
-                        ),
-                    )
-                )
-            ),
-        constant: $ => prec.left( 2,
+            commaSep1(choice(
+                $.constant,
+                $.object_name,
+                $.function_call,
+            )),
+        constant: $ =>
             choice(
-                $.uuid,
-                $.string_literal,
                 $.decimal_literal,
                 $.float_literal,
                 $.hexadecimal_literal,
                 $.boolean_literal,
                 //$.code_block,
-                kw("NULL")
-            ) ),
-        uuid : $ =>
-            seq (
-                $._hex_4digit,
-                $._hex_4digit,
-                "-",
-                $._hex_4digit,
-                "-",
-                $._hex_4digit,
-                "-",
-                $._hex_4digit,
-                "-",
-                $._hex_4digit,
-                $._hex_4digit,
-                $._hex_4digit,
+                kw("NULL"),
+                $.string_literal,
+                $.uuid,
             ),
+        uuid : $ =>token(/[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}/),
         _hex_4digit : $ => /[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]/,
         _hex_digit : $ => /[0-9a-fA-F]/,
-        string_literal: $ =>
+        string_literal: $ => token(
             choice(
                 seq("'", field("content", /[^']*/), "'"),
                 seq("$$", field("content", /(\$?[^$]+)+/), "$$"), // FIXME empty string test, maybe read a bit more into c comments answer
-            ),
-        decimal_literal : $ =>  repeat1( $._dec_digit ),
-        _dec_digit : $ => /[0-9]/,
-        float_literal : $ =>
-            seq(
-                optional("-"),
-                $.decimal_literal,
-                optional(
-                    seq (
-                        ".",
-                        $.decimal_literal,
-                    )
-                ),
-            ),
+            )),
+        decimal_literal : $ =>  seq( optional("-"),/[0-9]+/),
+        float_literal : $ => seq( $.decimal_literal, ".",/[0-9]+/),
         hexadecimal_literal : $ =>
             choice(
                 seq(
@@ -192,7 +156,7 @@ module.exports = grammar({
                     repeat1( $._hex_digit ),
                 ),
             ),
-        boolean_literal : $ => token(choice( kw("TRUE"), kw("FALSE"))),
+        boolean_literal : $ => choice( kw("TRUE"), kw("FALSE")),
         code_block : $ => field( "code_block", seq( "$$",field("content", /(\$?[^$]+)+/), "$$")),
         object_name : $ => token(
             choice(
@@ -203,29 +167,20 @@ module.exports = grammar({
         from_spec : $ => seq( kw("FROM"), $.from_spec_element ),
         from_spec_element : $ => seq( $.object_name, optional(seq(".", $.object_name))),
         where_spec : $ => seq( kw("WHERE"), $.relation_elements),
-        relation_elements : $ => seq( $.relation_element, repeat(seq( kw("AND"), $.relation_element))),
+        relation_elements : $ => prec.left(2,sep1( $.relation_element, kw("AND"))),
         relation_element : $=>
-            choice(
+            choice (
                 seq(
-                    $.object_name,
-                    choice( "=","<",">","<=",">="),
-                    $.constant,
+                    choice(
+                        seq( $.object_name, optional( seq(".", $.object_name))),
+                        $.function_call
                     ),
-                seq(
-                    $.object_name,
-                    ".",
-                    $.object_name,
-                    choice( "=","<",">","<=",">="),
+                    field("operator", choice("<", "<=", "<>", "=", ">", ">=")),
                     $.constant,
                 ),
                 seq(
                     $.function_call,
-                    choice( "=","<",">","<=",">="),
-                    $.constant,
-                ),
-                seq(
-                    $.function_call,
-                    choice( "=","<",">","<=",">="),
+                    field("operator", choice("<", "<=", "<>", "=", ">", ">=")),
                     $.function_call,
                 ),
                 seq(
@@ -235,7 +190,6 @@ module.exports = grammar({
                      $.function_args,
                     ")",
                 ),
-
                 seq(
                     "(",
                     commaSep1( $.object_name ),
@@ -249,15 +203,13 @@ module.exports = grammar({
                     "(",
                     commaSep1( $.object_name ),
                     ")",
-                    choice( "=","<",">","<=",">="),
-                    "(",
+                    field("operator", choice("<", "<=", "<>", "=", ">", ">=")),
                     commaSep1($.assignment_tuple),
-                    ")",
                 ),
-                $.relalationContainsKey,
-                $.relalationContains,
+                $.relation_contains_key,
+                $.relation_contains,
             ),
-        assignment_tuple : $ =>
+       assignment_tuple : $ =>
             seq(
                 "(",
                 $.constant,
@@ -270,8 +222,8 @@ module.exports = grammar({
                 ),
                 ")",
             ),
-        relalationContainsKey : $ => seq( $.object_name, kw("CONTAINS"),kw("KEY"), $.constant),
-        relalationContains : $ => seq( $.object_name, kw("CONTAINS"), $.constant),
+        relation_contains_key : $ => seq( $.object_name, kw("CONTAINS"),kw("KEY"), $.constant),
+        relation_contains : $ => seq( $.object_name, kw("CONTAINS"), $.constant),
         order_spec : $ => seq ( kw("ORDER"),kw("BY"), $.order_spec_element),
         order_spec_element : $ => seq( $.object_name, optional( $.order_direction)),
         delete_statement : $ =>
