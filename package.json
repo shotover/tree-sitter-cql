@@ -21,5 +21,13 @@
   "homepage": "https://github.com/Claude-at-Instaclustr/tree-sitter-cql#readme",
   "devDependencies": {
     "tree-sitter-cli": "^0.20.4"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.cql",
+      "file-types": [
+        "cql"
+      ]
+    }
+  ]
 }
