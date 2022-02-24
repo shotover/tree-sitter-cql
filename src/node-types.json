@@ -727,6 +727,10 @@
           "named": true
         },
         {
+          "type": "code_block",
+          "named": true
+        },
+        {
           "type": "decimal_literal",
           "named": true
         },
@@ -1679,11 +1683,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "if_exist",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "if_not_exist",
@@ -3713,6 +3712,10 @@
   {
     "type": "]",
     "named": false
+  },
+  {
+    "type": "if_exist",
+    "named": true
   },
   {
     "type": "object_name",

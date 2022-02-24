@@ -524,6 +524,10 @@
           "name": "boolean_literal"
         },
         {
+          "type": "SYMBOL",
+          "name": "code_block"
+        },
+        {
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
@@ -560,49 +564,23 @@
     "string_literal": {
       "type": "TOKEN",
       "content": {
-        "type": "CHOICE",
+        "type": "SEQ",
         "members": [
           {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "'"
-              },
-              {
-                "type": "FIELD",
-                "name": "content",
-                "content": {
-                  "type": "PATTERN",
-                  "value": "[^']*"
-                }
-              },
-              {
-                "type": "STRING",
-                "value": "'"
-              }
-            ]
+            "type": "STRING",
+            "value": "'"
           },
           {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "$$"
-              },
-              {
-                "type": "FIELD",
-                "name": "content",
-                "content": {
-                  "type": "PATTERN",
-                  "value": "(\\$?[^$]+)+"
-                }
-              },
-              {
-                "type": "STRING",
-                "value": "$$"
-              }
-            ]
+            "type": "FIELD",
+            "name": "content",
+            "content": {
+              "type": "PATTERN",
+              "value": "[^']*"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "'"
           }
         ]
       }
@@ -791,34 +769,8 @@
       ]
     },
     "from_spec_element": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "object_name"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "."
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "object_name"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
+      "type": "SYMBOL",
+      "name": "_dotted_name"
     },
     "where_spec": {
       "type": "SEQ",
@@ -882,34 +834,8 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "object_name"
-                    },
-                    {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "SEQ",
-                          "members": [
-                            {
-                              "type": "STRING",
-                              "value": "."
-                            },
-                            {
-                              "type": "SYMBOL",
-                              "name": "object_name"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "BLANK"
-                        }
-                      ]
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "_dotted_name"
                 },
                 {
                   "type": "SYMBOL",
@@ -1648,27 +1574,30 @@
       ]
     },
     "if_exist": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[iI][fF]"
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[iI][fF]"
+            },
+            "named": false,
+            "value": "IF"
           },
-          "named": false,
-          "value": "IF"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[eE][xX][iI][sS][tT][sS]"
-          },
-          "named": false,
-          "value": "EXISTS"
-        }
-      ]
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "PATTERN",
+              "value": "[eE][xX][iI][sS][tT][sS]"
+            },
+            "named": false,
+            "value": "EXISTS"
+          }
+        ]
+      }
     },
     "if_spec": {
       "type": "SEQ",
@@ -7548,6 +7477,36 @@
           "value": "BATCH"
         }
       ]
+    },
+    "_dotted_name": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "object_name"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "."
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "object_name"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     }
   },
   "extras": [
@@ -7556,7 +7515,12 @@
       "value": "\\s"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "if_not_exist",
+      "if_exist"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [],

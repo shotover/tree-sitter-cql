@@ -2,7 +2,7 @@ use std::any::Any;
 use std::error::Error;
 use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch};
 
-const TEXT : &str = "SELECT * FROM cycling.calendar WHERE race_id IN (100, 101, 102) AND (race_start_date, race_end_date) IN (('2015-01-01','2015-02-02'), ('2016-01-01','2016-02-02'));";
+const TEXT : &str = "CREATE TRIGGER if not exist trigger_name USING 'triggerclass'";
 fn main() {
     let language = tree_sitter_cql::language();
     let mut parser = Parser::new();
@@ -12,7 +12,7 @@ fn main() {
     let source_code = TEXT.as_bytes();
     let tree = parser.parse(source_code, None).unwrap();
     println!("{}", tree.root_node().to_sexp());
-    /*
+
     walk( &"".to_string(),&mut tree.walk() );
     let query = match Query::new( language, "(where_spec)") {
         Ok(t) => {
@@ -48,8 +48,6 @@ fn main() {
             }
         }
     }
-
-     */
 }
 
 fn walk( prefix: &String, cursor : &mut TreeCursor ) {

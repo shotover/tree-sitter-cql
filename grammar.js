@@ -24,6 +24,9 @@ function createCaseInsensitiveRegex(word) {
 module.exports = grammar({
     name: 'cql',
 
+    conflicts: ($, original) => original.concat([
+        [$.if_not_exist, $.if_exist ],
+    ]),
     rules: {
         source_file: $ => repeat($._statement),
 
@@ -124,7 +127,7 @@ module.exports = grammar({
                 $.float_literal,
                 $.hexadecimal_literal,
                 $.boolean_literal,
-                //$.code_block,
+                $.code_block,
                 kw("NULL"),
                 $.string_literal,
                 $.uuid,
@@ -132,11 +135,7 @@ module.exports = grammar({
         uuid : $ =>token(/[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}/),
         _hex_4digit : $ => /[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]/,
         _hex_digit : $ => /[0-9a-fA-F]/,
-        string_literal: $ => token(
-            choice(
-                seq("'", field("content", /[^']*/), "'"),
-                seq("$$", field("content", /(\$?[^$]+)+/), "$$"), // FIXME empty string test, maybe read a bit more into c comments answer
-            )),
+        string_literal: $ => token(seq("'", field("content", /[^']*/), "'")),
         decimal_literal : $ =>  seq( optional("-"),/[0-9]+/),
         float_literal : $ => seq( $.decimal_literal, ".",/[0-9]+/),
         hexadecimal_literal : $ =>
@@ -163,16 +162,15 @@ module.exports = grammar({
                 /[a-zA-Z][A-Za-z0-9_$]*/,
                 seq("'", /[a-zA-Z][A-Za-z0-9_$]*/, "'"),
             )),
-
         from_spec : $ => seq( kw("FROM"), $.from_spec_element ),
-        from_spec_element : $ => seq( $.object_name, optional(seq(".", $.object_name))),
+        from_spec_element : $ => $._dotted_name,
         where_spec : $ => seq( kw("WHERE"), $.relation_elements),
         relation_elements : $ => prec.left(2,sep1( $.relation_element, kw("AND"))),
         relation_element : $=>
             choice (
                 seq(
                     choice(
-                        seq( $.object_name, optional( seq(".", $.object_name))),
+                        $._dotted_name,
                         $.function_call
                     ),
                     field("operator", choice("<", "<=", "<>", "=", ">", ">=")),
@@ -257,8 +255,8 @@ module.exports = grammar({
             ),
         using_timestamp_spec : $ => seq( kw("USING"), $.timestamp ),
         timestamp : $ => seq( kw("TIMESTAMP"), $.decimal_literal),
-        if_exist : $ => seq( kw( "IF"), kw("EXISTS")),
-        if_spec : $ => seq( kw("IF"), $.if_condition_list),
+        if_exist : $ => token(seq( kw( "IF"), kw("EXISTS"))),
+        if_spec : $ => seq( kw( "IF"), $.if_condition_list),
         if_condition_list : $ => seq( $.if_condition, repeat( seq( kw("AND"), $.if_condition))),
         if_condition : $ => seq( $.object_name, "=", $.constant),
         insert_statement : $ =>
@@ -766,7 +764,7 @@ module.exports = grammar({
             seq (
                 kw("CREATE"),
                 kw("TRIGGER"),
-                optional( $.if_not_exist),
+                optional($.if_not_exist),
                 optional( seq( $.keyspace, ".")),
                 $.trigger,
                 kw( "USING"),
@@ -892,6 +890,7 @@ module.exports = grammar({
         user_password : $ => seq( kw("PASSWORD"), $.string_literal),
         user_super_user : $ => choice( kw("SUPERUSER"), kw("NOSUPERUSER")),
         apply_batch : $ => seq( kw("APPLY"), kw("BATCH")),
+        _dotted_name : $=> seq( $.object_name, optional( seq(".", $.object_name))),
     },
 });
 
