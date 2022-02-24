@@ -1,13 +1,11 @@
-use std::any::Any;
-use std::error::Error;
-use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch};
+use tree_sitter::{Node, Parser, TreeCursor};
 
 const TEXT : &str = "SELECT * FROM cycling.calendar WHERE race_id IN (100, 101, 102) AND (race_start_date, race_end_date) IN (('2015-01-01','2015-02-02'), ('2016-01-01','2016-02-02'));";
 fn main() {
     let language = tree_sitter_cql::language();
     let mut parser = Parser::new();
     if parser.set_language(language).is_err() {
-        panic!( "language version mismatch");
+        panic!("language version mismatch");
     }
     let source_code = TEXT.as_bytes();
     let tree = parser.parse(source_code, None).unwrap();
@@ -52,26 +50,36 @@ fn main() {
      */
 }
 
-fn walk( prefix: &String, cursor : &mut TreeCursor ) {
+fn _walk(prefix: &str, cursor: &mut TreeCursor) {
     let mut new_prefix = "  ".to_string();
     new_prefix += prefix;
-    print_node(prefix, &cursor.node() );
+    _print_node(prefix, &cursor.node());
     if cursor.goto_first_child() {
-        walk( &new_prefix, cursor );
+        _walk(&new_prefix, cursor);
     }
     if cursor.goto_next_sibling() {
-        walk( prefix, cursor );
+        _walk(prefix, cursor);
     }
     cursor.goto_parent();
 }
 
-fn print_node(prefix : &String, node : &Node ) {
-    println!("{}===== Node {:?} ====", prefix, node );
-    println!("{}  id: {:?}  named: {:?}  kind id: {:?}  kind: {:?}", prefix, node.id(), node.is_named(), node.kind_id(), node.kind() );
-    println!("{} err: {:?} {:?} {}", prefix, node.is_error(), node.has_error(),  node.to_sexp() );
-    println!("{}  utf8 {:?}", prefix, node.utf8_text(TEXT.as_bytes()) );
-    println!( "{}=========", prefix )
+fn _print_node(prefix: &str, node: &Node) {
+    println!("{}===== Node {:?} ====", prefix, node);
+    println!(
+        "{}  id: {:?}  named: {:?}  kind id: {:?}  kind: {:?}",
+        prefix,
+        node.id(),
+        node.is_named(),
+        node.kind_id(),
+        node.kind()
+    );
+    println!(
+        "{} err: {:?} {:?} {}",
+        prefix,
+        node.is_error(),
+        node.has_error(),
+        node.to_sexp()
+    );
+    println!("{}  utf8 {:?}", prefix, node.utf8_text(TEXT.as_bytes()));
+    println!("{}=========", prefix)
 }
-
-
-

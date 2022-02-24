@@ -20,7 +20,15 @@ include = [
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter = "~0.20"
+tree-sitter = "0.20"
 
 [build-dependencies]
 cc = "1.0"
+
+[dev-dependencies]
+criterion = { git = "https://github.com/shotover/criterion.rs", branch = "version-0.4", version = "0.3", features = ["async_tokio", "html_reports"] }
+
+
+[[bench]]
+name = "benches"
+harness = false
