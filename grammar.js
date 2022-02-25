@@ -413,9 +413,10 @@ const
             seq(
                 kw("LIST"),
                 kw("ROLES"),
-                optional( seq( kw("OF"), alias( $.object_name, "role"))),
+                optional( seq( kw("OF"), $.role_name)),
                 optional( kw( "NORECURSIVE")),
             ),
+        role_name : $ => alias( $.object_name, "role"),
         list_permissions : $ =>
             seq(
                 kw("LIST"),

@@ -3752,13 +3752,8 @@
                   "value": "OF"
                 },
                 {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "role"
+                  "type": "SYMBOL",
+                  "name": "role_name"
                 }
               ]
             },
@@ -3785,6 +3780,15 @@
           ]
         }
       ]
+    },
+    "role_name": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "object_name"
+      },
+      "named": false,
+      "value": "role"
     },
     "list_permissions": {
       "type": "SEQ",
