@@ -3,25 +3,32 @@ DROP FUNCTION fLog;
 ================================================================================
 DROP FUNCTION fLog;
 --------------------------------------------------------------------------------
+
 (source_file
-    (drop_function
-    (function
-    (object_name))))
+  (drop_function
+    (function)))
 
 ================================================================================
 DROP FUNCTION cycling.fLog;
 ================================================================================
 DROP FUNCTION cycling.fLog;
 --------------------------------------------------------------------------------
+
 (source_file
-    (drop_function
-    (keyspace
-    (object_name))
-    (function
-    (object_name))))
+  (drop_function
+    (keyspace)
+    (function)))
 
 ================================================================================
 DROP FUNCTION IF EXISTS cycling.fLog;
 ================================================================================
 DROP FUNCTION IF EXISTS cycling.fLog;
 --------------------------------------------------------------------------------
+
+(source_file
+  (drop_function
+    (keyspace)
+    (ERROR
+      (UNEXPECTED 'y')
+      (UNEXPECTED '.'))
+    (function)))

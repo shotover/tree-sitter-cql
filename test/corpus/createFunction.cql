@@ -17,27 +17,20 @@ LANGUAGE java AS
 return Double.valueOf(r); $$
 ;
 --------------------------------------------------------------------------------
+
 (source_file
-    (create_function
+  (create_function
     (or_replace)
-    (keyspace
-    (object_name))
-    (function
-    (object_name))
+    (keyspace)
+    (function)
     (param
-    (object_name)
-    (data_type
-    (data_type_name
-    (object_name))
-    (data_type_definition
-    (data_type_name
-    (object_name))
-    (data_type_name
-    (object_name)))))
+      (data_type
+        (data_type_name)
+        (data_type_definition
+          (data_type_name)
+          (data_type_name))))
     (return_mode)
     (data_type
-    (data_type_name
-    (object_name)))
-    (language
-    (object_name))
+      (data_type_name))
+    (language)
     (code_block)))

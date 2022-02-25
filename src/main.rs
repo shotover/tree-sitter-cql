@@ -1,19 +1,29 @@
 use std::any::Any;
 use std::error::Error;
-use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch};
+use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch, LogType};
 
-const TEXT : &str = "CREATE TRIGGER if not exist trigger_name USING 'triggerclass'";
+
+
+const TEXT : &str = "DROP USER if exists foo.boone";
+
+fn log( x : LogType, message : &str) {
+    println!("{}", message );
+}
+
 fn main() {
     let language = tree_sitter_cql::language();
     let mut parser = Parser::new();
     if parser.set_language(language).is_err() {
         panic!( "language version mismatch");
     }
+    parser.set_logger( Some( Box::new( log)) );
     let source_code = TEXT.as_bytes();
     let tree = parser.parse(source_code, None).unwrap();
     println!("{}", tree.root_node().to_sexp());
 
     walk( &"".to_string(),&mut tree.walk() );
+    assert!( ! tree.root_node().has_error() )
+    /*
     let query = match Query::new( language, "(where_spec)") {
         Ok(t) => {
             println!( "Query: {:?}", t );
@@ -48,6 +58,7 @@ fn main() {
             }
         }
     }
+     */
 }
 
 fn walk( prefix: &String, cursor : &mut TreeCursor ) {

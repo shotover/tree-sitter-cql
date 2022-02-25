@@ -8,30 +8,21 @@ CREATE TYPE cycling.basic_info (
   height text
 );
 --------------------------------------------------------------------------------
+
 (source_file
-    (create_type
-    (keyspace
-    (object_name))
-    (type
-    (object_name))
+  (create_type
+    (keyspace)
+    (type)
     (type_member_column_list
-    (column
-    (object_name))
-    (data_type
-    (data_type_name
-    (object_name)))
-    (column
-    (object_name))
-    (data_type
-    (data_type_name
-    (object_name)))
-    (column
-    (object_name))
-    (data_type
-    (data_type_name
-    (object_name)))
-    (column
-    (object_name))
-    (data_type
-    (data_type_name
-    (object_name))))))
+      (column)
+      (data_type
+        (data_type_name))
+      (column)
+      (data_type
+        (data_type_name))
+      (column)
+      (data_type
+        (data_type_name))
+      (column)
+      (data_type
+        (data_type_name)))))

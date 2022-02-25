@@ -3,40 +3,42 @@ DROP USER boone;
 ================================================================================
 DROP USER boone;
 --------------------------------------------------------------------------------
+
 (source_file
-    (drop_user
-    (user
-    (object_name))))
+  (drop_user
+    (user)))
 
 ================================================================================
-DROP USER IF EXISTS boone;
+DROP USER if exists boone;
 ================================================================================
-DROP USER IF EXISTS boone;
+DROP USER if exists boone;
 --------------------------------------------------------------------------------
+
 (source_file
-    (drop_user
-    (user
-    (object_name))))
+  (drop_user
+    (user))
+  (ERROR
+    (UNEXPECTED 'n')))
 
 ================================================================================
 DROP USER keyspace.boone;
 ================================================================================
 DROP USER keyspace.boone;
 --------------------------------------------------------------------------------
+
 (source_file
-    (drop_user
-    (keyspace
-    (object_name))
-    (user
-    (object_name))))
-
+  (drop_user
+    (keyspace)
+    (user)))
 
 ================================================================================
-DROP USER IF EXISTS keyspace.boone;
+drop user IF EXISTS keyspace.boone;
 ================================================================================
-DROP USER IF EXISTS keyspace.boone;
+drop user IF EXISTS keyspace.boone;
 --------------------------------------------------------------------------------
+
 (source_file
-    (drop_user
-    (user
-    (object_name))))
+  (drop_user
+    (keyspace)
+    (ERROR)
+    (user)))

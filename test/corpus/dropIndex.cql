@@ -3,34 +3,35 @@ DROP INDEX ryear;
 ================================================================================
 DROP INDEX ryear;
 --------------------------------------------------------------------------------
+
 (source_file
-    (drop_index
+  (drop_index
     (index_name
-    (object_name))))
+      (object_name))))
 
 ================================================================================
 DROP INDEX cycling.ryear;
 ================================================================================
 DROP INDEX cycling.ryear;
 --------------------------------------------------------------------------------
+
 (source_file
-    (drop_index
-    (keyspace
-    (object_name))
+  (drop_index
+    (keyspace)
     (index_name
-    (object_name))))
+      (object_name))))
 
 ================================================================================
 DROP INDEX if exists cycling.ryear;
 ================================================================================
 DROP INDEX if exists cycling.ryear;
 --------------------------------------------------------------------------------
+
 (source_file
-    (drop_index
-    (keyspace
-    (object_name))
+  (drop_index
+    (keyspace)
     (ERROR
-    (UNEXPECTED 'y')
-    (UNEXPECTED 'n'))
+      (UNEXPECTED 'y')
+      (UNEXPECTED '.'))
     (index_name
-    (object_name))))
+      (object_name))))

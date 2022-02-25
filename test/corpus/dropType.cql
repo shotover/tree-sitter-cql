@@ -3,20 +3,21 @@ DROP TYPE basic_info ;
 ================================================================================
 DROP TYPE basic_info ;
 --------------------------------------------------------------------------------
+
 (source_file
-(drop_type
-        (type
-          (object_name))))
+  (drop_type
+    (type)))
 
 ================================================================================
 DROP TYPE cycling.basic_info ;
 ================================================================================
 DROP TYPE cycling.basic_info ;
 --------------------------------------------------------------------------------
+
 (source_file
-(drop_type
-        (type
-          (object_name))))
+  (drop_type
+    (keyspace)
+    (type)))
 
 ================================================================================
 DROP TYPE if exists basic_info ;
@@ -24,8 +25,23 @@ DROP TYPE if exists basic_info ;
 DROP TYPE if exists basic_info ;
 --------------------------------------------------------------------------------
 
+(source_file
+  (drop_type
+    (type))
+  (ERROR
+    (UNEXPECTED 's')
+    (UNEXPECTED 'o')))
+
 ================================================================================
 DROP TYPE if exists cycling.basic_info ;
 ================================================================================
 DROP TYPE if exists cycling.basic_info ;
 --------------------------------------------------------------------------------
+
+(source_file
+  (drop_type
+    (keyspace)
+    (ERROR
+      (UNEXPECTED 'y')
+      (UNEXPECTED '.'))
+    (type)))

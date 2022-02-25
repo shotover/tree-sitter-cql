@@ -3,13 +3,20 @@ DROP KEYSPACE cycling;
 ================================================================================
 DROP KEYSPACE cycling;
 --------------------------------------------------------------------------------
+
 (source_file
-    (drop_keyspace
-    (keyspace
-    (object_name))))
+  (drop_keyspace
+    (keyspace)))
 
 ================================================================================
 DROP KEYSPACE if exists cycling;
 ================================================================================
 DROP KEYSPACE if exists cycling;
 --------------------------------------------------------------------------------
+
+(source_file
+  (drop_keyspace
+    (keyspace))
+  (ERROR
+    (UNEXPECTED 'y')
+    (UNEXPECTED ';')))

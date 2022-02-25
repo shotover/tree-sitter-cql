@@ -3,8 +3,9 @@ LIST ALL;
 ================================================================================
 LIST ALL;
 --------------------------------------------------------------------------------
+
 (source_file
-    (list_permissions
+  (list_permissions
     (priviledge)))
 
 ================================================================================
@@ -13,11 +14,11 @@ LIST ALL OF coach;
 LIST ALL
 OF coach;
 --------------------------------------------------------------------------------
+
 (source_file
-    (list_permissions
+  (list_permissions
     (priviledge)
-    (role
-    (object_name))))
+    (role)))
 
 ================================================================================
 LIST ALL ON cyclist.name;
@@ -25,11 +26,10 @@ LIST ALL ON cyclist.name;
 LIST ALL
 ON cyclist.name;
 --------------------------------------------------------------------------------
+
 (source_file
-    (list_permissions
+  (list_permissions
     (priviledge)
     (resource
-    (keyspace
-    (object_name))
-    (table
-    (object_name)))))
+      (keyspace)
+      (table))))

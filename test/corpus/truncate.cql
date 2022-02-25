@@ -3,15 +3,19 @@ TRUNCATE cycling.user_activity;
 ================================================================================
 TRUNCATE cycling.user_activity;
 --------------------------------------------------------------------------------
+
 (source_file
-    (truncate
-    (keyspace
-    (object_name))
-    (table
-    (object_name))))
+  (truncate
+    (keyspace)
+    (table)))
 
 ================================================================================
 TRUNCATE TABLE cycling.user_activity;
 ================================================================================
 TRUNCATE TABLE cycling.user_activity;
 --------------------------------------------------------------------------------
+
+(source_file
+  (truncate
+    (keyspace)
+    (table)))
