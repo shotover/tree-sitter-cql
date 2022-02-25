@@ -488,7 +488,7 @@ const
                 kw( "DROP"),
                 kw("USER"),
                 optional( if_exists ),
-                alias( $.object_name, "user"),
+                $.user_name,
             ),
         create_aggregate : $ =>
             seq(
@@ -760,7 +760,7 @@ const
                 kw("CREATE"),
                 kw("USER"),
                 optional( if_not_exists ),
-                alias( $.object_name, "user"),
+                $.user_name,
                 kw( "WITH"),
                 $.user_password,
                 optional( $.user_super_user),

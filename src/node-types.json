@@ -759,6 +759,10 @@
       "required": true,
       "types": [
         {
+          "type": "user_name",
+          "named": true
+        },
+        {
           "type": "user_password",
           "named": true
         },
@@ -935,7 +939,17 @@
   {
     "type": "drop_user",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "user_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "durable_writes",

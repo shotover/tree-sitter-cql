@@ -2,7 +2,7 @@ use std::any::Any;
 use std::error::Error;
 use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch, LogType};
 
-const TEXT : &str = "ALTER USER username WITH PASSWORD 'password' nosuperuser";
+const TEXT : &str = "CREATE USER newuser WITH PASSWORD 'password' superuser;";
 
 fn log( x : LogType, message : &str) {
     println!("{}", message );

@@ -4669,13 +4669,8 @@
           ]
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "object_name"
-          },
-          "named": false,
-          "value": "user"
+          "type": "SYMBOL",
+          "name": "user_name"
         }
       ]
     },
@@ -7513,13 +7508,8 @@
           ]
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "object_name"
-          },
-          "named": false,
-          "value": "user"
+          "type": "SYMBOL",
+          "name": "user_name"
         },
         {
           "type": "ALIAS",
