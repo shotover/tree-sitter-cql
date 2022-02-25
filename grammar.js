@@ -488,7 +488,7 @@ const
                 kw( "DROP"),
                 kw("USER"),
                 optional( if_exists ),
-                dotted_name( $.object_name, $.object_name, "user"),
+                alias( $.object_name, "user"),
             ),
         create_aggregate : $ =>
             seq(
@@ -765,6 +765,7 @@ const
                 $.user_password,
                 optional( $.user_super_user),
             ),
+        user_name : $ => alias( $.object_name, "user"),
         alter_materialized_view : $ =>
             seq(
                 kw("ALTER"),
@@ -848,7 +849,7 @@ const
             seq(
                 kw("ALTER"),
                 kw( "USER"),
-                $.user,
+                $.user_name,
                 kw("WITH"),
                 $.user_password,
                 optional( $.user_super_user ),

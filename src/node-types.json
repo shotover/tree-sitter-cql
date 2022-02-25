@@ -281,6 +281,10 @@
       "required": true,
       "types": [
         {
+          "type": "user_name",
+          "named": true
+        },
+        {
           "type": "user_password",
           "named": true
         },
@@ -2117,6 +2121,11 @@
   },
   {
     "type": "use",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "user_name",
     "named": true,
     "fields": {}
   },
