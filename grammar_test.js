@@ -35,7 +35,7 @@ module.exports = grammar({
                 kw( "DROP"),
                 kw("USER"),
                 optional( if_exists ),
-                dotted_name( "keyspace",  "name"),
+                dotted_name( $.qname, $.qname,  "name"),
             ),
         qname : $ => token(choice( name_chars, seq(squote, name_chars, squote))),
     },
@@ -71,11 +71,12 @@ function dotted_name_orig(item1, name1, item2, name2) {
     )
 }
 
-function dotted_name(name1, name2) {
+function dotted_name(rule1, rule2, name) {
     return choice(
-        seq( alias( token( choice( name_chars, seq(squote, name_chars, squote))), name1),
-            alias(".",""), alias(token( choice( name_chars, seq(squote, name_chars, squote))), name2) ),
-        alias( token( choice( name_chars, seq(squote, name_chars, squote))), name2 ),
+        seq( alias( rule1, "keyspace"),
+            ".",
+            alias(rule2, name) ),
+        alias( rule2, name ),
     )
 }
 

@@ -1,5 +1,10 @@
 [
   {
+    "type": "aggregate",
+    "named": false,
+    "fields": {}
+  },
+  {
     "type": "alter_keyspace",
     "named": true,
     "fields": {},
@@ -758,7 +763,7 @@
   },
   {
     "type": "data_type",
-    "named": false,
+    "named": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -1000,6 +1005,11 @@
     "fields": {}
   },
   {
+    "type": "function",
+    "named": false,
+    "fields": {}
+  },
+  {
     "type": "function_args",
     "named": true,
     "fields": {},
@@ -1190,7 +1200,7 @@
   },
   {
     "type": "index_name",
-    "named": false,
+    "named": true,
     "fields": {}
   },
   {
@@ -1392,6 +1402,11 @@
   {
     "type": "list_roles",
     "named": true,
+    "fields": {}
+  },
+  {
+    "type": "materialized_view",
+    "named": false,
     "fields": {}
   },
   {
@@ -2063,6 +2078,11 @@
     }
   },
   {
+    "type": "table",
+    "named": false,
+    "fields": {}
+  },
+  {
     "type": "table_option_item",
     "named": true,
     "fields": {},
@@ -2140,6 +2160,11 @@
     }
   },
   {
+    "type": "trigger",
+    "named": false,
+    "fields": {}
+  },
+  {
     "type": "trigger_class",
     "named": false,
     "fields": {}
@@ -2163,6 +2188,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "type",
+    "named": false,
+    "fields": {}
   },
   {
     "type": "update",
@@ -2830,10 +2860,6 @@
     "named": false
   },
   {
-    "type": "aggregate",
-    "named": false
-  },
-  {
     "type": "boolean_literal",
     "named": true
   },
@@ -2848,10 +2874,6 @@
   {
     "type": "float_literal",
     "named": true
-  },
-  {
-    "type": "function",
-    "named": false
   },
   {
     "type": "hexadecimal_literal",
@@ -2870,24 +2892,8 @@
     "named": false
   },
   {
-    "type": "materialized_view",
-    "named": false
-  },
-  {
     "type": "string_literal",
     "named": true
-  },
-  {
-    "type": "table",
-    "named": false
-  },
-  {
-    "type": "trigger",
-    "named": false
-  },
-  {
-    "type": "type",
-    "named": false
   },
   {
     "type": "uuid",
