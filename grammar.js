@@ -319,14 +319,13 @@ const
                 kw( "CREATE"),
                 kw("INDEX"),
                 optional( if_not_exists ),
-                optional( $.index_name ),
+                optional( alias( choice( $.object_name, $.string_literal), "index" )),
                 kw( "ON"),
                 dotted_name( $.object_name, $.object_name, "table"),
                 "(",
                 $.index_column_spec,
                 ")",
             ),
-        index_name : $ => alias( choice( $.object_name, $.string_literal), "index_name"),
         index_column_spec : $ => choice( alias($.object_name, "column"), $.index_keys_spec, $.index_entries_s_spec, $.index_full_spec),
         index_keys_spec : $ => seq( kw("KEYS"), "(", $.object_name, ")"),
         index_entries_s_spec : $ => seq( kw( "ENTRIES"), "(", $.object_name, ")"),
@@ -336,9 +335,7 @@ const
                 kw( "DROP"),
                 kw("INDEX"),
                 optional( if_exists ),
-            seq( alias( token( choice( name_chars, seq(squote, name_chars, squote))), "keyspace"),
-                ".", alias($.index_name, "index") ),
-            alias( token( choice( name_chars, seq(squote, name_chars, squote))), "index" ),
+                dotted_name( $.object_name, choice( $.object_name, $.string_literal), "index" ),
         ),
         update : $ =>
             seq (
@@ -891,6 +888,6 @@ function dotted_name(rule1, rule2, name) {
     return choice(
         seq( alias( rule1, "keyspace"),
             ".", alias(rule2, name) ),
-        alias( rule1, name ),
+        alias( rule2, name ),
     )
 }

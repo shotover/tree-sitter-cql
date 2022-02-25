@@ -2423,8 +2423,22 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "index_name"
+              "type": "ALIAS",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "object_name"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "string_literal"
+                  }
+                ]
+              },
+              "named": false,
+              "value": "index"
             },
             {
               "type": "BLANK"
@@ -2494,24 +2508,6 @@
           "value": ")"
         }
       ]
-    },
-    "index_name": {
-      "type": "ALIAS",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "object_name"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "string_literal"
-          }
-        ]
-      },
-      "named": false,
-      "value": "index_name"
     },
     "index_column_spec": {
       "type": "CHOICE",
@@ -2670,90 +2666,63 @@
           ]
         },
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
-              "type": "ALIAS",
-              "content": {
-                "type": "TOKEN",
-                "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "PATTERN",
-                      "value": "[a-zA-Z][A-Za-z0-9_$]*"
-                    },
-                    {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "STRING",
-                          "value": "'"
-                        },
-                        {
-                          "type": "PATTERN",
-                          "value": "[a-zA-Z][A-Za-z0-9_$]*"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "'"
-                        }
-                      ]
-                    }
-                  ]
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "object_name"
+                  },
+                  "named": false,
+                  "value": "keyspace"
+                },
+                {
+                  "type": "STRING",
+                  "value": "."
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "object_name"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "string_literal"
+                      }
+                    ]
+                  },
+                  "named": false,
+                  "value": "index"
                 }
-              },
-              "named": false,
-              "value": "keyspace"
-            },
-            {
-              "type": "STRING",
-              "value": "."
+              ]
             },
             {
               "type": "ALIAS",
               "content": {
-                "type": "SYMBOL",
-                "name": "index_name"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "object_name"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "string_literal"
+                  }
+                ]
               },
               "named": false,
               "value": "index"
             }
           ]
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "TOKEN",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[a-zA-Z][A-Za-z0-9_$]*"
-                },
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": "'"
-                    },
-                    {
-                      "type": "PATTERN",
-                      "value": "[a-zA-Z][A-Za-z0-9_$]*"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "'"
-                    }
-                  ]
-                }
-              ]
-            }
-          },
-          "named": false,
-          "value": "index"
         }
       ]
     },

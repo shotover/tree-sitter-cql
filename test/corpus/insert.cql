@@ -90,7 +90,7 @@ INSERT INTO cycling.cyclist_teams (id,lastname,teams)
         (expression
           (constant
             (string_literal)))
-       
+
         (expression
           (constant
             (code_block)))))))

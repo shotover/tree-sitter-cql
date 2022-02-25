@@ -1,10 +1,5 @@
 [
   {
-    "type": "aggregate",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "alter_keyspace",
     "named": true,
     "fields": {},
@@ -421,7 +416,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "object_name",
@@ -449,11 +444,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "column",
-    "named": false,
-    "fields": {}
   },
   {
     "type": "column_definition",
@@ -642,15 +632,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "index_column_spec",
-          "named": true
-        },
-        {
-          "type": "index_name",
           "named": true
         }
       ]
@@ -763,7 +749,7 @@
   },
   {
     "type": "data_type",
-    "named": false,
+    "named": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -995,18 +981,8 @@
     }
   },
   {
-    "type": "finalfunc",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "from_spec",
     "named": true,
-    "fields": {}
-  },
-  {
-    "type": "function",
-    "named": false,
     "fields": {}
   },
   {
@@ -1048,11 +1024,6 @@
     }
   },
   {
-    "type": "function_name",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "grant",
     "named": true,
     "fields": {},
@@ -1070,11 +1041,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "hash_key",
-    "named": false,
-    "fields": {}
   },
   {
     "type": "if_condition",
@@ -1124,11 +1090,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "index",
-    "named": false,
-    "fields": {}
   },
   {
     "type": "index_column_spec",
@@ -1197,11 +1158,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "index_name",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "init_cond_definition",
@@ -1356,16 +1312,6 @@
     }
   },
   {
-    "type": "keyspace",
-    "named": false,
-    "fields": {}
-  },
-  {
-    "type": "language",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "limit_spec",
     "named": true,
     "fields": {},
@@ -1405,11 +1351,6 @@
     "fields": {}
   },
   {
-    "type": "materialized_view",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "materialized_view_options",
     "named": true,
     "fields": {},
@@ -1446,16 +1387,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "object_name",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "option",
-    "named": false,
-    "fields": {}
   },
   {
     "type": "option_hash",
@@ -1546,17 +1477,12 @@
     }
   },
   {
-    "type": "param_name",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "partition_key",
     "named": false,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "object_name",
@@ -1568,11 +1494,6 @@
   {
     "type": "partition_key_list",
     "named": true,
-    "fields": {}
-  },
-  {
-    "type": "primary_key",
-    "named": false,
     "fields": {}
   },
   {
@@ -1806,11 +1727,6 @@
     }
   },
   {
-    "type": "role",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "role_with",
     "named": true,
     "fields": {},
@@ -1912,11 +1828,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "sfunc",
-    "named": false,
-    "fields": {}
   },
   {
     "type": "source_file",
@@ -2078,11 +1989,6 @@
     }
   },
   {
-    "type": "table",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "table_option_item",
     "named": true,
     "fields": {},
@@ -2160,16 +2066,6 @@
     }
   },
   {
-    "type": "trigger",
-    "named": false,
-    "fields": {}
-  },
-  {
-    "type": "trigger_class",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "truncate",
     "named": true,
     "fields": {}
@@ -2188,11 +2084,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "type",
-    "named": false,
-    "fields": {}
   },
   {
     "type": "update",
@@ -2228,11 +2119,6 @@
   {
     "type": "use",
     "named": true,
-    "fields": {}
-  },
-  {
-    "type": "user",
-    "named": false,
     "fields": {}
   },
   {
@@ -2860,20 +2746,48 @@
     "named": false
   },
   {
+    "type": "aggregate",
+    "named": false
+  },
+  {
     "type": "boolean_literal",
     "named": true
+  },
+  {
+    "type": "clustering_key",
+    "named": false
   },
   {
     "type": "code_block",
     "named": true
   },
   {
+    "type": "column",
+    "named": false
+  },
+  {
     "type": "decimal_literal",
     "named": true
   },
   {
+    "type": "finalfunc",
+    "named": false
+  },
+  {
     "type": "float_literal",
     "named": true
+  },
+  {
+    "type": "function",
+    "named": false
+  },
+  {
+    "type": "function_name",
+    "named": false
+  },
+  {
+    "type": "hash_key",
+    "named": false
   },
   {
     "type": "hexadecimal_literal",
@@ -2884,16 +2798,68 @@
     "named": false
   },
   {
-    "type": "index_name",
+    "type": "keyspace",
     "named": false
   },
   {
-    "type": "keyspace",
+    "type": "language",
+    "named": false
+  },
+  {
+    "type": "materialized_view",
+    "named": false
+  },
+  {
+    "type": "object_name",
+    "named": true
+  },
+  {
+    "type": "option",
+    "named": false
+  },
+  {
+    "type": "param_name",
+    "named": false
+  },
+  {
+    "type": "partition_key",
+    "named": false
+  },
+  {
+    "type": "primary_key",
+    "named": false
+  },
+  {
+    "type": "role",
+    "named": false
+  },
+  {
+    "type": "sfunc",
     "named": false
   },
   {
     "type": "string_literal",
     "named": true
+  },
+  {
+    "type": "table",
+    "named": false
+  },
+  {
+    "type": "trigger",
+    "named": false
+  },
+  {
+    "type": "trigger_class",
+    "named": false
+  },
+  {
+    "type": "type",
+    "named": false
+  },
+  {
+    "type": "user",
+    "named": false
   },
   {
     "type": "uuid",
