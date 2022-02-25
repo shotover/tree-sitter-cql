@@ -109,7 +109,7 @@ const
                 optional($.limit_spec ),
                 optional(seq( kw("ALLOW"), kw("FILTERING"))),
             ),
-        limit_spec: $ => seq( kw("LIMIT"),$.decimal_literal),
+        limit_spec: $ => seq( kw("LIMIT"),$._decimal_literal),
         select_elements: $ =>
             seq(
             choice( star, $.select_element),
@@ -117,13 +117,9 @@ const
             ),
         select_element: $ =>
             choice(
+                seq($.object_name, dot, star ),
                 seq(
-                    $.object_name,
-                    dot,
-                    star
-                ),
-                seq(
-                    choice( $.object_name, $.function_call),
+                    choice(  $.object_name, $.function_call),
                     optional( seq( kw("AS"), $.object_name )),
                 ),
             ),
@@ -145,39 +141,36 @@ const
             )),
         constant: $ =>
             choice(
-                $.decimal_literal,
-                $.float_literal,
-                $.hexadecimal_literal,
-                $.boolean_literal,
-                $.code_block,
+                $._decimal_literal,
+                $._float_literal,
+                token(hex_str),
+                $._boolean_literal,
+                $._code_block,
                 kw("NULL"),
                 $._string_literal,
-                $.uuid,
+                token(uuid_str ),
             ),
-        uuid : $ =>token(uuid_str ),
         _string_literal: $ => token(string_str),
-        decimal_literal : $ =>  token( decimal_str ),
-        float_literal : $ => token( float_str),
-        hexadecimal_literal : $ => token(hex_str),
-        boolean_literal : $ => token(choice( kw("TRUE"), kw("FALSE"))),
-        code_block : $ => token( code ),
-        from_spec : $ => seq( kw("FROM"),
-            dotted_name( $.object_name, $.object_name, "table" )),
-        where_spec : $ => seq( kw("WHERE"), $.relation_elements),
+        _decimal_literal : $ =>  token( decimal_str ),
+        _float_literal : $ => token( float_str),
+        _boolean_literal : $ => token(choice( kw("TRUE"), kw("FALSE"))),
+        _code_block : $ => token( code ),
+        from_spec : $ => seq( kw("FROM"), $.table_name),
+        table_name : $ => dotted_name( $.object_name, $.object_name, "table" ),
+        where_spec : $ =>
+            seq( kw("WHERE"), $.relation_elements ),
         relation_elements : $ => prec.left(PREC.and,sep1( $.relation_element, kw("AND"))),
         relation_element : $=>
             choice (
-                seq(
-                    choice(
-                        dotted_name( $.object_name, $.object_name, "table" ),
-                        $.function_call
-                    ),
-                    field("operator", choice("<", "<=", "<>", "=", ">", ">=")),
-                    $.constant,
-                ),
+                seq( $.object_name,
+                    choice("<", "<=", "<>", "=", ">", ">="),
+                    $.constant,),
+                seq( $.function_call,
+                    choice("<", "<=", "<>", "=", ">", ">="),
+                    $.constant,),
                 seq(
                     $.function_call,
-                    field("operator", choice("<", "<=", "<>", "=", ">", ">=")),
+                    choice("<", "<=", "<>", "=", ">", ">="),
                     $.function_call,
                 ),
                 seq(
@@ -200,11 +193,12 @@ const
                     "(",
                     commaSep1( $.object_name ),
                     ")",
-                    field("operator", choice("<", "<=", "<>", "=", ">", ">=")),
+                    choice( "<", "<=", "<>", "=", ">", ">="),
                     commaSep1($.assignment_tuple),
                 ),
                 $.relation_contains_key,
                 $.relation_contains,
+
             ),
        assignment_tuple : $ =>
             seq(
@@ -221,8 +215,13 @@ const
             ),
         relation_contains_key : $ => seq( $.object_name, kw("CONTAINS"),kw("KEY"), $.constant),
         relation_contains : $ => seq( $.object_name, kw("CONTAINS"), $.constant),
-        order_spec : $ => seq ( kw("ORDER"),kw("BY"), $.order_spec_element),
-        order_spec_element : $ => seq( $.object_name, optional( $.order_direction)),
+        order_spec : $ =>
+            seq (
+                kw("ORDER"),
+                kw("BY"),
+                $.object_name,
+                optional( $.order_direction)
+            ),
         delete_statement : $ =>
             seq(
                 optional( $.begin_batch ),
@@ -247,13 +246,13 @@ const
                 optional(
                     seq(
                         "[",
-                        choice( $._string_literal, $.decimal_literal),
+                        choice( $._string_literal, $._decimal_literal),
                         "]"
                     )
                 ),
             ),
         using_timestamp_spec : $ => seq( kw("USING"), $.timestamp ),
-        timestamp : $ => seq( kw("TIMESTAMP"), $.decimal_literal),
+        timestamp : $ => seq( kw("TIMESTAMP"), $._decimal_literal),
         if_exist : $ => token( if_exists),
         if_spec : $ => seq( kw( "IF"), $.if_condition_list),
         if_condition_list : $ => seq( $.if_condition, repeat( seq( kw("AND"), $.if_condition))),
@@ -307,7 +306,7 @@ const
                     seq( $.timestamp, optional( seq(kw("AND"), $.ttl))),
                 )
             ),
-        ttl : $ => seq( kw("TTL"), $.decimal_literal),
+        ttl : $ => seq( kw("TTL"), $._decimal_literal),
         truncate : $ =>
             seq(
                 kw("TRUNCATE"),
@@ -353,14 +352,14 @@ const
         assignment_element : $ =>
             choice(
                 seq( $.object_name, "=", choice( $.constant, $.assignment_map, $.assignment_set, $.assignment_list )),
-                seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.decimal_literal),
+                seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $._decimal_literal),
                 seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_set),
                 seq( $.object_name, "=", $.assignment_set, choice( "+", "-" ), $.object_name),
                 seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_map),
                 seq( $.object_name, "=", $.assignment_map, choice( "+", "-" ), $.object_name),
                 seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_list),
                 seq( $.object_name, "=", $.assignment_list, choice( "+", "-" ), $.object_name),
-                seq( $.object_name, "[", $.decimal_literal, "]", "=", $.constant),
+                seq( $.object_name, "[", $._decimal_literal, "]", "=", $.constant),
             ),
         use : $ => seq( kw("USE"), alias($.object_name, "keyspace")),
         grant : $ =>
@@ -582,7 +581,7 @@ const
                 kw("LANGUAGE"),
                 alias( $.object_name, "language"),
                 kw( "AS"),
-                $.code_block,
+                $._code_block,
             ),
         param : $ =>
             seq(
@@ -651,13 +650,13 @@ const
         replication_list_item : $ =>
             choice(
                 seq( $._string_literal, ":", $._string_literal),
-                seq( $._string_literal, ":", $.decimal_literal),
+                seq( $._string_literal, ":", $._decimal_literal),
             ),
         durable_writes : $ =>
             seq(
                 kw("DURABLE_WRITES"),
                 "=",
-                $.boolean_literal,
+                $._boolean_literal,
             ),
         create_role : $ =>
             seq(
@@ -671,12 +670,12 @@ const
         role_with_options : $ =>
             choice(
                 seq( kw("PASSWORD"), "=", $._string_literal),
-                seq( kw("LOGIN"), "=", $.boolean_literal),
-                seq( kw("SUPERUSER"), "=", $.boolean_literal),
+                seq( kw("LOGIN"), "=", $._boolean_literal),
+                seq( kw("SUPERUSER"), "=", $._boolean_literal),
                 seq( kw("OPTIONS"), "=", $.option_hash),
             ),
         option_hash : $ => seq( "(", commaSep1( $.option_hash_item), ")"),
-        option_hash_item : $ => seq( $._string_literal, ":", choice( $._string_literal, $.float_literal), ")"),
+        option_hash_item : $ => seq( $._string_literal, ":", choice( $._string_literal, $._float_literal), ")"),
         create_table : $ =>
             seq(
                 kw("CREATE"),
@@ -723,7 +722,7 @@ const
                 seq( $.table_option_name, "=", $.option_hash ),
             ),
         table_option_name : $ => alias( $.object_name, "option"),
-        table_option_value : $ => choice( $._string_literal, $.float_literal ),
+        table_option_value : $ => choice( $._string_literal, $._float_literal ),
         clustering_order : $ =>
             seq(
                 kw("CLUSTERING"),
