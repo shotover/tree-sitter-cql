@@ -1,21 +1,44 @@
 ================================================================================
-CREATE INDEX user_state ON myschema.users (state);
+CREATE INDEX index_name ON keyspace.table (column);
 ================================================================================
-CREATE INDEX user_state
-   ON myschema.users (state);
+CREATE INDEX index_name ON keyspace.table (column);
 --------------------------------------------------------------------------------
 
-(source_file
-  (create_index
-    (index_name)
-    (index_column_spec)))
+(source_file (create_index (index_name) (table_name) (index_column_spec)))
 
 ================================================================================
-CREATE INDEX ON myschema.users (zip);
+CREATE INDEX index_name ON table (column);
 ================================================================================
-CREATE INDEX ON myschema.users (zip);
+CREATE INDEX index_name ON table (column);
 --------------------------------------------------------------------------------
 
-(source_file
-  (create_index
-    (index_column_spec)))
+(source_file (create_index (index_name) (table_name) (index_column_spec)))
+
+================================================================================
+CREATE INDEX ON table (column);
+================================================================================
+CREATE INDEX ON table (column);
+--------------------------------------------------------------------------------
+(source_file (create_index (table_name) (index_column_spec)))
+
+================================================================================
+CREATE INDEX ON table (keys ( key ) );
+================================================================================
+CREATE INDEX ON table (keys ( key ) );
+--------------------------------------------------------------------------------
+(source_file (create_index (table_name) (index_column_spec (index_keys_spec))))
+
+
+================================================================================
+CREATE INDEX ON table (entries ( spec ) );
+================================================================================
+CREATE INDEX ON table (entries ( spec ) );
+--------------------------------------------------------------------------------
+(source_file (create_index (table_name) (index_column_spec (index_entries_s_spec))))
+
+================================================================================
+CREATE INDEX ON table (full ( spec ) );
+================================================================================
+CREATE INDEX ON table (full ( spec ) );
+--------------------------------------------------------------------------------
+(source_file (create_index (table_name) (index_column_spec (index_full_spec))))

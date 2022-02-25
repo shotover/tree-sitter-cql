@@ -2423,22 +2423,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "ALIAS",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_string_literal"
-                  }
-                ]
-              },
-              "named": false,
-              "value": "index"
+              "type": "SYMBOL",
+              "name": "index_name"
             },
             {
               "type": "BLANK"
@@ -2455,45 +2441,8 @@
           "value": "ON"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "keyspace"
-                },
-                {
-                  "type": "STRING",
-                  "value": "."
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "table"
-                }
-              ]
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "object_name"
-              },
-              "named": false,
-              "value": "table"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "table_name"
         },
         {
           "type": "STRING",
@@ -2508,6 +2457,65 @@
           "value": ")"
         }
       ]
+    },
+    "table_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "object_name"
+              },
+              "named": false,
+              "value": "keyspace"
+            },
+            {
+              "type": "STRING",
+              "value": "."
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "object_name"
+              },
+              "named": false,
+              "value": "table"
+            }
+          ]
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "object_name"
+          },
+          "named": false,
+          "value": "table"
+        }
+      ]
+    },
+    "index_name": {
+      "type": "ALIAS",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "object_name"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_string_literal"
+          }
+        ]
+      },
+      "named": false,
+      "value": "index"
     },
     "index_column_spec": {
       "type": "CHOICE",
@@ -2552,8 +2560,13 @@
           "value": "("
         },
         {
-          "type": "SYMBOL",
-          "name": "object_name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "object_name"
+          },
+          "named": false,
+          "value": "keys"
         },
         {
           "type": "STRING",
@@ -2578,8 +2591,13 @@
           "value": "("
         },
         {
-          "type": "SYMBOL",
-          "name": "object_name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "object_name"
+          },
+          "named": false,
+          "value": "entries"
         },
         {
           "type": "STRING",
@@ -2604,8 +2622,13 @@
           "value": "("
         },
         {
-          "type": "SYMBOL",
-          "name": "object_name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "object_name"
+          },
+          "named": false,
+          "value": "full"
         },
         {
           "type": "STRING",

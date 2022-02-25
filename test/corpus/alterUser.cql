@@ -1,7 +1,7 @@
 ================================================================================
-ALTER USER moss WITH PASSWORD 'bestReceiver';
+ALTER USER username WITH PASSWORD 'password';
 ================================================================================
-ALTER USER moss WITH PASSWORD 'bestReceiver';
+ALTER USER username WITH PASSWORD 'password';
 --------------------------------------------------------------------------------
 
 (source_file

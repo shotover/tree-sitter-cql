@@ -628,11 +628,19 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "index_column_spec",
+          "named": true
+        },
+        {
+          "type": "index_name",
+          "named": true
+        },
+        {
+          "type": "table_name",
           "named": true
         }
       ]
@@ -1134,47 +1142,22 @@
   {
     "type": "index_entries_s_spec",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "object_name",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "index_full_spec",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "object_name",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "index_keys_spec",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "object_name",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
+  },
+  {
+    "type": "index_name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "init_cond_definition",
@@ -1994,6 +1977,11 @@
     }
   },
   {
+    "type": "table_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "table_option_item",
     "named": true,
     "fields": {},
@@ -2771,12 +2759,20 @@
     "named": true
   },
   {
+    "type": "entries",
+    "named": false
+  },
+  {
     "type": "finalfunc",
     "named": false
   },
   {
     "type": "float_literal",
     "named": true
+  },
+  {
+    "type": "full",
+    "named": false
   },
   {
     "type": "function",
@@ -2796,6 +2792,10 @@
   },
   {
     "type": "index",
+    "named": false
+  },
+  {
+    "type": "keys",
     "named": false
   },
   {

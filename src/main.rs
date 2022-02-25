@@ -2,7 +2,7 @@ use std::any::Any;
 use std::error::Error;
 use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch, LogType};
 
-const TEXT : &str = "CREATE TRIGGER if not exists keyspace.trigger_name USING 'trigger_class'";
+const TEXT : &str = "CREATE INDEX ON table (full ( spec ) );";
 
 fn log( x : LogType, message : &str) {
     println!("{}", message );
