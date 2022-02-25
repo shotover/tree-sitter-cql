@@ -638,10 +638,10 @@ const
                 kw("CREATE"),
                 kw( "KEYSPACE"),
                 optional( if_not_exists ),
-                alias( $.object_name, "keyspace" ),
+                $.keyspace_name,
                 kw( "WITH"),
                 kw( "REPLICATION"),
-                ">",
+                "=",
                 "{",
                 $.replication_list,
                 "}",
@@ -778,7 +778,7 @@ const
             seq(
                 kw("ALTER"),
                 kw( "KEYSPACE"),
-                alias( $.object_name, "keyspace"),
+                $.keyspace_name,
                 kw("WITH"),
                 kw("REPLICATION"),
                 "=",
@@ -787,6 +787,7 @@ const
                 "}",
                 optional( seq( kw("AND"),$.durable_writes) ),
             ),
+        keyspace_name : $ => alias( $.object_name, "keyspace"),
         replication_list : $ => commaSep1( $.replication_list_item ),
         alter_role : $ =>
             seq(

@@ -12,6 +12,10 @@
           "named": true
         },
         {
+          "type": "keyspace_name",
+          "named": true
+        },
+        {
           "type": "replication_list",
           "named": true
         }
@@ -622,6 +626,10 @@
       "types": [
         {
           "type": "durable_writes",
+          "named": true
+        },
+        {
+          "type": "keyspace_name",
           "named": true
         },
         {
@@ -1286,6 +1294,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "keyspace_name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "limit_spec",

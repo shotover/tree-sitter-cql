@@ -6052,13 +6052,8 @@
           ]
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "object_name"
-          },
-          "named": false,
-          "value": "keyspace"
+          "type": "SYMBOL",
+          "name": "keyspace_name"
         },
         {
           "type": "ALIAS",
@@ -6080,7 +6075,7 @@
         },
         {
           "type": "STRING",
-          "value": ">"
+          "value": "="
         },
         {
           "type": "STRING",
@@ -7602,13 +7597,8 @@
           "value": "KEYSPACE"
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "object_name"
-          },
-          "named": false,
-          "value": "keyspace"
+          "type": "SYMBOL",
+          "name": "keyspace_name"
         },
         {
           "type": "ALIAS",
@@ -7671,6 +7661,15 @@
           ]
         }
       ]
+    },
+    "keyspace_name": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "object_name"
+      },
+      "named": false,
+      "value": "keyspace"
     },
     "replication_list": {
       "type": "SEQ",
