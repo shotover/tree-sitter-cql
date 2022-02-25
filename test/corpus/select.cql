@@ -195,9 +195,9 @@ SELECT column FROM table WHERE func(*) <> func2(*);
 (source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name)) (where_spec (relation_elements (relation_element (function_call) (function_call))))))
 
 ================================================================================
-SELECT column FROM table WHERE col IN ( "literal", 5, func(*), true );
+SELECT column FROM table WHERE col IN ( 'literal', 5, func(*), true );
 ================================================================================
-SELECT column FROM table WHERE col IN ( "literal", 5, func(*), true );
+SELECT column FROM table WHERE col IN ( 'literal', 5, func(*), true );
 --------------------------------------------------------------------------------
 (source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name)) (where_spec (relation_elements (relation_element (object_name) (function_args (constant) (constant) (function_call) (constant)))))))
 
