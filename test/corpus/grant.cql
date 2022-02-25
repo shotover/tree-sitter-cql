@@ -7,7 +7,8 @@ GRANT SELECT ON ALL KEYSPACES TO coach;
 (source_file
   (grant
     (priviledge)
-    (resource)))
+    (resource)
+    (object_name)))
 
 ================================================================================
 GRANT MODIFY ON KEYSPACE field TO manager;
@@ -19,16 +20,18 @@ GRANT MODIFY ON KEYSPACE field TO manager;
   (grant
     (priviledge)
     (resource)
-
+    (object_name)))
 ================================================================================
 GRANT ALTER ON KEYSPACE cycling TO coach;
 ================================================================================
 GRANT ALTER ON KEYSPACE cycling TO coach;
 --------------------------------------------------------------------------------
 
-(source_file ( grant
+(source_file
+  (grant
     (priviledge)
     (resource)
+    (object_name)))
 
 
 ================================================================================
@@ -40,7 +43,8 @@ GRANT ALL PERMISSIONS ON cycling.name TO coach;
 (source_file
   (grant
     (priviledge)
-    (resource)))
+    (resource)
+    (object_name)))
 
 ================================================================================
 GRANT ALL ON KEYSPACE cycling TO cycling_admin;
@@ -52,3 +56,4 @@ GRANT ALL ON KEYSPACE cycling TO cycling_admin;
   (grant
     (priviledge)
     (resource)
+    (object_name)))

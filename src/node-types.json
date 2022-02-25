@@ -571,10 +571,6 @@
           "named": true
         },
         {
-          "type": "string_literal",
-          "named": true
-        },
-        {
           "type": "uuid",
           "named": true
         }
@@ -721,7 +717,21 @@
   {
     "type": "create_trigger",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "trigger_class",
+          "named": true
+        },
+        {
+          "type": "trigger_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "create_type",
@@ -749,7 +759,7 @@
   },
   {
     "type": "data_type",
-    "named": true,
+    "named": false,
     "fields": {},
     "children": {
       "multiple": true,
@@ -810,10 +820,6 @@
         },
         {
           "type": "object_name",
-          "named": true
-        },
-        {
-          "type": "string_literal",
           "named": true
         }
       ]
@@ -1026,7 +1032,18 @@
   {
     "type": "grant",
     "named": true,
-    "fields": {},
+    "fields": {
+      "role": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "object_name",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -1408,15 +1425,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
           "type": "float_literal",
-          "named": true
-        },
-        {
-          "type": "string_literal",
           "named": true
         }
       ]
@@ -1683,15 +1696,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
           "type": "decimal_literal",
-          "named": true
-        },
-        {
-          "type": "string_literal",
           "named": true
         }
       ]
@@ -1747,7 +1756,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "boolean_literal",
@@ -1755,10 +1764,6 @@
         },
         {
           "type": "option_hash",
-          "named": true
-        },
-        {
-          "type": "string_literal",
           "named": true
         }
       ]
@@ -2022,14 +2027,10 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "float_literal",
-          "named": true
-        },
-        {
-          "type": "string_literal",
           "named": true
         }
       ]
@@ -2064,6 +2065,16 @@
         }
       ]
     }
+  },
+  {
+    "type": "trigger_class",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "trigger_name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "truncate",
@@ -2124,17 +2135,7 @@
   {
     "type": "user_password",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "string_literal",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "user_super_user",
@@ -2838,19 +2839,11 @@
     "named": false
   },
   {
-    "type": "string_literal",
-    "named": true
-  },
-  {
     "type": "table",
     "named": false
   },
   {
     "type": "trigger",
-    "named": false
-  },
-  {
-    "type": "trigger_class",
     "named": false
   },
   {
