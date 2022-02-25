@@ -13,33 +13,14 @@ WITH caching = { 'keys' : 'ALL', 'rows_per_partition' : '100' }
 
 (source_file
   (create_materialized_view
-    (keyspace)
-    (materialized_view)
-    (column_list
-      (column)
-      (column)
-      (column))
-    (keyspace)
-    (table)
+    (column_list)
     (materialized_view_where
       (column_not_null_list
-        (column_not_null
-          (column))))
-    (ERROR
-      (object_name))
-    (column_list
-      (column)
-      (column))
+        (column_not_null)))
+    (column_list)
     (materialized_view_options
       (table_options
         (table_option_item
           (table_option_name)
-          (ERROR)
           (table_option_value
             (string_literal))))))
-  (ERROR
-    (string_literal)
-    (string_literal)
-    (string_literal)
-    (UNEXPECTED 'm')
-    (string_literal)))

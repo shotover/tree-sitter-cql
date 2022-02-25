@@ -5,8 +5,7 @@ DROP FUNCTION fLog;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_function
-    (function)))
+  (drop_function))
 
 ================================================================================
 DROP FUNCTION cycling.fLog;
@@ -15,9 +14,7 @@ DROP FUNCTION cycling.fLog;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_function
-    (keyspace)
-    (function)))
+  (drop_function))
 
 ================================================================================
 DROP FUNCTION IF EXISTS cycling.fLog;
@@ -26,9 +23,4 @@ DROP FUNCTION IF EXISTS cycling.fLog;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_function
-    (keyspace)
-    (ERROR
-      (UNEXPECTED 'y')
-      (UNEXPECTED '.'))
-    (function)))
+  (drop_function))

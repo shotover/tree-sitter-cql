@@ -5,8 +5,7 @@ DROP USER boone;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_user
-    (user)))
+  (drop_user))
 
 ================================================================================
 DROP USER if exists boone;
@@ -15,10 +14,7 @@ DROP USER if exists boone;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_user
-    (user))
-  (ERROR
-    (UNEXPECTED 'n')))
+  (drop_user))
 
 ================================================================================
 DROP USER keyspace.boone;
@@ -27,9 +23,7 @@ DROP USER keyspace.boone;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_user
-    (keyspace)
-    (user)))
+  (drop_user))
 
 ================================================================================
 drop user IF EXISTS keyspace.boone;
@@ -38,7 +32,4 @@ drop user IF EXISTS keyspace.boone;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_user
-    (keyspace)
-    (ERROR)
-    (user)))
+  (drop_user))

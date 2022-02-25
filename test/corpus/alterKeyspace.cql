@@ -10,7 +10,6 @@ WITH REPLICATION = {
 
 (source_file
   (alter_keyspace
-    (keyspace)
     (replication_list
       (replication_list_item
         (string_literal)

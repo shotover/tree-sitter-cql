@@ -8,13 +8,8 @@ INSERT INTO cycling.cyclist_name (id, lastname, firstname)
 
 (source_file
   (insert_statement
-    (keyspace)
-    (table)
     (insert_column_spec
-      (column_list
-        (column)
-        (column)
-        (column)))
+      (column_list))
     (insert_values_spec
       (expression_list
         (expression
@@ -44,13 +39,8 @@ INSERT INTO cycling.cyclist_categories (id,lastname,categories)
 
 (source_file
   (insert_statement
-    (keyspace)
-    (table)
     (insert_column_spec
-      (column_list
-        (column)
-        (column)
-        (column)))
+      (column_list))
     (insert_values_spec
       (expression_list
         (expression
@@ -77,8 +67,6 @@ INSERT INTO cycling.cyclist_categories JSON
 
 (source_file
   (insert_statement
-    (keyspace)
-    (table)
     (insert_values_spec
       (constant
         (string_literal)))))
@@ -92,13 +80,8 @@ INSERT INTO cycling.cyclist_teams (id,lastname,teams)
 
 (source_file
   (insert_statement
-    (keyspace)
-    (table)
     (insert_column_spec
-      (column_list
-        (column)
-        (column)
-        (column)))
+      (column_list))
     (insert_values_spec
       (expression_list
         (expression
@@ -107,9 +90,7 @@ INSERT INTO cycling.cyclist_teams (id,lastname,teams)
         (expression
           (constant
             (string_literal)))
-        (ERROR
-          (UNEXPECTED 'O')
-          (string_literal))
+       
         (expression
           (constant
             (code_block)))))))
@@ -122,13 +103,8 @@ INSERT INTO cycling.route(race_id,race_name,lat_long) VALUES (500, 'Name', ('Cha
 
 (source_file
   (insert_statement
-    (keyspace)
-    (table)
     (insert_column_spec
-      (column_list
-        (column)
-        (column)
-        (column)))
+      (column_list))
     (insert_values_spec
       (expression_list
         (expression
@@ -155,26 +131,7 @@ INSERT INTO "students"("id", "address", "name", "[age]", "age", "colu'mn1", "col
 --------------------------------------------------------------------------------
 
 (source_file
-  (ERROR
-    (UNEXPECTED '"')
-    (UNEXPECTED '"')
-    (UNEXPECTED '"')
-    (UNEXPECTED 's')
-    (UNEXPECTED '"')
-    (UNEXPECTED '"')
-    (UNEXPECTED 'e')
-    (UNEXPECTED '"')
-    (UNEXPECTED '"')
-    (UNEXPECTED '"')
-    (string_literal)
-    (UNEXPECTED 'h')
-    (UNEXPECTED 'k')
-    (UNEXPECTED ''')
-    (string_literal)
-    (UNEXPECTED 'i')
-    (string_literal)
-    (string_literal)
-    (UNEXPECTED '\0')))
+  )
 
 ================================================================================
 INSERT INTO test(a,b,c,d) values(1,['listtext1','listtext2'],{'settext1','settext2'},{'mapkey1':'mapvale2','mapkey2':'mapvalue2'});
@@ -184,13 +141,8 @@ INSERT INTO test(a,b,c,d) values(1,['listtext1','listtext2'],{'settext1','settex
 
 (source_file
   (insert_statement
-    (table)
     (insert_column_spec
-      (column_list
-        (column)
-        (column)
-        (column)
-        (column)))
+      (column_list))
     (insert_values_spec
       (expression_list
         (expression

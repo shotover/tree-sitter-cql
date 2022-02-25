@@ -9,17 +9,9 @@ ALTER TYPE cycling.fullname
 
 (source_file
   (alter_type
-    (keyspace)
-    (type)
     (alter_type_operation
       (alter_type_rename
         (alter_type_rename_list
-          (alter_type_rename_item
-            (column)
-            (column))
-          (alter_type_rename_item
-            (column)
-            (column))
-          (alter_type_rename_item
-            (column)
-            (column)))))))
+          (alter_type_rename_item)
+          (alter_type_rename_item)
+          (alter_type_rename_item))))))

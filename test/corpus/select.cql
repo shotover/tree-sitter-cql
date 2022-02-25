@@ -16,20 +16,15 @@ SELECT event_id,
         (object_name))
       (select_element
         (function_call
-          (function_name
-            (object_name))
           (function_args
             (object_name)))
         (object_name))
       (select_element
         (function_call
-          (function_name
-            (object_name))
           (function_args
             (object_name)))
         (object_name)))
-    (from_spec
-      (from_spec_element))))
+    (from_spec)))
 
 ================================================================================
 SELECT COUNT(*) FROM system.IndexInfo;
@@ -44,11 +39,8 @@ FROM system.IndexInfo;
   (select_statement
     (select_elements
       (select_element
-        (function_call
-          (function_name
-            (object_name)))))
-    (from_spec
-      (from_spec_element))))
+        (function_call)))
+    (from_spec)))
 
 ================================================================================
 SELECT lastname FROM cycling.cyclist_name LIMIT 50000;
@@ -64,8 +56,7 @@ LIMIT 50000;
     (select_elements
       (select_element
         (object_name)))
-    (from_spec
-      (from_spec_element))
+    (from_spec)
     (limit_spec
       (decimal_literal))))
 
@@ -87,15 +78,12 @@ WHERE id=5b6962dd-3f90-4c93-8f61-eabfa4a803e2;
         (object_name))
       (select_element
         (object_name)))
-    (from_spec
-      (from_spec_element)))
-  (ERROR
-    (object_name)
-    (UNEXPECTED '5')
-    (UNEXPECTED '3')
-    (UNEXPECTED '4')
-    (UNEXPECTED '8')
-    (UNEXPECTED 'a')))
+    (from_spec)
+    (where_spec
+      (relation_elements
+        (relation_element
+          (constant
+            (uuid)))))))
 
 ================================================================================
 SELECT * FROM cycling.cyclist_category;
@@ -107,8 +95,7 @@ SELECT * FROM cycling.cyclist_category;
 (source_file
   (select_statement
     (select_elements)
-    (from_spec
-      (from_spec_element))))
+    (from_spec)))
 
 ================================================================================
 SELECT * FROM cycling.cyclist_category WHERE category = 'SPRINT';
@@ -120,11 +107,12 @@ SELECT * FROM cycling.cyclist_category WHERE category = 'SPRINT';
 (source_file
   (select_statement
     (select_elements)
-    (from_spec
-      (from_spec_element)))
-  (ERROR
-    (object_name)
-    (string_literal)))
+    (from_spec)
+    (where_spec
+      (relation_elements
+        (relation_element
+          (constant
+            (string_literal)))))))
 
 ================================================================================
 SELECT category, points, lastname FROM cycling.cyclist_category;
@@ -142,8 +130,7 @@ SELECT category, points, lastname FROM cycling.cyclist_category;
         (object_name))
       (select_element
         (object_name)))
-    (from_spec
-      (from_spec_element))))
+    (from_spec)))
 
 ================================================================================
 SELECT * From cycling.cyclist_name LIMIT 3;
@@ -155,8 +142,7 @@ SELECT * From cycling.cyclist_name LIMIT 3;
 (source_file
   (select_statement
     (select_elements)
-    (from_spec
-      (from_spec_element))
+    (from_spec)
     (limit_spec
       (decimal_literal))))
 
@@ -170,11 +156,12 @@ SELECT * FROM cycling.cyclist_cat_pts WHERE category = 'GC' ORDER BY points ASC;
 (source_file
   (select_statement
     (select_elements)
-    (from_spec
-      (from_spec_element))
-    (ERROR
-      (object_name)
-      (string_literal))
+    (from_spec)
+    (where_spec
+      (relation_elements
+        (relation_element
+          (constant
+            (string_literal)))))
     (order_spec
       (order_spec_element
         (object_name)
@@ -197,8 +184,7 @@ SELECT race_name, point_id, lat_long AS CITY_LATITUDE_LONGITUDE FROM cycling.rou
       (select_element
         (object_name)
         (object_name)))
-    (from_spec
-      (from_spec_element))))
+    (from_spec)))
 
 ================================================================================
 SELECT * FROM cycling.upcoming_calendar WHERE year = 2015 AND month = 06;
@@ -210,13 +196,15 @@ SELECT * FROM cycling.upcoming_calendar WHERE year = 2015 AND month = 06;
 (source_file
   (select_statement
     (select_elements)
-    (from_spec
-      (from_spec_element)))
-  (ERROR
-    (object_name)
-    (UNEXPECTED '2')
-    (UNEXPECTED 'n')
-    (UNEXPECTED '6')))
+    (from_spec)
+    (where_spec
+      (relation_elements
+        (relation_element
+          (constant
+            (decimal_literal)))
+        (relation_element
+          (constant
+            (decimal_literal)))))))
 
 ================================================================================
 select json name, checkin_id, time_stamp from checkin;
@@ -234,8 +222,7 @@ select json name, checkin_id, time_stamp from checkin;
         (object_name))
       (select_element
         (object_name)))
-    (from_spec
-      (from_spec_element))))
+    (from_spec)))
 
 ================================================================================
 select name, checkin_id, toJson(time_stamp) from checkin
@@ -253,12 +240,9 @@ select name, checkin_id, toJson(time_stamp) from checkin;
         (object_name))
       (select_element
         (function_call
-          (function_name
-            (object_name))
           (function_args
             (object_name)))))
-    (from_spec
-      (from_spec_element))))
+    (from_spec)))
 
 ================================================================================
 SELECT * FROM cycling.calendar WHERE race_id IN (100, 101, 102) AND (race_start_date, race_end_date) IN (('2015-01-01','2015-02-02'), ('2016-01-01','2016-02-02'));
@@ -270,8 +254,7 @@ SELECT * FROM cycling.calendar WHERE race_id IN (100, 101, 102) AND (race_start_
 (source_file
   (select_statement
     (select_elements)
-    (from_spec
-      (from_spec_element))
+    (from_spec)
     (where_spec
       (relation_elements
         (relation_element
@@ -307,8 +290,7 @@ SELECT * FROM cycling.calendar WHERE race_id IN (100, 101, 102) AND (race_start,
 (source_file
   (select_statement
     (select_elements)
-    (from_spec
-      (from_spec_element))
+    (from_spec)
     (where_spec
       (relation_elements
         (relation_element
@@ -339,12 +321,15 @@ SELECT * FROM cycling.race_times WHERE race_name = '17th Santos Tour Down Under'
 (source_file
   (select_statement
     (select_elements)
-    (from_spec
-      (from_spec_element)))
-  (ERROR
-    (object_name)
-    (string_literal)
-    (UNEXPECTED 'a')
-    (string_literal)
-    (UNEXPECTED 'a')
-    (string_literal)))
+    (from_spec)
+    (where_spec
+      (relation_elements
+        (relation_element
+          (constant
+            (string_literal)))
+        (relation_element
+          (constant
+            (string_literal)))
+        (relation_element
+          (constant
+            (string_literal)))))))

@@ -5,8 +5,7 @@ DROP ROLE team_manager;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_role
-    (role)))
+  (drop_role))
 
 ================================================================================
 DROP ROLE IF EXISTS team_manager;
@@ -15,7 +14,4 @@ DROP ROLE IF EXISTS team_manager;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_role
-    (role))
-  (ERROR
-    (UNEXPECTED 'a')))
+  (drop_role))

@@ -8,9 +8,7 @@ CREATE ROLE coach
 
 (source_file
   (create_role
-    (role)
     (role_with
-      (ERROR
         (role_with_options
           (string_literal)))
       (role_with_options

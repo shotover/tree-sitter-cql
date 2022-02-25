@@ -5,12 +5,7 @@ DROP AGGREGATE IF EXISTS cycling.avgState;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_aggregate
-    (keyspace)
-    (ERROR
-      (UNEXPECTED 'y')
-      (UNEXPECTED '.'))
-    (aggregate)))
+  (drop_aggregate))
 
 ================================================================================
 DROP AGGREGATE cycling.avgState;
@@ -19,6 +14,4 @@ DROP AGGREGATE cycling.avgState;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_aggregate
-    (keyspace)
-    (aggregate)))
+  (drop_aggregate))

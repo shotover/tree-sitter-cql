@@ -8,8 +8,6 @@ AND bloom_filter_fp_chance = 0.02;
 
 (source_file
   (alter_materialized_view
-    (keyspace)
-    (materialized_view)
     (table_options
       (table_option_item
         (table_option_name)

@@ -5,8 +5,7 @@ DROP KEYSPACE cycling;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_keyspace
-    (keyspace)))
+  (drop_keyspace))
 
 ================================================================================
 DROP KEYSPACE if exists cycling;
@@ -15,8 +14,4 @@ DROP KEYSPACE if exists cycling;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_keyspace
-    (keyspace))
-  (ERROR
-    (UNEXPECTED 'y')
-    (UNEXPECTED ';')))
+  (drop_keyspace))

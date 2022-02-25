@@ -7,11 +7,7 @@ GRANT SELECT ON ALL KEYSPACES TO coach;
 (source_file
   (grant
     (priviledge)
-    (ERROR
-      (keyspace))
-    (resource
-      (table))
-    (role)))
+    (resource)))
 
 ================================================================================
 GRANT MODIFY ON KEYSPACE field TO manager;
@@ -22,11 +18,7 @@ GRANT MODIFY ON KEYSPACE field TO manager;
 (source_file
   (grant
     (priviledge)
-    (resource
-      (table))
-    (ERROR
-      (UNEXPECTED 'e'))
-    (role)))
+    (resource)
 
 ================================================================================
 GRANT ALTER ON KEYSPACE cycling TO coach;
@@ -34,15 +26,10 @@ GRANT ALTER ON KEYSPACE cycling TO coach;
 GRANT ALTER ON KEYSPACE cycling TO coach;
 --------------------------------------------------------------------------------
 
-(source_file
-  (grant
+(source_file ( grant
     (priviledge)
-    (resource
-      (table))
-    (ERROR
-      (UNEXPECTED 'y')
-      (UNEXPECTED '))
-    (role)))
+    (resource)
+
 
 ================================================================================
 GRANT ALL PERMISSIONS ON cycling.name TO coach;
@@ -53,10 +40,7 @@ GRANT ALL PERMISSIONS ON cycling.name TO coach;
 (source_file
   (grant
     (priviledge)
-    (resource
-      (keyspace)
-      (table))
-    (role)))
+    (resource)))
 
 ================================================================================
 GRANT ALL ON KEYSPACE cycling TO cycling_admin;
@@ -67,9 +51,4 @@ GRANT ALL ON KEYSPACE cycling TO cycling_admin;
 (source_file
   (grant
     (priviledge)
-    (resource
-      (table))
-    (ERROR
-      (UNEXPECTED 'y')
-      (UNEXPECTED '))
-    (role)))
+    (resource)

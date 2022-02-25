@@ -17,8 +17,7 @@ OF coach;
 
 (source_file
   (list_permissions
-    (priviledge)
-    (role)))
+    (priviledge)))
 
 ================================================================================
 LIST ALL ON cyclist.name;
@@ -30,6 +29,4 @@ ON cyclist.name;
 (source_file
   (list_permissions
     (priviledge)
-    (resource
-      (keyspace)
-      (table))))
+    (resource)))

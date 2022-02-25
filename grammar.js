@@ -365,12 +365,19 @@ const
             ),
         use : $ => seq( kw("USE"), alias($.object_name, "keyspace")),
         grant : $ => seq( kw("GRANT"), $.priviledge,  kw("ON"), $.resource, kw("TO"), alias( $.object_name, "role") ),
+        revoke : $ =>
+            seq(
+                kw("REVOKE"),
+                $.priviledge,
+                kw("ON"),
+                $.resource,
+                kw("FROM"),
+                alias( $.object_name, "role")
+            ),
         priviledge : $ =>
             choice(
-                choice(
-                    kw("ALL"),
-                    seq( kw( "ALL"),kw("PERMISSIONS")),
-                ),
+                kw( "ALL"),
+                seq( kw( "ALL"), kw("PERMISSIONS")),
                 kw( "ALTER"),
                 kw( "AUTHORIZE"),
                 kw( "DESCRIBE"),
@@ -382,16 +389,23 @@ const
             ),
         resource : $ =>
             choice(
-                seq( kw("ALL"),kw("FUNCTIONS")),
-                seq( kw("ALL"),kw("FUNCTIONS"),kw("IN"),kw("KEYSPACE"), alias( $.object_name, "keyspace")),
+                seq( kw( "ALL"),
+                    choice(
+                        seq(
+                            kw("FUNCTIONS"),
+                            optional( seq(
+                                kw("IN"),kw("KEYSPACE"), alias( $.object_name, "keyspace") )
+                            ),
+                        ),
+                        kw("KEYSPACES"),
+                        kw("ROLES"),
+                    ),
+                ),
                 seq( kw("FUNCTION"), dotted_name( $.object_name, $.object_name, "function" )),
-                seq(kw("ALL"),kw("KEYSPACES")),
                 seq( kw("KEYSPACE"), alias( $.object_name, "keyspace")),
-                seq( optional( kw("TABLE")), dotted_name( $.object_name, $.object_name, "table")),
-                seq( kw("ALL"), kw("ROLES")),
                 seq( kw("ROLE"), alias( $.object_name, "role") ),
+                seq( optional( kw("TABLE")), dotted_name( $.object_name, $.object_name, "table")),
             ),
-        revoke : $ => seq( kw("REVOKE"), $.priviledge, kw("ON"), $.resource, kw("FROM"), alias( $.object_name, "role")),
         list_roles : $ =>
             seq(
                 kw("LIST"),

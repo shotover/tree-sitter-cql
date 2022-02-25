@@ -5,9 +5,7 @@ DROP TRIGGER trigger_name ON table_name;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_trigger
-    (trigger)
-    (table)))
+  (drop_trigger))
 
 ================================================================================
 DROP TRIGGER trigger_name ON ks.table_name;
@@ -16,10 +14,7 @@ DROP TRIGGER trigger_name ON ks.table_name;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_trigger
-    (trigger)
-    (keyspace)
-    (table)))
+  (drop_trigger))
 
 ================================================================================
 DROP TRIGGER keyspace.trigger_name ON table_name;
@@ -28,10 +23,7 @@ DROP TRIGGER keyspace.trigger_name ON table_name;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_trigger
-    (keyspace)
-    (trigger)
-    (table)))
+  (drop_trigger))
 
 ================================================================================
 DROP TRIGGER keyspace.trigger_name ON ks.table_name;
@@ -40,11 +32,7 @@ DROP TRIGGER keyspace.trigger_name ON ks.table_name;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_trigger
-    (keyspace)
-    (trigger)
-    (keyspace)
-    (table)))
+  (drop_trigger))
 
 ================================================================================
 DROP TRIGGER if exists trigger_name ON table_name;
@@ -53,11 +41,7 @@ DROP TRIGGER if exists trigger_name ON table_name;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_trigger
-    (trigger)
-    (ERROR
-      (UNEXPECTED '_'))
-    (table)))
+  (drop_trigger))
 
 ================================================================================
 DROP TRIGGER if exists trigger_name ON ks.table_name;
@@ -66,12 +50,7 @@ DROP TRIGGER if exists trigger_name ON ks.table_name;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_trigger
-    (trigger)
-    (ERROR
-      (UNEXPECTED '_'))
-    (keyspace)
-    (table)))
+  (drop_trigger))
 
 ================================================================================
 DROP TRIGGER if exists keyspace.trigger_name ON table_name;
@@ -80,11 +59,7 @@ DROP TRIGGER if exists keyspace.trigger_name ON table_name;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_trigger
-    (keyspace)
-    (ERROR)
-    (trigger)
-    (table)))
+  (drop_trigger))
 
 ================================================================================
 DROP TRIGGER if exists keyspace.trigger_name ON ks.table_name;
@@ -93,9 +68,4 @@ DROP TRIGGER if exists keyspace.trigger_name ON ks.table_name;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_trigger
-    (keyspace)
-    (ERROR)
-    (trigger)
-    (keyspace)
-    (table)))
+  (drop_trigger))

@@ -20,17 +20,17 @@ return Double.valueOf(r); $$
 
 (source_file
   (create_function
-    (or_replace)
-    (keyspace)
-    (function)
     (param
       (data_type
-        (data_type_name)
+        (data_type_name
+          (object_name))
         (data_type_definition
-          (data_type_name)
-          (data_type_name))))
+          (data_type_name
+            (object_name))
+          (data_type_name
+            (object_name)))))
     (return_mode)
     (data_type
-      (data_type_name))
-    (language)
+      (data_type_name
+        (object_name)))
     (code_block)))

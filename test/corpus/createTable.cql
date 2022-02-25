@@ -10,27 +10,23 @@ CREATE TABLE cycling.race_winners (
 
 (source_file
   (create_table
-    (keyspace)
-    (table)
     (column_definition_list
       (column_definition
-        (column)
         (data_type
-          (data_type_name)))
+          (data_type_name
+            (object_name))))
       (column_definition
-        (column)
         (data_type
-          (data_type_name)))
+          (data_type_name
+            (object_name))))
       (column_definition
-        (column)
         (data_type
-          (data_type_name)
+          (data_type_name
+            (object_name))
           (data_type_definition
-            (data_type_name))))
+            (data_type_name
+              (object_name)))))
       (column_definition
-        (column)
         (data_type
-          (data_type_name))))
-    (ERROR
-      (UNEXPECTED 'a')
-      (column))))
+          (data_type_name
+            (object_name)))))

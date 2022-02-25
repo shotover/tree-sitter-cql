@@ -4,7 +4,7 @@ use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, 
 
 
 
-const TEXT : &str = "DROP USER if exists foo.boone";
+const TEXT : &str = "REVOKE ALTER ON ALL ROLES FROM coach;";
 
 fn log( x : LogType, message : &str) {
     println!("{}", message );

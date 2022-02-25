@@ -3292,11 +3292,69 @@
         }
       ]
     },
+    "revoke": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[rR][eE][vV][oO][kK][eE]"
+          },
+          "named": false,
+          "value": "REVOKE"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "priviledge"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[oO][nN]"
+          },
+          "named": false,
+          "value": "ON"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "resource"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[fF][rR][oO][mM]"
+          },
+          "named": false,
+          "value": "FROM"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "object_name"
+          },
+          "named": false,
+          "value": "role"
+        }
+      ]
+    },
     "priviledge": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "CHOICE",
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[aA][lL][lL]"
+          },
+          "named": false,
+          "value": "ALL"
+        },
+        {
+          "type": "SEQ",
           "members": [
             {
               "type": "ALIAS",
@@ -3308,27 +3366,13 @@
               "value": "ALL"
             },
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[aA][lL][lL]"
-                  },
-                  "named": false,
-                  "value": "ALL"
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[pP][eE][rR][mM][iI][sS][sS][iI][oO][nN][sS]"
-                  },
-                  "named": false,
-                  "value": "PERMISSIONS"
-                }
-              ]
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[pP][eE][rR][mM][iI][sS][sS][iI][oO][nN][sS]"
+              },
+              "named": false,
+              "value": "PERMISSIONS"
             }
           ]
         },
@@ -3422,63 +3466,81 @@
               "value": "ALL"
             },
             {
-              "type": "ALIAS",
-              "content": {
-                "type": "PATTERN",
-                "value": "[fF][uU][nN][cC][tT][iI][oO][nN][sS]"
-              },
-              "named": false,
-              "value": "FUNCTIONS"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "PATTERN",
-                "value": "[aA][lL][lL]"
-              },
-              "named": false,
-              "value": "ALL"
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "PATTERN",
-                "value": "[fF][uU][nN][cC][tT][iI][oO][nN][sS]"
-              },
-              "named": false,
-              "value": "FUNCTIONS"
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "PATTERN",
-                "value": "[iI][nN]"
-              },
-              "named": false,
-              "value": "IN"
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "PATTERN",
-                "value": "[kK][eE][yY][sS][pP][aA][cC][eE]"
-              },
-              "named": false,
-              "value": "KEYSPACE"
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "object_name"
-              },
-              "named": false,
-              "value": "keyspace"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "PATTERN",
+                        "value": "[fF][uU][nN][cC][tT][iI][oO][nN][sS]"
+                      },
+                      "named": false,
+                      "value": "FUNCTIONS"
+                    },
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "PATTERN",
+                                "value": "[iI][nN]"
+                              },
+                              "named": false,
+                              "value": "IN"
+                            },
+                            {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "PATTERN",
+                                "value": "[kK][eE][yY][sS][pP][aA][cC][eE]"
+                              },
+                              "named": false,
+                              "value": "KEYSPACE"
+                            },
+                            {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "SYMBOL",
+                                "name": "object_name"
+                              },
+                              "named": false,
+                              "value": "keyspace"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "BLANK"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[kK][eE][yY][sS][pP][aA][cC][eE][sS]"
+                  },
+                  "named": false,
+                  "value": "KEYSPACES"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[rR][oO][lL][eE][sS]"
+                  },
+                  "named": false,
+                  "value": "ROLES"
+                }
+              ]
             }
           ]
         },
@@ -3544,29 +3606,6 @@
               "type": "ALIAS",
               "content": {
                 "type": "PATTERN",
-                "value": "[aA][lL][lL]"
-              },
-              "named": false,
-              "value": "ALL"
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "PATTERN",
-                "value": "[kK][eE][yY][sS][pP][aA][cC][eE][sS]"
-              },
-              "named": false,
-              "value": "KEYSPACES"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "PATTERN",
                 "value": "[kK][eE][yY][sS][pP][aA][cC][eE]"
               },
               "named": false,
@@ -3580,6 +3619,29 @@
               },
               "named": false,
               "value": "keyspace"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[rR][oO][lL][eE]"
+              },
+              "named": false,
+              "value": "ROLE"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "object_name"
+              },
+              "named": false,
+              "value": "role"
             }
           ]
         },
@@ -3645,101 +3707,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "PATTERN",
-                "value": "[aA][lL][lL]"
-              },
-              "named": false,
-              "value": "ALL"
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "PATTERN",
-                "value": "[rR][oO][lL][eE][sS]"
-              },
-              "named": false,
-              "value": "ROLES"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "PATTERN",
-                "value": "[rR][oO][lL][eE]"
-              },
-              "named": false,
-              "value": "ROLE"
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "object_name"
-              },
-              "named": false,
-              "value": "role"
-            }
-          ]
-        }
-      ]
-    },
-    "revoke": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[rR][eE][vV][oO][kK][eE]"
-          },
-          "named": false,
-          "value": "REVOKE"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "priviledge"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[oO][nN]"
-          },
-          "named": false,
-          "value": "ON"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "resource"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[fF][rR][oO][mM]"
-          },
-          "named": false,
-          "value": "FROM"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "object_name"
-          },
-          "named": false,
-          "value": "role"
         }
       ]
     },

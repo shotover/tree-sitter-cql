@@ -10,17 +10,17 @@ INITCOND (0,0);
 
 (source_file
   (create_aggregate
-    (keyspace)
-    (aggregate)
     (data_type
-      (data_type_name))
-    (function)
+      (data_type_name
+        (object_name)))
     (data_type
-      (data_type_name)
+      (data_type_name
+        (object_name))
       (data_type_definition
-        (data_type_name)
-        (data_type_name)))
-    (function)
+        (data_type_name
+          (object_name))
+        (data_type_name
+          (object_name))))
     (init_cond_definition
       (init_cond_list
         (constant

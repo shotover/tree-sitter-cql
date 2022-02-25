@@ -11,18 +11,10 @@ CREATE TYPE cycling.basic_info (
 
 (source_file
   (create_type
-    (keyspace)
-    (type)
-    (type_member_column_list
-      (column)
-      (data_type
-        (data_type_name))
-      (column)
-      (data_type
-        (data_type_name))
-      (column)
-      (data_type
-        (data_type_name))
-      (column)
-      (data_type
-        (data_type_name)))))
+    (data_type_name)
+    (data_type_name
+      (object_name))
+    (data_type_name
+      (object_name))
+    (data_type_name
+      (object_name))))

@@ -9,9 +9,4 @@ CREATE KEYSPACE cycling
 --------------------------------------------------------------------------------
 
 (source_file
-  (ERROR
-    (keyspace)
-    (string_literal)
-    (string_literal)
-    (string_literal)
-    (UNEXPECTED '1')))
+  )

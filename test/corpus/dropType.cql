@@ -5,8 +5,7 @@ DROP TYPE basic_info ;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_type
-    (type)))
+  (drop_type))
 
 ================================================================================
 DROP TYPE cycling.basic_info ;
@@ -15,9 +14,7 @@ DROP TYPE cycling.basic_info ;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_type
-    (keyspace)
-    (type)))
+  (drop_type))
 
 ================================================================================
 DROP TYPE if exists basic_info ;
@@ -26,11 +23,7 @@ DROP TYPE if exists basic_info ;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_type
-    (type))
-  (ERROR
-    (UNEXPECTED 's')
-    (UNEXPECTED 'o')))
+  (drop_type))
 
 ================================================================================
 DROP TYPE if exists cycling.basic_info ;
@@ -39,9 +32,4 @@ DROP TYPE if exists cycling.basic_info ;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_type
-    (keyspace)
-    (ERROR
-      (UNEXPECTED 'y')
-      (UNEXPECTED '.'))
-    (type)))
+  (drop_type))

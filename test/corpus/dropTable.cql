@@ -5,8 +5,7 @@ DROP TABLE cyclist_name;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_table
-    (table)))
+  (drop_table))
 
 ================================================================================
 DROP TABLE cycling.cyclist_name;
@@ -15,9 +14,7 @@ DROP TABLE cycling.cyclist_name;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_table
-    (keyspace)
-    (table)))
+  (drop_table))
 
 ================================================================================
 DROP TABLE if exists cyclist_name;
@@ -26,11 +23,7 @@ DROP TABLE if exists cyclist_name;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_table
-    (table))
-  (ERROR
-    (UNEXPECTED 'y')
-    (UNEXPECTED '_')))
+  (drop_table))
 
 ================================================================================
 DROP TABLE if exists cycling.cyclist_name;
@@ -39,9 +32,4 @@ DROP TABLE if exists cycling.cyclist_name;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_table
-    (keyspace)
-    (ERROR
-      (UNEXPECTED 'y')
-      (UNEXPECTED '.'))
-    (table)))
+  (drop_table))

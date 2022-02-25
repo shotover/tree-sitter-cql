@@ -9,10 +9,33 @@ REVOKE SELECT
 (source_file
   (revoke
     (priviledge)
-    (resource
-      (keyspace)
-      (table))
-    (role)))
+    (resource)))
+
+================================================================================
+REVOKE ALL ON cycling.name FROM manager;
+================================================================================
+REVOKE ALL PERMISSIONS
+       ON cycling.name
+       FROM manager;
+--------------------------------------------------------------------------------
+
+(source_file
+    (revoke
+    (priviledge)
+    (resource)))
+
+================================================================================
+REVOKE ALL PERMISSIONS ON cycling.name FROM manager;
+================================================================================
+REVOKE ALL PERMISSIONS
+       ON cycling.name
+       FROM manager;
+--------------------------------------------------------------------------------
+
+(source_file
+    (revoke
+    (priviledge)
+    (resource)))
 
 ================================================================================
 REVOKE ALTER ON ALL ROLES FROM coach;
@@ -25,8 +48,4 @@ FROM coach;
 (source_file
   (revoke
     (priviledge)
-    (ERROR
-      (keyspace))
-    (resource
-      (table))
-    (role)))
+    (resource)))

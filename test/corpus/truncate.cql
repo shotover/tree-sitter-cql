@@ -5,9 +5,7 @@ TRUNCATE cycling.user_activity;
 --------------------------------------------------------------------------------
 
 (source_file
-  (truncate
-    (keyspace)
-    (table)))
+  (truncate))
 
 ================================================================================
 TRUNCATE TABLE cycling.user_activity;
@@ -16,6 +14,4 @@ TRUNCATE TABLE cycling.user_activity;
 --------------------------------------------------------------------------------
 
 (source_file
-  (truncate
-    (keyspace)
-    (table)))
+  (truncate))
