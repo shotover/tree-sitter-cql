@@ -2,7 +2,7 @@ use std::any::Any;
 use std::error::Error;
 use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch, LogType};
 
-const TEXT : &str = "TRUNCATE keyspace.table";
+const TEXT : &str = "CREATE AGGREGATE keyspace.aggregate  ( ASCII ) SFUNC sfunc STYPE BIGINT FINALFUNC finalFunc INITCOND ( hash_key : (5,7,9));";
 
 
 
