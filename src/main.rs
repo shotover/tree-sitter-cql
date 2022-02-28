@@ -2,7 +2,7 @@ use std::any::Any;
 use std::error::Error;
 use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch, LogType};
 
-const TEXT : &str = "UPDATE keyspace.table USING TIMESTAMP 3 SET col1 = 'foo' WHERE col2=5";
+const TEXT : &str = "CREATE FUNCTION IF NOT EXISTS func ( param1 int , param2 text) CALLED ON NULL INPUT RETURNS INT LANGUAGE javascript AS $$ return 5; $$;";
 
 
 
