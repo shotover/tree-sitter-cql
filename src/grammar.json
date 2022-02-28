@@ -6287,8 +6287,13 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "STRING",
-                    "value": ","
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "[aA][nN][dD]"
+                    },
+                    "named": false,
+                    "value": "AND"
                   },
                   {
                     "type": "SYMBOL",
@@ -6455,10 +6460,6 @@
               "name": "_float_literal"
             }
           ]
-        },
-        {
-          "type": "STRING",
-          "value": ")"
         }
       ]
     },

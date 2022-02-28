@@ -2,7 +2,6 @@
 SELECT DISTINCT JSON * FROM table;
 ================================================================================
 SELECT DISTINCT JSON * FROM table;
-================================================================================
 --------------------------------------------------------------------------------
 (source_file (select_statement (select_elements) (from_spec (table_name))))
 
@@ -10,40 +9,36 @@ SELECT DISTINCT JSON * FROM table;
 SELECT column FROM table;
 ================================================================================
 SELECT column FROM table;
-================================================================================
-(source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name))))
-
-================================================================================
-SELECT column.* FROM table;
-================================================================================
-SELECT column.* FROM table;
-================================================================================
-(source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name))))
 --------------------------------------------------------------------------------
+(source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name))))
+
+================================================================================
+SELECT column.* FROM table;
+================================================================================
+SELECT column.* FROM table;
+--------------------------------------------------------------------------------
+(source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name))))
 
 ================================================================================
 SELECT column AS column2 FROM table;
 ================================================================================
 SELECT column AS column2 FROM table;
-================================================================================
+--------------------------------------------------------------------------------
 (source_file (select_statement (select_elements (select_element (object_name) (object_name))) (from_spec (table_name))))
---------------------------------------------------------------------------------
 
 ================================================================================
 SELECT func(*) FROM table;
 ================================================================================
 SELECT func(*)  FROM table;
-================================================================================
-(source_file (select_statement (select_elements (select_element (function_call))) (from_spec)))
 --------------------------------------------------------------------------------
+(source_file (select_statement (select_elements (select_element (function_call))) (from_spec (table_name))))
 
 ================================================================================
 SELECT column AS column2, func(*) AS func2 FROM table;
 ================================================================================
 SELECT column AS column2, func(*) AS func2 FROM table;
-================================================================================
-(source_file (select_statement (select_elements (select_element (object_name) (object_name)) (select_element (function_call) (object_name))) (from_spec (table_name))))
 --------------------------------------------------------------------------------
+(source_file (select_statement (select_elements (select_element (object_name) (object_name)) (select_element (function_call) (object_name))) (from_spec (table_name))))
 
 ================================================================================
 SELECT column FROM table WHERE col < 5;
@@ -209,9 +204,9 @@ SELECT column FROM table WHERE (col1, col2) IN (( 5, 'stuff'), (6, 'other'));
 (source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name)) (where_spec (relation_elements (relation_element (object_name) (object_name) (assignment_tuple (constant) (constant)) (assignment_tuple (constant) (constant)))))))
 
 ================================================================================
-SELECT column FROM table WHERE (col1, col2) >= (( 5, 'stuff'), (6, 'other'));
+SELECT column FROM table WHERE (col1, col2) >= ( 5, 'stuff'), (6, 'other');
 ================================================================================
-SELECT column FROM table WHERE (col1, col2) >= (( 5, 'stuff'), (6, 'other'));
+SELECT column FROM table WHERE (col1, col2) >= ( 5, 'stuff'), (6, 'other');
 --------------------------------------------------------------------------------
 (source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name)) (where_spec (relation_elements (relation_element (object_name) (object_name) (assignment_tuple (constant) (constant)) (assignment_tuple (constant) (constant)))))))
 
@@ -234,34 +229,34 @@ SELECT column FROM table WHERE col1 CONTAINS KEY 'foo';
 SELECT column FROM table ORDER BY col1;
 ================================================================================
 SELECT column FROM table ORDER BY col1;
-================================================================================
+--------------------------------------------------------------------------------
 (source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name)) (order_spec (object_name))))
 
 ================================================================================
 SELECT column FROM table ORDER BY col1 ASC;
 ================================================================================
 SELECT column FROM table ORDER BY col1 ASC;
-================================================================================
+--------------------------------------------------------------------------------
 (source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name)) (order_spec (object_name) (order_direction))))
 
 ================================================================================
 SELECT column FROM table ORDER BY col1 DESC;
 ================================================================================
 SELECT column FROM table ORDER BY col1 DESC;
-================================================================================
+--------------------------------------------------------------------------------
 (source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name)) (order_spec (object_name) (order_direction))))
 
 ================================================================================
 SELECT column FROM table LIMIT 5;
 ================================================================================
 SELECT column FROM table LIMIT 5;
-================================================================================
+--------------------------------------------------------------------------------
 (source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name)) (limit_spec)))
 
 ================================================================================
 SELECT column FROM table ALLOW FILTERING;
 ================================================================================
 SELECT column FROM table ALLOW FILTERING;
-================================================================================
+--------------------------------------------------------------------------------
 (source_file (select_statement (select_elements (select_element (object_name))) (from_spec (table_name))))
 

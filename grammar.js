@@ -155,8 +155,9 @@ const
         _float_literal : $ => token( float_str),
         _boolean_literal : $ => token(choice( kw("TRUE"), kw("FALSE"))),
         _code_block : $ => token( code ),
-        from_spec : $ => seq( kw("FROM"), dotted_name( $.object_name, $.object_name, "table" )),
-        where_spec : $ =>
+        from_spec : $ => seq( kw("FROM"), $.table_name),
+        table_name : $ => dotted_name( $.object_name, $.object_name, "table" ),
+    where_spec : $ =>
             seq( kw("WHERE"), $.relation_elements ),
         relation_elements : $ => prec.left(PREC.and,sep1( $.relation_element, kw("AND"))),
         relation_element : $=>
@@ -319,7 +320,7 @@ const
                 optional( if_not_exists ),
                 optional( $.index_name ),
                 kw( "ON"),
-                dotted_name( $.object_name, $.object_name, "table" )
+                $.table_name,
                 "(",
                 $.index_column_spec,
                 ")",
@@ -665,7 +666,7 @@ const
                 alias( $.object_name, "role"),
                 optional( $.role_with ),
             ),
-        role_with : $ => seq( kw("WITH"), commaSep1( $.role_with_options)),
+        role_with : $ => seq( kw("WITH"), sep1( $.role_with_options, kw("AND"))),
         role_with_options : $ =>
             choice(
                 seq( kw("PASSWORD"), "=", $._string_literal),
@@ -674,7 +675,7 @@ const
                 seq( kw("OPTIONS"), "=", $.option_hash),
             ),
         option_hash : $ => seq( "(", commaSep1( $.option_hash_item), ")"),
-        option_hash_item : $ => seq( $._string_literal, ":", choice( $._string_literal, $._float_literal), ")"),
+        option_hash_item : $ => seq( $._string_literal, ":", choice( $._string_literal, $._float_literal), ),
         create_table : $ =>
             seq(
                 kw("CREATE"),
