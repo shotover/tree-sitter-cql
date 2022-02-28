@@ -366,7 +366,7 @@ const
             seq(
                 seq( kw("GRANT"), $.priviledge,),
                 seq( kw("ON"), $.resource, ),
-                seq( kw("TO"), field( "role", $.object_name) ),
+                seq( kw("TO"), alias( $.object_name, "role") ),
             ),
         revoke : $ =>
             seq(

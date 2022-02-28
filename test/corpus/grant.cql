@@ -1,59 +1,153 @@
 ================================================================================
-GRANT SELECT ON ALL KEYSPACES TO coach;
+GRANT ALL ON 'keyspace'.table TO role;
 ================================================================================
-GRANT SELECT ON ALL KEYSPACES TO coach;
+GRANT ALL ON 'keyspace'.table TO role;
 --------------------------------------------------------------------------------
-
-(source_file
-  (grant
-    (priviledge)
-    (resource)
-    (object_name)))
+(source_file (grant (priviledge) (resource)))
 
 ================================================================================
-GRANT MODIFY ON KEYSPACE field TO manager;
+GRANT ALL ON 'keyspace'.table TO role;
 ================================================================================
-GRANT MODIFY ON KEYSPACE field TO manager;
+GRANT ALL ON 'keyspace'.table TO role;
 --------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
 
-(source_file
-  (grant
-    (priviledge)
-    (resource)
-    (object_name)))
 ================================================================================
-GRANT ALTER ON KEYSPACE cycling TO coach;
+GRANT ALL PERMISSIONS ON 'keyspace'.table TO role;
 ================================================================================
-GRANT ALTER ON KEYSPACE cycling TO coach;
+GRANT ALL PERMISSIONS ON 'keyspace'.table TO role;
 --------------------------------------------------------------------------------
-
-(source_file
-  (grant
-    (priviledge)
-    (resource)
-    (object_name)))
-
+(source_file (grant (priviledge) (resource)))
 
 ================================================================================
-GRANT ALL PERMISSIONS ON cycling.name TO coach;
+GRANT ALTER ON 'keyspace'.table TO role;
 ================================================================================
-GRANT ALL PERMISSIONS ON cycling.name TO coach;
+GRANT ALTER ON 'keyspace'.table TO role;
 --------------------------------------------------------------------------------
-
-(source_file
-  (grant
-    (priviledge)
-    (resource)
-    (object_name)))
+(source_file (grant (priviledge) (resource)))
 
 ================================================================================
-GRANT ALL ON KEYSPACE cycling TO cycling_admin;
+GRANT AUTHORIZE ON 'keyspace'.table TO role;
 ================================================================================
-GRANT ALL ON KEYSPACE cycling TO cycling_admin;
+GRANT AUTHORIZE ON 'keyspace'.table TO role;
 --------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
 
-(source_file
-  (grant
-    (priviledge)
-    (resource)
-    (object_name)))
+================================================================================
+GRANT DESCRIBE ON 'keyspace'.table TO role;
+================================================================================
+GRANT DESCRIBE ON 'keyspace'.table TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT EXECUTE ON 'keyspace'.table TO role;
+================================================================================
+GRANT EXECUTE ON 'keyspace'.table TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT CREATE ON 'keyspace'.table TO role;
+================================================================================
+GRANT CREATE ON 'keyspace'.table TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT DROP ON 'keyspace'.table TO role;
+================================================================================
+GRANT DROP ON 'keyspace'.table TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT MODIFY ON 'keyspace'.table TO role;
+================================================================================
+GRANT MODIFY ON 'keyspace'.table TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT SELECT ON 'keyspace'.table TO role;
+================================================================================
+GRANT SELECT ON 'keyspace'.table TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT ALL ON ALL FUNCTIONS TO role;
+================================================================================
+GRANT ALL ON ALL FUNCTIONS TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT ALL ON ALL FUNCTIONS IN KEYSPACE keyspace TO role;
+================================================================================
+GRANT ALL ON ALL FUNCTIONS IN KEYSPACE keyspace TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT ALL ON ALL KEYSPACES TO role;
+================================================================================
+GRANT ALL ON ALL KEYSPACES TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT ALL ON ALL ROLES TO role;
+================================================================================
+GRANT ALL ON ALL ROLES TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT ALL ON FUNCTION 'keyspace'.function TO role;
+================================================================================
+GRANT ALL ON FUNCTION 'keyspace'.function TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT ALL ON FUNCTION 'function' TO role;
+================================================================================
+GRANT ALL ON FUNCTION 'function' TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT ALL ON KEYSPACE 'keyspace' TO role;
+================================================================================
+GRANT ALL ON KEYSPACE 'keyspace' TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT ALL ON ROLE 'role' TO role;
+================================================================================
+GRANT ALL ON ROLE 'role' TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT ALL ON TABLE 'keyspace'.table TO role;
+================================================================================
+GRANT ALL ON TABLE 'keyspace'.table TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT ALL ON TABLE 'table' TO role;
+================================================================================
+GRANT ALL ON TABLE 'table' TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))
+
+================================================================================
+GRANT ALL ON 'table' TO role;
+================================================================================
+GRANT ALL ON 'table' TO role;
+--------------------------------------------------------------------------------
+(source_file (grant (priviledge) (resource)))

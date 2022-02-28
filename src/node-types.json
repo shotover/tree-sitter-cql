@@ -1024,18 +1024,7 @@
   {
     "type": "grant",
     "named": true,
-    "fields": {
-      "role": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "object_name",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
