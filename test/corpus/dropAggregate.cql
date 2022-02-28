@@ -1,17 +1,31 @@
 ================================================================================
-DROP AGGREGATE IF EXISTS cycling.avgState;
+DROP AGGREGATE IF EXISTS aggregate;
 ================================================================================
-DROP AGGREGATE IF EXISTS cycling.avgState;
+DROP AGGREGATE IF EXISTS aggregate;
 --------------------------------------------------------------------------------
-
 (source_file
   (drop_aggregate))
 
 ================================================================================
-DROP AGGREGATE cycling.avgState;
+DROP AGGREGATE aggregate;
 ================================================================================
-DROP AGGREGATE cycling.avgState;
+DROP AGGREGATE aggregate;
 --------------------------------------------------------------------------------
-
 (source_file
   (drop_aggregate))
+
+================================================================================
+DROP AGGREGATE IF EXISTS keyspace.aggregate;
+================================================================================
+DROP AGGREGATE IF EXISTS keyspace.aggregate;
+--------------------------------------------------------------------------------
+(source_file
+    (drop_aggregate))
+
+================================================================================
+DROP AGGREGATE keyspace.aggregate;
+================================================================================
+DROP AGGREGATE keyspace.aggregate;
+--------------------------------------------------------------------------------
+(source_file
+    (drop_aggregate))
