@@ -2,7 +2,7 @@ use std::any::Any;
 use std::error::Error;
 use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch, LogType};
 
-const TEXT : &str = "ALTER TABLE keyspace.table WITH option1 = 'option' AND option2 = 3.5;";
+const TEXT : &str = "INSERT INTO table  VALUES ('hello', 5);";
 
 
 
