@@ -1,35 +1,27 @@
 ================================================================================
-DROP TYPE basic_info ;
+DROP TYPE type ;
 ================================================================================
-DROP TYPE basic_info ;
+DROP TYPE type ;
 --------------------------------------------------------------------------------
-
-(source_file
-  (drop_type))
+(source_file (drop_type))
 
 ================================================================================
-DROP TYPE cycling.basic_info ;
+DROP TYPE keyspace.type ;
 ================================================================================
-DROP TYPE cycling.basic_info ;
+DROP TYPE keyspace.type ;
 --------------------------------------------------------------------------------
-
-(source_file
-  (drop_type))
+(source_file  (drop_type))
 
 ================================================================================
-DROP TYPE if exists basic_info ;
+DROP TYPE IF EXISTS type ;
 ================================================================================
-DROP TYPE if exists basic_info ;
+DROP TYPE IF EXISTS type ;
 --------------------------------------------------------------------------------
-
-(source_file
-  (drop_type))
+(source_file (drop_type))
 
 ================================================================================
-DROP TYPE if exists cycling.basic_info ;
+DROP TYPE IF EXISTS keyspace.type ;
 ================================================================================
-DROP TYPE if exists cycling.basic_info ;
+DROP TYPE IF EXISTS keyspace.type ;
 --------------------------------------------------------------------------------
-
-(source_file
-  (drop_type))
+(source_file  (drop_type))
