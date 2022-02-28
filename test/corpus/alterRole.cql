@@ -1,11 +1,13 @@
 ================================================================================
-ALTER ROLE coach WITH PASSWORD='bestTeam';
+ALTER ROLE 'role';
 ================================================================================
-ALTER ROLE coach WITH PASSWORD='bestTeam';
+ALTER ROLE 'role';
 --------------------------------------------------------------------------------
+(source_file (alter_role))
 
-(source_file
-  (alter_role
-    (role_with
-      (role_with_options
-        (string_literal)))))
+================================================================================
+ALTER ROLE 'role' WITH PASSWORD = 'password';
+================================================================================
+ALTER ROLE 'role' WITH PASSWORD = 'password';
+--------------------------------------------------------------------------------
+(source_file (alter_role (role_with (role_with_options))))
