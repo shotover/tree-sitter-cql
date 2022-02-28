@@ -1,70 +1,44 @@
 ================================================================================
-DELETE firstname, lastname FROM cycling.cyclist_name WHERE id = e7ae5cf3-d358-4d99-b900-85902fda9bb0;
+BEGIN LOGGED BATCH USING TIMESTAMP 5 DELETE column [ 'hello' ] from table WHERE column2 = 'foo' IF EXISTS
 ================================================================================
-DELETE firstname, lastname FROM cycling.cyclist_name
-WHERE id = e7ae5cf3-d358-4d99-b900-85902fda9bb0;
+BEGIN LOGGED BATCH USING TIMESTAMP 5 DELETE column [ 'hello' ] from table WHERE column2 = 'foo' IF EXISTS
 --------------------------------------------------------------------------------
+(source_file (delete_statement (begin_batch (using_timestamp_spec (timestamp))) (delete_column_list (delete_column_item (object_name))) (from_spec (table_name)) (where_spec (relation_elements (relation_element (object_name) (constant))))))
 
-(source_file
-  (delete_statement
-    (delete_column_list
-      (delete_column_item
-        (object_name))
-      (delete_column_item
-        (object_name)))
-    (from_spec)
-    (where_spec
-      (relation_elements
-        (relation_element
-          (constant
-            (uuid)))))))
 
 ================================================================================
-DELETE FROM cycling.cyclist_name WHERE id =e7ae5cf3-d358-4d99-b900-85902fda9bb0 if firstname='Alex' and lastname='Smith';
+BEGIN UNLOGGED BATCH DELETE column [ 6 ] from keyspace.table USING TIMESTAMP 5 WHERE column2='foo' IF column3 = 'stuff'
 ================================================================================
-DELETE FROM cycling.cyclist_name
-WHERE id =e7ae5cf3-d358-4d99-b900-85902fda9bb0
-if firstname='Alex' and lastname='Smith';
+BEGIN UNLOGGED BATCH DELETE column [ 6 ] from keyspace.table USING TIMESTAMP 5 WHERE column2='foo' IF column3 = 'stuff'
 --------------------------------------------------------------------------------
+(source_file (delete_statement (begin_batch) (delete_column_list (delete_column_item (object_name))) (from_spec (table_name)) (using_timestamp_spec (timestamp)) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
 
-(source_file
-  (delete_statement
-    (from_spec)
-    (where_spec
-      (relation_elements
-        (relation_element
-          (constant
-            (uuid)))))
-    (if_spec
-      (if_condition_list
-        (if_condition
-          (object_name)
-          (constant
-            (string_literal)))
-        (if_condition
-          (object_name)
-          (constant
-            (string_literal)))))))
+
 
 ================================================================================
-DELETE id FROM cyclist_id WHERE lastname = 'WELTEN' and firstname = 'Bram' IF EXISTS;
+BEGIN BATCH DELETE column [ 'hello' ] from keyspace.table WHERE column2='foo'
 ================================================================================
-DELETE id FROM cyclist_id
-WHERE lastname = 'WELTEN' and firstname = 'Bram'
-IF EXISTS;
+BEGIN BATCH DELETE column [ 'hello' ] from keyspace.table WHERE column2='foo'
 --------------------------------------------------------------------------------
+(source_file (delete_statement (begin_batch) (delete_column_list (delete_column_item (object_name))) (from_spec (table_name)) (where_spec (relation_elements (relation_element (object_name) (constant))))))
 
-(source_file
-  (delete_statement
-    (delete_column_list
-      (delete_column_item
-        (object_name)))
-    (from_spec)
-    (where_spec
-      (relation_elements
-        (relation_element
-          (constant
-            (string_literal)))
-        (relation_element
-          (constant
-            (string_literal)))))))
+================================================================================
+DELETE from table WHERE column2='foo'
+================================================================================
+DELETE from table WHERE column2='foo'
+--------------------------------------------------------------------------------
+(source_file (delete_statement (from_spec (table_name)) (where_spec (relation_elements (relation_element (object_name) (constant))))))
+
+================================================================================
+DELETE column, column3 from keyspace.table WHERE column2='foo'
+================================================================================
+DELETE column, column3 from keyspace.table WHERE column2='foo'
+--------------------------------------------------------------------------------
+(source_file (delete_statement (delete_column_list (delete_column_item (object_name)) (delete_column_item (object_name))) (from_spec (table_name)) (where_spec (relation_elements (relation_element (object_name) (constant))))))
+
+================================================================================
+DELETE column, column3 from keyspace.table WHERE column2='foo' IF column4 = 'bar'
+================================================================================
+DELETE column, column3 from keyspace.table WHERE column2='foo' IF column4 = 'bar'
+--------------------------------------------------------------------------------
+(source_file (delete_statement (delete_column_list (delete_column_item (object_name)) (delete_column_item (object_name))) (from_spec (table_name)) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))

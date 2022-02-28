@@ -155,8 +155,7 @@ const
         _float_literal : $ => token( float_str),
         _boolean_literal : $ => token(choice( kw("TRUE"), kw("FALSE"))),
         _code_block : $ => token( code ),
-        from_spec : $ => seq( kw("FROM"), $.table_name),
-        table_name : $ => dotted_name( $.object_name, $.object_name, "table" ),
+        from_spec : $ => seq( kw("FROM"), dotted_name( $.object_name, $.object_name, "table" )),
         where_spec : $ =>
             seq( kw("WHERE"), $.relation_elements ),
         relation_elements : $ => prec.left(PREC.and,sep1( $.relation_element, kw("AND"))),
@@ -320,7 +319,7 @@ const
                 optional( if_not_exists ),
                 optional( $.index_name ),
                 kw( "ON"),
-                $.table_name,
+                dotted_name( $.object_name, $.object_name, "table" )
                 "(",
                 $.index_column_spec,
                 ")",
