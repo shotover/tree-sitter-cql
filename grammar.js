@@ -696,8 +696,7 @@ const
         primary_key_column : $ => seq( kw("PRIMARY"), kw("KEY")),
         primary_key_element : $ =>
             seq(
-                kw("PRIMARY"),
-                kw("KEY"),
+                primary_key,
                 "(",
                 $.primary_key_definition,
                 ")",
