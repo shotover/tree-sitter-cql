@@ -2,7 +2,7 @@ use std::any::Any;
 use std::error::Error;
 use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch, LogType};
 
-const TEXT : &str = "ALTER TYPE keyspace.type RENAME column1 TO column2;";
+const TEXT : &str = "ALTER KEYSPACE keyspace WITH REPLICATION = { 'foo' : 5 } AND DURABLE_WRITES = true;";
 
 
 
