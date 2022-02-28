@@ -2,7 +2,7 @@ use std::any::Any;
 use std::error::Error;
 use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch, LogType};
 
-const TEXT : &str = "CREATE TABLE table (col1 text, col2 int, col3 FROZEN<col4>, PRIMARY KEY (col1, col2) ) WITH caching = { 'keys' : 'ALL', 'rows_per_partition' : '100' } AND comment = 'Based on table'";
+const TEXT : &str = "UPDATE keyspace.table USING TIMESTAMP 3 SET col1 = 'foo' WHERE col2=5";
 
 
 

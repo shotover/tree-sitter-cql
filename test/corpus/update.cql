@@ -1,154 +1,112 @@
 ================================================================================
-UPDATE cycling.cyclist_name SET comments ='Rides hard, gets along with others, a real winner' WHERE id = fb372533-eb95-4bb4-8685-6ef61e994caa IF EXISTS;
+BEGIN LOGGED BATCH USING TIMESTAMP 5 UPDATE keyspace.table SET col1 = 'foo' WHERE col2=5;
 ================================================================================
-UPDATE cycling.cyclist_name
-SET comments ='Rides hard, gets along with others, a real winner'
-WHERE id = fb372533-eb95-4bb4-8685-6ef61e994caa IF EXISTS;
+BEGIN LOGGED BATCH USING TIMESTAMP 5 UPDATE keyspace.table SET col1 = 'foo' WHERE col2=5;
 --------------------------------------------------------------------------------
-
-(source_file
-  (update
-    (assignment_element
-      (object_name)
-      (constant
-        (string_literal)))
-    (where_spec
-      (relation_elements
-        (relation_element
-          (constant
-            (uuid)))))))
+(source_file (update (begin_batch (using_timestamp_spec (timestamp))) (assignment_element (object_name) (constant)) (where_spec (relation_elements (relation_element (object_name) (constant))))))
 
 ================================================================================
-UPDATE cycling.cyclists SET firstname = 'Marianne', lastname = 'VOS' WHERE id = 88b8fd18-b1ed-4e96-bf79-4280797cba80;
+UPDATE keyspace.table USING TIMESTAMP 3 SET col1 = 'foo' WHERE col2=5;
 ================================================================================
-UPDATE cycling.cyclists
-SET firstname = 'Marianne',
-    lastname = 'VOS'
-WHERE id = 88b8fd18-b1ed-4e96-bf79-4280797cba80;
+UPDATE keyspace.table USING TIMESTAMP 3 SET col1 = 'foo' WHERE col2=5;
 --------------------------------------------------------------------------------
-
-(source_file
-  (update
-    (assignment_element
-      (object_name)
-      (constant
-        (string_literal)))
-    (assignment_element
-      (object_name)
-      (constant
-        (string_literal)))
-    (where_spec
-      (relation_elements
-        (relation_element
-          (constant
-            (uuid)))))))
+(source_file (update (using_ttl_timestamp (timestamp)) (assignment_element (object_name) (constant)) (where_spec (relation_elements (relation_element (object_name) (constant))))))
 
 ================================================================================
-UPDATE cycling.upcoming_calendar SET events = ['Tour de France'] + events WHERE year=2015 AND month=06;
+UPDATE keyspace.table SET col1 = 'foo' WHERE col2=5 IF EXISTS;
 ================================================================================
-    UPDATE cycling.upcoming_calendar
-    SET events = ['Tour de France'] + events WHERE year=2015 AND month=06;
+UPDATE keyspace.table SET col1 = 'foo' WHERE col2=5 IF EXISTS;
 --------------------------------------------------------------------------------
-
-(source_file
-  (update
-    (assignment_element
-      (object_name)
-      (assignment_list
-        (constant
-          (string_literal)))
-      (object_name))
-    (where_spec
-      (relation_elements
-        (relation_element
-          (constant
-            (decimal_literal)))
-        (relation_element
-          (constant
-            (decimal_literal)))))))
+(source_file (update (assignment_element (object_name) (constant)) (where_spec (relation_elements (relation_element (object_name) (constant))))))
 
 ================================================================================
-UPDATE users SET state = 'TX' WHERE user_uuid IN (88b8fd18-b1ed-4e96-bf79-4280797cba80, 06a8913c-c0d6-477c-937d-6c1b69a95d43, bc108776-7cb5-477f-917d-869c12dfffa8);
+UPDATE keyspace.table SET col1 = 'foo' WHERE col2=5 IF col3=7;
 ================================================================================
-    UPDATE users
-    SET state = 'TX'
-    WHERE user_uuid
-    IN (88b8fd18-b1ed-4e96-bf79-4280797cba80,
-        06a8913c-c0d6-477c-937d-6c1b69a95d43,
-        bc108776-7cb5-477f-917d-869c12dfffa8);
+UPDATE keyspace.table SET col1 = 'foo' WHERE col2=5 IF col3=7;
 --------------------------------------------------------------------------------
-
-(source_file
-  (update
-    (assignment_element
-      (object_name)
-      (constant
-        (string_literal)))
-    (where_spec
-      (relation_elements
-        (relation_element
-          (object_name)
-          (function_args
-            (constant
-              (uuid))
-            (constant
-              (uuid))
-            (constant
-              (uuid))))))))
+(source_file (update (assignment_element (object_name) (constant)) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
 
 ================================================================================
-UPDATE cyclist.cyclist_career_teams SET teams = teams + {'Team DSB - Ballast Nedam'} WHERE id = 88b8fd18-b1ed-4e96-bf79-4280797cba80;
+UPDATE keyspace.table SET col1 = { 5 : 'hello', 'world' : 5b6962dd-3f90-4c93-8f61-eabfa4a803e2 } WHERE col2=5 IF col3=7;
 ================================================================================
-    UPDATE cyclist.cyclist_career_teams SET teams = teams + {'Team DSB - Ballast Nedam'} WHERE id = 88b8fd18-b1ed-4e96-bf79-4280797cba80;
+UPDATE keyspace.table SET col1 = { 5 : 'hello', 'world' : 5b6962dd-3f90-4c93-8f61-eabfa4a803e2 } WHERE col2=5 IF col3=7;
 --------------------------------------------------------------------------------
-
-(source_file
-  (update
-    (assignment_element
-      (object_name)
-      (object_name)
-      (assignment_set
-        (constant
-          (string_literal))))
-    (where_spec
-      (relation_elements
-        (relation_element
-          (constant
-            (uuid)))))))
+(source_file (update (assignment_element (object_name) (assignment_map (constant) (constant) (constant) (constant))) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
 
 ================================================================================
-UPDATE cyclist.cyclist_career_teams SET teams = teams - {'WOMBATS'} WHERE id = 88b8fd18-b1ed-4e96-bf79-4280797cba80;
+UPDATE keyspace.table SET col1 = {  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803e2 } WHERE col2=5 IF col3=7;
 ================================================================================
-    UPDATE cyclist.cyclist_career_teams SET teams = teams - {'WOMBATS'} WHERE id = 88b8fd18-b1ed-4e96-bf79-4280797cba80;
+UPDATE keyspace.table SET col1 = {  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803e2 } WHERE col2=5 IF col3=7;
 --------------------------------------------------------------------------------
-
-(source_file
-  (update
-    (assignment_element
-      (object_name)
-      (object_name)
-      (assignment_set
-        (constant
-          (string_literal))))
-    (where_spec
-      (relation_elements
-        (relation_element
-          (constant
-            (uuid)))))))
+(source_file (update (assignment_element (object_name) (assignment_set (constant) (constant))) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
 
 ================================================================================
-UPDATE cyclist.cyclist_career_teams SET teams = {} WHERE id = 88b8fd18-b1ed-4e96-bf79-4280797cba80;
+UPDATE keyspace.table SET col1 = [  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803e2 ] WHERE col2=5 IF col3=7;
 ================================================================================
-    UPDATE cyclist.cyclist_career_teams SET teams = {} WHERE id = 88b8fd18-b1ed-4e96-bf79-4280797cba80;
+UPDATE keyspace.table SET col1 = [  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803e2 ] WHERE col2=5 IF col3=7;
 --------------------------------------------------------------------------------
+(source_file (update (assignment_element (object_name) (assignment_list (constant) (constant))) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
 
-(source_file
-  (update
-    (assignment_element
-      (object_name)
-      (assignment_set))
-    (where_spec
-      (relation_elements
-        (relation_element
-          (constant
-            (uuid)))))))
+================================================================================
+UPDATE keyspace.table SET col1 = col2+5 WHERE col2=5 IF col3=7;
+================================================================================
+UPDATE keyspace.table SET col1 = col2+5 WHERE col2=5 IF col3=7;
+--------------------------------------------------------------------------------
+(source_file (update (assignment_element (object_name) (object_name)) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
+
+================================================================================
+UPDATE keyspace.table SET col1 = col2+{ 5 : 'hello', 'world' : 5b6962dd-3f90-4c93-8f61-eabfa4a803e2 } WHERE col2=5 IF col3=7;
+================================================================================
+UPDATE keyspace.table SET col1 = col2+{ 5 : 'hello', 'world' : 5b6962dd-3f90-4c93-8f61-eabfa4a803e2 } WHERE col2=5 IF col3=7;
+--------------------------------------------------------------------------------
+(source_file (update (assignment_element (object_name) (object_name) (assignment_map (constant) (constant) (constant) (constant))) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
+
+================================================================================
+UPDATE keyspace.table SET col1 = { 5 : 'hello', 'world' : 5b6962dd-3f90-4c93-8f61-eabfa4a803e2 } - col2 WHERE col2=5 IF col3=7;
+================================================================================
+UPDATE keyspace.table SET col1 = { 5 : 'hello', 'world' : 5b6962dd-3f90-4c93-8f61-eabfa4a803e2 } - col2 WHERE col2=5 IF col3=7;
+--------------------------------------------------------------------------------
+(source_file (update (assignment_element (object_name) (assignment_map (constant) (constant) (constant) (constant)) (object_name)) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
+
+================================================================================
+UPDATE keyspace.table SET col1 = col2 + {  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803e2 }  WHERE col2=5 IF col3=7;
+================================================================================
+UPDATE keyspace.table SET col1 = col2 + {  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803e2 }  WHERE col2=5 IF col3=7;
+--------------------------------------------------------------------------------
+(source_file (update (assignment_element (object_name) (object_name) (assignment_set (constant) (constant))) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
+
+================================================================================
+UPDATE keyspace.table SET col1 = {  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803e2 } - col2 WHERE col2=5 IF col3=7;
+================================================================================
+UPDATE keyspace.table SET col1 = {  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803e2 } - col2 WHERE col2=5 IF col3=7;
+--------------------------------------------------------------------------------
+(source_file (update (assignment_element (object_name) (assignment_set (constant) (constant)) (object_name)) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
+
+================================================================================
+UPDATE keyspace.table SET col1 = col2+[  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803e2 ] WHERE col2=5 IF col3=7;
+================================================================================
+UPDATE keyspace.table SET col1 = col2+[  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803e2 ] WHERE col2=5 IF col3=7;
+--------------------------------------------------------------------------------
+(source_file (update (assignment_element (object_name) (object_name) (assignment_list (constant) (constant))) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
+
+================================================================================
+UPDATE keyspace.table SET col1 = [  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803e2 ]+col2 WHERE col2=5 IF col3=7;
+================================================================================
+UPDATE keyspace.table SET col1 = [  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803e2 ]+col2 WHERE col2=5 IF col3=7;
+--------------------------------------------------------------------------------
+(source_file (update (assignment_element (object_name) (assignment_list (constant) (constant)) (object_name)) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
+
+================================================================================
+UPDATE keyspace.table SET col1[5] = 'hello' WHERE col2=5 IF col3=7;
+================================================================================
+UPDATE keyspace.table SET col1[5] = 'hello' WHERE col2=5 IF col3=7;
+--------------------------------------------------------------------------------
+(source_file (update (assignment_element (object_name) (constant)) (where_spec (relation_elements (relation_element (object_name) (constant)))) (if_spec (if_condition_list (if_condition (object_name) (constant))))))
+
+================================================================================
+UPDATE keyspace.table USING TIMESTAMP 3 SET col1 = 'foo' WHERE col2=5;
+================================================================================
+UPDATE keyspace.table USING TIMESTAMP 3 SET col1 = 'foo' WHERE col2=5;
+--------------------------------------------------------------------------------
+(source_file (update (using_ttl_timestamp (timestamp)) (assignment_element (object_name) (constant)) (where_spec (relation_elements (relation_element (object_name) (constant))))))
+
