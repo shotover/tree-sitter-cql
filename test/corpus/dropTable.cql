@@ -1,35 +1,27 @@
 ================================================================================
-DROP TABLE cyclist_name;
+DROP TABLE table;
 ================================================================================
-DROP TABLE cyclist_name;
+DROP TABLE table;
 --------------------------------------------------------------------------------
-
-(source_file
-  (drop_table))
+(source_file (drop_table))
 
 ================================================================================
-DROP TABLE cycling.cyclist_name;
+DROP TABLE keyspace.table
 ================================================================================
-DROP TABLE cycling.cyclist_name;
+DROP TABLE keyspace.table
 --------------------------------------------------------------------------------
-
-(source_file
-  (drop_table))
+(source_file (drop_table))
 
 ================================================================================
-DROP TABLE if exists cyclist_name;
+DROP TABLE IF EXISTS table;
 ================================================================================
-DROP TABLE if exists cyclist_name;
+DROP TABLE IF EXISTS table;
 --------------------------------------------------------------------------------
-
-(source_file
-  (drop_table))
+(source_file (drop_table))
 
 ================================================================================
-DROP TABLE if exists cycling.cyclist_name;
+DROP TABLE IF EXISTS keyspace.table
 ================================================================================
-DROP TABLE if exists cycling.cyclist_name;
+DROP TABLE IF EXISTS keyspace.table
 --------------------------------------------------------------------------------
-
-(source_file
-  (drop_table))
+(source_file (drop_table))

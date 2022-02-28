@@ -27,9 +27,9 @@ CREATE ROLE role WITH SUPERUSER = true;
 (source_file (create_role (role_with (role_with_options))))
 
 ================================================================================
-CREATE ROLE role WITH OPTIONS = ( 'option1' : 'value', 'option2' : 4.5 );
+CREATE ROLE role WITH OPTIONS = { 'option1' : 'value', 'option2' : 4.5 };
 ================================================================================
-CREATE ROLE role WITH OPTIONS = ( 'option1' : 'value', 'option2' : 4.5 );
+CREATE ROLE role WITH OPTIONS = { 'option1' : 'value', 'option2' : 4.5 };
 --------------------------------------------------------------------------------
 (source_file (create_role (role_with (role_with_options (option_hash (option_hash_item) (option_hash_item))))))
 

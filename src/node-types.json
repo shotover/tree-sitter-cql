@@ -495,18 +495,13 @@
   {
     "type": "column_not_null",
     "named": true,
-    "fields": {}
-  },
-  {
-    "type": "column_not_null_list",
-    "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "column_not_null",
+          "type": "object_name",
           "named": true
         }
       ]
@@ -1341,7 +1336,7 @@
           "named": true
         },
         {
-          "type": "table_options",
+          "type": "table_option_item",
           "named": true
         }
       ]
@@ -1356,7 +1351,7 @@
       "required": true,
       "types": [
         {
-          "type": "column_not_null_list",
+          "type": "column_not_null",
           "named": true
         },
         {
@@ -1443,6 +1438,11 @@
   {
     "type": "partition_key_list",
     "named": true,
+    "fields": {}
+  },
+  {
+    "type": "primary_key",
+    "named": false,
     "fields": {}
   },
   {

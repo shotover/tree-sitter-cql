@@ -1,26 +1,27 @@
 ================================================================================
-DROP FUNCTION fLog;
+DROP FUNCTION func;
 ================================================================================
-DROP FUNCTION fLog;
+DROP FUNCTION func;
 --------------------------------------------------------------------------------
-
-(source_file
-  (drop_function))
+(source_file (drop_function))
 
 ================================================================================
-DROP FUNCTION cycling.fLog;
+DROP FUNCTION keyspace.func;
 ================================================================================
-DROP FUNCTION cycling.fLog;
+DROP FUNCTION keyspace.func;
 --------------------------------------------------------------------------------
-
-(source_file
-  (drop_function))
+(source_file  (drop_function))
 
 ================================================================================
-DROP FUNCTION IF EXISTS cycling.fLog;
+DROP FUNCTION IF EXISTS func;
 ================================================================================
-DROP FUNCTION IF EXISTS cycling.fLog;
+DROP FUNCTION IF EXISTS func;
 --------------------------------------------------------------------------------
+(source_file (drop_function))
 
-(source_file
-  (drop_function))
+================================================================================
+DROP FUNCTION IF EXISTS keyspace.func;
+================================================================================
+DROP FUNCTION IF EXISTS keyspace.func;
+--------------------------------------------------------------------------------
+(source_file (drop_function))

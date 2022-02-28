@@ -17,6 +17,7 @@ const
 
     if_not_exists = seq(kw( "IF"),kw("NOT"),kw("EXISTS")),
     if_exists = seq(kw( "IF"),kw("EXISTS")),
+    primary_key = seq(kw( "PRIMARY"),kw( "KEY")),
     or_replace = seq(kw( "OR"),kw("REPLACE")),
 
     string_str =  seq(squote, field("content", /[^']*/), squote),
@@ -533,38 +534,37 @@ const
         init_cond_hash_item : $ => seq( alias( $.object_name,"hash_key"), ":", $.init_cond_definition ),
         create_materialized_view : $ =>
             seq(
-                kw("CREATE"),
-                kw("MATERIALIZED"),
-                kw("VIEW"),
+                kw("CREATE"), kw("MATERIALIZED"), kw("VIEW"),
                 optional( if_not_exists),
                 dotted_name( $.object_name, $.object_name, "materialized_view"),
-                kw( "AS"),
-                kw( "SELECT"),
+                 kw( "AS"), kw( "SELECT"),
                 $.column_list,
                 kw( "FROM"),
                 dotted_name( $.object_name, $.object_name, "table"),
                 $.materialized_view_where,
-                kw( "PRIMARY"),
-                kw( "KEY"),
-                "(",
-                $.column_list,
-                ")",
-                optional( seq( kw("WITH"), $.materialized_view_options)),
+                seq( primary_key,
+                    "(",
+                    alias( $.column_list, "primary_key"),
+                    ")"),
+                optional( $.materialized_view_options ),
             ),
+
         materialized_view_where : $ =>
             seq(
                 kw("WHERE"),
-                $.column_not_null_list,
-                optional( seq( kw("AND"), $.relation_element)),
+                $.column_not_null,
+                optional( repeat(seq(kw("AND"), $.column_not_null))),
+                optional( repeat(seq( kw("AND"), $.relation_element))),
             ),
-        column_not_null_list : $ => prec.left(PREC.and,sep1( $.column_not_null, kw("AND"))),
-        column_not_null : $ => seq( alias($.object_name, "column"), kw("IS"), kw("NOT"), kw("NULL")),
+        column_not_null_list : $ => prec.left(sep1( $.column_not_null, kw("AND"))),
+        column_not_null : $ => seq( $.object_name, kw("IS"), kw("NOT"), kw("NULL")),
         materialized_view_options : $ =>
+            seq( kw("WITH"),
             choice(
-                $.table_options,
-                seq( $.table_options, kw("AND"), $.clustering_order ),
-                $.clustering_order
-            ),
+                sep1( $.table_option_item, kw("AND")),
+                seq( sep1( $.table_option_item, kw("AND")), kw("AND"), $.clustering_order ),
+                $.clustering_order,
+            )),
         create_function : $ =>
             seq(
                 kw("CREATE"),
@@ -674,7 +674,7 @@ const
                 seq( kw("SUPERUSER"), "=", $._boolean_literal),
                 seq( kw("OPTIONS"), "=", $.option_hash),
             ),
-        option_hash : $ => seq( "(", commaSep1( $.option_hash_item), ")"),
+        option_hash : $ => seq( "{", commaSep1( $.option_hash_item), "}"),
         option_hash_item : $ => seq( $._string_literal, ":", choice( $._string_literal, $._float_literal), ),
         create_table : $ =>
             seq(
