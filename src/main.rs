@@ -1,17 +1,31 @@
-use tree_sitter::{Node, Parser, TreeCursor};
 
-const TEXT : &str = "SELECT * FROM cycling.calendar WHERE race_id IN (100, 101, 102) AND (race_start_date, race_end_date) IN (('2015-01-01','2015-02-02'), ('2016-01-01','2016-02-02'));";
+use std::any::Any;
+use std::error::Error;
+use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch, LogType};
+
+const TEXT : &str = "CREATE FUNCTION IF NOT EXISTS func ( param1 int , param2 text) CALLED ON NULL INPUT RETURNS INT LANGUAGE javascript AS $$ return 5; $$;";
+
+
+
+fn log( x : LogType, message : &str) {
+    println!("{}", message );
+}
+
+
 fn main() {
     let language = tree_sitter_cql::language();
     let mut parser = Parser::new();
     if parser.set_language(language).is_err() {
         panic!("language version mismatch");
     }
+    parser.set_logger( Some( Box::new( log)) );
     let source_code = TEXT.as_bytes();
     let tree = parser.parse(source_code, None).unwrap();
     println!("{}", tree.root_node().to_sexp());
-    /*
+
     walk( &"".to_string(),&mut tree.walk() );
+    assert!( ! tree.root_node().has_error() )
+    /*
     let query = match Query::new( language, "(where_spec)") {
         Ok(t) => {
             println!( "Query: {:?}", t );
@@ -46,7 +60,6 @@ fn main() {
             }
         }
     }
-
      */
 }
 
