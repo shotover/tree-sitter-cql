@@ -1,10 +1,9 @@
 
-use std::any::Any;
-use std::error::Error;
 use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch, LogType};
 
-const TEXT : &str = "CREATE FUNCTION IF NOT EXISTS func ( param1 int , param2 text) CALLED ON NULL INPUT RETURNS INT LANGUAGE javascript AS $$ return 5; $$;";
+const TEXT : &str = "BEGIN LOGGED BATCH USING TIMESTAMP 5 INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5);";
 
+const QUERY : &str = "table_name";
 
 
 fn log( _x : LogType, message : &str) {
@@ -18,27 +17,38 @@ fn main() {
     if parser.set_language(language).is_err() {
         panic!("language version mismatch");
     }
-    parser.set_logger( Some( Box::new( log)) );
+    //parser.set_logger( Some( Box::new( log)) );
     let source_code = TEXT.as_bytes();
     let tree = parser.parse(source_code, None).unwrap();
     println!("{}", tree.root_node().to_sexp());
 
     _walk( &"".to_string(),&mut tree.walk() );
-    assert!( ! tree.root_node().has_error() )
-    /*
-    let query = match Query::new( language, "(where_spec)") {
+
+    _map( tree.root_node() );
+
+    assert!( ! tree.root_node().has_error() );
+
+
+        let result = _search(tree.root_node(), QUERY);
+        for n in result.iter() {
+            _print_node("found: ", &n);
+        }
+
+    /*println!( "Executing query {}", &QUERY );
+    let query = match Query::new( language, &QUERY ) {
         Ok(t) => {
             println!( "Query: {:?}", t );
             t
         },
         Err(e) => {
             println!( "Error: {:?}", e );
-            panic!( "parse failed");
+            panic!( "query parse failed");
         },
     };
     let mut query_cursor = QueryCursor::new();
     for m  in query_cursor.matches( &query ,tree.root_node(),source_code ) {
         println!("  pattern: {}", m.pattern_index);
+        println!( " {:?}", m);
         for capture in m.captures {
             let start = capture.node.start_position();
             let end = capture.node.end_position();
@@ -61,6 +71,50 @@ fn main() {
         }
     }
      */
+}
+
+fn _map<'tree>(node : Node<'tree>)  {
+    print!( "{} ({})-> ", node.kind(), node.id() );
+    if node.child_count() > 0 {
+        for child_no in 0..node.child_count() {
+            print!( "{}, ", node.child( child_no ).unwrap().id() );
+        }
+    }
+    println!();
+
+    if node.child(0).is_some() {
+        _map(node.child(0).unwrap() );
+    }
+
+    if node.next_sibling().is_some() {
+        _map(node.next_sibling().unwrap() );
+    }
+}
+
+fn _search<'tree>(node : Node<'tree>, path : &'static str) -> Box<Vec<Node<'tree>>> {
+    let mut nodes = Box::new(vec!(node));
+    for segment in path.split( '/').map(|tok| tok.trim() ) {
+        let mut newNodes  = Box::new(vec!());
+        for node in nodes.iter() {
+            _find(&mut newNodes, *node, segment);
+        }
+        nodes = newNodes;
+    }
+    nodes
+}
+
+fn _find<'tree>(nodes : &mut Vec<Node<'tree>>, node : Node<'tree>, name : &str) {
+    let nm = node.kind();
+    let id = node.id();
+    if node.kind().eq(name) {
+        nodes.push( node );
+    } else {
+        if node.child_count() > 0 {
+            for childNo in 0..node.child_count() {
+                _find( nodes, node.child( childNo ).unwrap(), name );
+            }
+        }
+    }
 }
 
 fn _walk(prefix: &str, cursor: &mut TreeCursor) {

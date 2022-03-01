@@ -263,7 +263,7 @@ const
                 optional( $.begin_batch),
                 kw("INSERT"),
                 kw("INTO"),
-                dotted_name( $.object_name, $.object_name, "table"),
+                $.table_name,
                 optional( $.insert_column_spec ),
                 $.insert_values_spec,
                 optional( if_not_exists ),

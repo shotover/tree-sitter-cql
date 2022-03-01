@@ -740,7 +740,7 @@
   },
   {
     "type": "data_type",
-    "named": false,
+    "named": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -1251,6 +1251,10 @@
         },
         {
           "type": "insert_values_spec",
+          "named": true
+        },
+        {
+          "type": "table_name",
           "named": true
         },
         {
