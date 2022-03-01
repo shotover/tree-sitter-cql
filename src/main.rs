@@ -7,7 +7,7 @@ const TEXT : &str = "CREATE FUNCTION IF NOT EXISTS func ( param1 int , param2 te
 
 
 
-fn log( x : LogType, message : &str) {
+fn log( _x : LogType, message : &str) {
     println!("{}", message );
 }
 
@@ -23,7 +23,7 @@ fn main() {
     let tree = parser.parse(source_code, None).unwrap();
     println!("{}", tree.root_node().to_sexp());
 
-    walk( &"".to_string(),&mut tree.walk() );
+    _walk( &"".to_string(),&mut tree.walk() );
     assert!( ! tree.root_node().has_error() )
     /*
     let query = match Query::new( language, "(where_spec)") {
