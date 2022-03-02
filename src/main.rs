@@ -1,9 +1,11 @@
+use regex::Regex;
 use tree_sitter::{
     Language, LogType, Node, Parser, Query, QueryCapture, QueryCursor, QueryMatch, Tree, TreeCursor,
 };
 
-const TEXT: &str = "DELETE column, column3 from keyspace.table WHERE column2='foo';";
-const QUERY: &str = "delete_column_list / column";
+// const TEXT: &str = "SELECT column FROM table WHERE col = 5b6962dd-3f90-4c93-8f61-eabfa4a803e2;";
+const TEXT: &str = "SELECT column FROM table WHERE col <= $$ a code's block $$ AND func(*) = 'foo';";
+const QUERY: &str = "where_spec / relation_element[ =|>= ] ";
 
 fn log(_x: LogType, message: &str) {
     println!("{}", message);
@@ -89,30 +91,73 @@ fn _map<'tree>(node: Node<'tree>) {
     }
 }
 
+pub struct Pattern {
+    pub name : Regex,
+    pub child : Option<Regex>,
+}
+
+impl Pattern {
+    pub fn from_str( pattern : &str ) -> Pattern {
+        let parts : Vec<&str> = pattern.split("[").collect();
+        let namePat = format!("^{}$", parts[0].trim() );
+        Pattern {
+            name : Regex::new(  namePat.as_str() ).unwrap(),
+            child : if parts.len()==2 {
+                let name : Vec<&str> = parts[1].split("]").collect();
+                let namePat = format!("^{}$", name[0].trim() );
+                Some(Regex::new(namePat.as_str()).unwrap())
+            } else {
+                None
+            },
+        }
+    }
+}
+
 fn _search<'tree>(node: Node<'tree>, path: &'static str) -> Box<Vec<Node<'tree>>> {
     let mut nodes = Box::new(vec![node]);
     for segment in path.split('/').map(|tok| tok.trim()) {
         let mut newNodes = Box::new(vec![]);
+        let pattern = Pattern::from_str( segment );
         for node in nodes.iter() {
-            _find(&mut newNodes, *node, segment);
+            _find(&mut newNodes, *node, &pattern );
         }
         nodes = newNodes;
     }
     nodes
 }
 
-fn _find<'tree>(nodes: &mut Vec<Node<'tree>>, node: Node<'tree>, name: &str) {
+fn _find<'tree>(nodes: &mut Vec<Node<'tree>>, node: Node<'tree>, pattern: &Pattern) {
+
     let nm = node.kind();
     let id = node.id();
-    if node.kind().eq(name) {
-        nodes.push(node);
+    if pattern.name.is_match(node.kind()) {
+        match &pattern.child {
+            None => nodes.push(node),
+            Some( child ) => if _has( &node, child ) {
+                nodes.push(node);
+            }
+        }
     } else {
         if node.child_count() > 0 {
             for childNo in 0..node.child_count() {
-                _find(nodes, node.child(childNo).unwrap(), name);
+                _find(nodes, node.child(childNo).unwrap(), pattern);
             }
         }
     }
+}
+
+fn _has(node : &Node, name : &Regex) -> bool {
+    if node.child_count() > 0 {
+        for child_no in 0..node.child_count() {
+            let child: Node = node.child(child_no).unwrap();
+            let k = child.kind();
+            let r = name.is_match( k );
+            if name.is_match(child.kind()) || _has(&child, name) {
+                return true;
+            }
+        }
+    }
+    false
 }
 
 fn _walk(prefix: &str, node: &Node) {

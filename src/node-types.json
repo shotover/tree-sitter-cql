@@ -740,7 +740,7 @@
   },
   {
     "type": "data_type",
-    "named": true,
+    "named": false,
     "fields": {},
     "children": {
       "multiple": true,
@@ -1484,15 +1484,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "constant",
-          "named": true
-        },
-        {
-          "type": "object_name",
           "named": true
         }
       ]
@@ -1503,15 +1499,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "constant",
-          "named": true
-        },
-        {
-          "type": "object_name",
           "named": true
         }
       ]
@@ -1539,10 +1531,6 @@
         },
         {
           "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "object_name",
           "named": true
         },
         {

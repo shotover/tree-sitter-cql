@@ -163,7 +163,7 @@ const
         relation_elements : $ => prec.left(PREC.and,sep1( $.relation_element, kw("AND"))),
         relation_element : $=>
             choice (
-                seq( $.object_name,
+                seq( alias( $.object_name, "column" ),
                     choice("<", "<=", "<>", "=", ">", ">="),
                     $.constant,),
                 seq( $.function_call,
@@ -175,7 +175,7 @@ const
                     $.function_call,
                 ),
                 seq(
-                    $.object_name,
+                    alias( $.object_name, "column" ),
                     kw("IN"),
                     "(",
                      $.function_args,
@@ -183,7 +183,7 @@ const
                 ),
                 seq(
                     "(",
-                    commaSep1( $.object_name ),
+                    commaSep1( alias( $.object_name, "column" ), ),
                     ")",
                     kw("IN"),
                     "(",
@@ -192,7 +192,7 @@ const
                 ),
                 seq(
                     "(",
-                    commaSep1( $.object_name ),
+                    commaSep1( alias( $.object_name, "column" ), ),
                     ")",
                     choice( "<", "<=", "<>", "=", ">", ">="),
                     commaSep1($.assignment_tuple),
@@ -214,8 +214,8 @@ const
                 ),
                 ")",
             ),
-        relation_contains_key : $ => seq( $.object_name, kw("CONTAINS"),kw("KEY"), $.constant),
-        relation_contains : $ => seq( $.object_name, kw("CONTAINS"), $.constant),
+        relation_contains_key : $ => seq( alias( $.object_name, "column" ), kw("CONTAINS"),kw("KEY"), $.constant),
+        relation_contains : $ => seq( alias( $.object_name, "column" ), kw("CONTAINS"), $.constant),
         order_spec : $ =>
             seq (
                 kw("ORDER"),
