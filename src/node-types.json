@@ -790,17 +790,7 @@
   {
     "type": "delete_column_item",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "object_name",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "delete_column_list",
@@ -1040,15 +1030,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "constant",
-          "named": true
-        },
-        {
-          "type": "object_name",
           "named": true
         }
       ]

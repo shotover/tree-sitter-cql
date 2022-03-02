@@ -1,15 +1,13 @@
+use tree_sitter::{
+    Language, LogType, Node, Parser, Query, QueryCapture, QueryCursor, QueryMatch, Tree, TreeCursor,
+};
 
-use tree_sitter::{Parser, Language, Tree, TreeCursor, Node, Query, QueryCursor, QueryCapture, QueryMatch, LogType};
+const TEXT: &str = "DELETE column, column3 from keyspace.table WHERE column2='foo';";
+const QUERY: &str = "delete_column_list / column";
 
-const TEXT : &str = "BEGIN LOGGED BATCH USING TIMESTAMP 5 INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5);";
-
-const QUERY : &str = "table_name";
-
-
-fn log( _x : LogType, message : &str) {
-    println!("{}", message );
+fn log(_x: LogType, message: &str) {
+    println!("{}", message);
 }
-
 
 fn main() {
     let language = tree_sitter_cql::language();
@@ -22,17 +20,17 @@ fn main() {
     let tree = parser.parse(source_code, None).unwrap();
     println!("{}", tree.root_node().to_sexp());
 
-    _walk( &"".to_string(),&mut tree.walk() );
+    _walk(&"".to_string(), &tree.root_node());
 
-    _map( tree.root_node() );
+    //_map( tree.root_node() );
 
-    assert!( ! tree.root_node().has_error() );
+    assert!(!tree.root_node().has_error());
 
-
-        let result = _search(tree.root_node(), QUERY);
-        for n in result.iter() {
-            _print_node("found: ", &n);
-        }
+    let result = _search(tree.root_node(), QUERY);
+    println!("=== QUERY RESULTS ===");
+    for n in result.iter() {
+        _print_node("found: ", &n);
+    }
 
     /*println!( "Executing query {}", &QUERY );
     let query = match Query::new( language, &QUERY ) {
@@ -73,28 +71,28 @@ fn main() {
      */
 }
 
-fn _map<'tree>(node : Node<'tree>)  {
-    print!( "{} ({})-> ", node.kind(), node.id() );
+fn _map<'tree>(node: Node<'tree>) {
+    print!("{} ({})-> ", node.kind(), node.id());
     if node.child_count() > 0 {
         for child_no in 0..node.child_count() {
-            print!( "{}, ", node.child( child_no ).unwrap().id() );
+            print!("{}, ", node.child(child_no).unwrap().id());
         }
     }
     println!();
 
     if node.child(0).is_some() {
-        _map(node.child(0).unwrap() );
+        _map(node.child(0).unwrap());
     }
 
     if node.next_sibling().is_some() {
-        _map(node.next_sibling().unwrap() );
+        _map(node.next_sibling().unwrap());
     }
 }
 
-fn _search<'tree>(node : Node<'tree>, path : &'static str) -> Box<Vec<Node<'tree>>> {
-    let mut nodes = Box::new(vec!(node));
-    for segment in path.split( '/').map(|tok| tok.trim() ) {
-        let mut newNodes  = Box::new(vec!());
+fn _search<'tree>(node: Node<'tree>, path: &'static str) -> Box<Vec<Node<'tree>>> {
+    let mut nodes = Box::new(vec![node]);
+    for segment in path.split('/').map(|tok| tok.trim()) {
+        let mut newNodes = Box::new(vec![]);
         for node in nodes.iter() {
             _find(&mut newNodes, *node, segment);
         }
@@ -103,31 +101,29 @@ fn _search<'tree>(node : Node<'tree>, path : &'static str) -> Box<Vec<Node<'tree
     nodes
 }
 
-fn _find<'tree>(nodes : &mut Vec<Node<'tree>>, node : Node<'tree>, name : &str) {
+fn _find<'tree>(nodes: &mut Vec<Node<'tree>>, node: Node<'tree>, name: &str) {
     let nm = node.kind();
     let id = node.id();
     if node.kind().eq(name) {
-        nodes.push( node );
+        nodes.push(node);
     } else {
         if node.child_count() > 0 {
             for childNo in 0..node.child_count() {
-                _find( nodes, node.child( childNo ).unwrap(), name );
+                _find(nodes, node.child(childNo).unwrap(), name);
             }
         }
     }
 }
 
-fn _walk(prefix: &str, cursor: &mut TreeCursor) {
+fn _walk(prefix: &str, node: &Node) {
     let mut new_prefix = "  ".to_string();
     new_prefix += prefix;
-    _print_node(prefix, &cursor.node());
-    if cursor.goto_first_child() {
-        _walk(&new_prefix, cursor);
+    _print_node(prefix, node);
+    if node.child_count() > 0 {
+        for child_no in 0..node.child_count() {
+            _walk(&new_prefix, &node.child(child_no).unwrap());
+        }
     }
-    if cursor.goto_next_sibling() {
-        _walk(prefix, cursor);
-    }
-    cursor.goto_parent();
 }
 
 fn _print_node(prefix: &str, node: &Node) {

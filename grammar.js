@@ -243,7 +243,7 @@ const
         delete_column_list : $ => seq( $.delete_column_item, repeat( seq( ",", $.delete_column_item))),
         delete_column_item : $ =>
             seq(
-                $.object_name,
+                alias( $.object_name, "column"),
                 optional(
                     seq(
                         "[",
@@ -257,7 +257,7 @@ const
         if_exist : $ => token( if_exists),
         if_spec : $ => seq( kw( "IF"), $.if_condition_list),
         if_condition_list : $ => seq( $.if_condition, repeat( seq( kw("AND"), $.if_condition))),
-        if_condition : $ => seq( $.object_name, "=", $.constant),
+        if_condition : $ => seq( alias( $.object_name, "column"), "=", $.constant),
         insert_statement : $ =>
             seq(
                 optional( $.begin_batch),

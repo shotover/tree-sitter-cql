@@ -1541,8 +1541,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "object_name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "object_name"
+          },
+          "named": false,
+          "value": "column"
         },
         {
           "type": "CHOICE",
@@ -1694,8 +1699,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "object_name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "object_name"
+          },
+          "named": false,
+          "value": "column"
         },
         {
           "type": "STRING",
@@ -1809,61 +1819,6 @@
             },
             {
               "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
-    "insert_into_spec": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[iI][nN][tT][oO]"
-          },
-          "named": false,
-          "value": "INTO"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "keyspace"
-                },
-                {
-                  "type": "STRING",
-                  "value": "."
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "table"
-                }
-              ]
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "object_name"
-              },
-              "named": false,
-              "value": "table"
             }
           ]
         }
