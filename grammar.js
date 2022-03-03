@@ -120,8 +120,8 @@ const
             choice(
                 seq($.object_name, dot, star ),
                 seq(
-                    choice(  $.object_name, $.function_call),
-                    optional( seq( kw("AS"), $.object_name )),
+                    choice(  alias( $.object_name, "column"), $.function_call),
+                    optional( seq( kw("AS"), alias( $.object_name, "alias" ))),
                 ),
             ),
         function_call: $ =>

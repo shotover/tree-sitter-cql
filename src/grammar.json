@@ -380,8 +380,13 @@
               "type": "CHOICE",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "object_name"
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "object_name"
+                  },
+                  "named": false,
+                  "value": "column"
                 },
                 {
                   "type": "SYMBOL",
@@ -405,8 +410,13 @@
                       "value": "AS"
                     },
                     {
-                      "type": "SYMBOL",
-                      "name": "object_name"
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "object_name"
+                      },
+                      "named": false,
+                      "value": "alias"
                     }
                   ]
                 },

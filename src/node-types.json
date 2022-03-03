@@ -1648,8 +1648,8 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
           "type": "function_call",
@@ -2602,6 +2602,10 @@
   },
   {
     "type": "aggregate",
+    "named": false
+  },
+  {
+    "type": "alias",
     "named": false
   },
   {

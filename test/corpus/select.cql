@@ -19,8 +19,7 @@ SELECT column FROM table;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))))
 
@@ -47,9 +46,7 @@ SELECT column AS column2 FROM table;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))))
 
@@ -76,12 +73,9 @@ SELECT column AS column2, func(*) AS func2 FROM table;
 (source_file
   (select_statement
     (select_elements
+      (select_element)
       (select_element
-        (object_name)
-        (object_name))
-      (select_element
-        (function_call)
-        (object_name)))
+        (function_call)))
     (from_spec
       (table_name))))
 
@@ -94,8 +88,7 @@ SELECT column FROM table WHERE col < 5;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -112,8 +105,7 @@ SELECT column FROM table WHERE col <= 'hello';
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -130,8 +122,7 @@ SELECT column FROM table WHERE col = 5b6962dd-3f90-4c93-8f61-eabfa4a803e2;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -148,8 +139,7 @@ SELECT column FROM table WHERE col <> -5;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -166,8 +156,7 @@ SELECT column FROM table WHERE col >= 3.5;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -184,8 +173,7 @@ SELECT column FROM table WHERE col = X'E0';
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -202,8 +190,7 @@ SELECT column FROM table WHERE col = 0XFF;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -220,8 +207,7 @@ SELECT column FROM table WHERE col = true;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -238,8 +224,7 @@ SELECT column FROM table WHERE col = false;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -256,8 +241,7 @@ SELECT column FROM table WHERE col = null;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -274,8 +258,7 @@ SELECT column FROM table WHERE col = $$ a code's block $$;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -292,8 +275,7 @@ SELECT column FROM table WHERE func(*) < 5;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -311,8 +293,7 @@ SELECT column FROM table WHERE func(*) <= 'hello';
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -330,8 +311,7 @@ SELECT column FROM table WHERE func(*) = 5b6962dd-3f90-4c93-8f61-eabfa4a803e2;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -349,8 +329,7 @@ SELECT column FROM table WHERE func(*) <> -5;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -368,8 +347,7 @@ SELECT column FROM table WHERE func(*) >= 3.5;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -387,8 +365,7 @@ SELECT column FROM table WHERE func(*) = X'E0';
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -406,8 +383,7 @@ SELECT column FROM table WHERE func(*) = 0XFF;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -425,8 +401,7 @@ SELECT column FROM table WHERE func(*) = true;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -444,8 +419,7 @@ SELECT column FROM table WHERE func(*) = false;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -463,8 +437,7 @@ SELECT column FROM table WHERE func(*) <> func2(*);
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -482,8 +455,7 @@ SELECT column FROM table WHERE col IN ( 'literal', 5, func(*), true );
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -504,8 +476,7 @@ SELECT column FROM table WHERE (col1, col2) IN (( 5, 'stuff'), (6, 'other'));
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -527,8 +498,7 @@ SELECT column FROM table WHERE (col1, col2) >= ( 5, 'stuff'), (6, 'other');
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -550,8 +520,7 @@ SELECT column FROM table WHERE col1 CONTAINS 'foo';
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -569,8 +538,7 @@ SELECT column FROM table WHERE col1 CONTAINS KEY 'foo';
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (where_spec
@@ -588,8 +556,7 @@ SELECT column FROM table ORDER BY col1;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (order_spec
@@ -604,8 +571,7 @@ SELECT column FROM table ORDER BY col1 ASC;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (order_spec
@@ -621,8 +587,7 @@ SELECT column FROM table ORDER BY col1 DESC;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (order_spec
@@ -638,8 +603,7 @@ SELECT column FROM table LIMIT 5;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))
     (limit_spec)))
@@ -653,7 +617,6 @@ SELECT column FROM table ALLOW FILTERING;
 (source_file
   (select_statement
     (select_elements
-      (select_element
-        (object_name)))
+      (select_element))
     (from_spec
       (table_name))))
