@@ -371,12 +371,9 @@ const
             ),
         revoke : $ =>
             seq(
-                kw("REVOKE"),
-                $.priviledge,
-                kw("ON"),
-                $.resource,
-                kw("FROM"),
-                alias( $.object_name, "role")
+                seq( kw("REVOKE"), $.priviledge,),
+                seq( kw("ON"), $.resource,),
+                seq( kw("FROM"), alias( $.object_name, "role"))
             ),
         priviledge : $ =>
             choice(

@@ -1,51 +1,153 @@
 ================================================================================
-REVOKE SELECT ON cycling.name FROM manager;
+REVOKE ALL ON 'keyspace'.table FROM role;
 ================================================================================
-REVOKE SELECT
-       ON cycling.name
-       FROM manager;
+REVOKE ALL ON 'keyspace'.table FROM role;
 --------------------------------------------------------------------------------
-
-(source_file
-  (revoke
-    (priviledge)
-    (resource)))
+(source_file (revoke (priviledge) (resource)))
 
 ================================================================================
-REVOKE ALL ON cycling.name FROM manager;
+REVOKE ALL ON 'keyspace'.table FROM role;
 ================================================================================
-REVOKE ALL PERMISSIONS
-       ON cycling.name
-       FROM manager;
+REVOKE ALL ON 'keyspace'.table FROM role;
 --------------------------------------------------------------------------------
-
-(source_file
-    (revoke
-    (priviledge)
-    (resource)))
+(source_file (revoke (priviledge) (resource)))
 
 ================================================================================
-REVOKE ALL PERMISSIONS ON cycling.name FROM manager;
+REVOKE ALL PERMISSIONS ON 'keyspace'.table FROM role;
 ================================================================================
-REVOKE ALL PERMISSIONS
-       ON cycling.name
-       FROM manager;
+REVOKE ALL PERMISSIONS ON 'keyspace'.table FROM role;
 --------------------------------------------------------------------------------
-
-(source_file
-    (revoke
-    (priviledge)
-    (resource)))
+(source_file (revoke (priviledge) (resource)))
 
 ================================================================================
-REVOKE ALTER ON ALL ROLES FROM coach;
+REVOKE ALTER ON 'keyspace'.table FROM role;
 ================================================================================
-REVOKE ALTER
-ON ALL ROLES
-FROM coach;
+REVOKE ALTER ON 'keyspace'.table FROM role;
 --------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
 
-(source_file
-  (revoke
-    (priviledge)
-    (resource)))
+================================================================================
+REVOKE AUTHORIZE ON 'keyspace'.table FROM role;
+================================================================================
+REVOKE AUTHORIZE ON 'keyspace'.table FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE DESCRIBE ON 'keyspace'.table FROM role;
+================================================================================
+REVOKE DESCRIBE ON 'keyspace'.table FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE EXECUTE ON 'keyspace'.table FROM role;
+================================================================================
+REVOKE EXECUTE ON 'keyspace'.table FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE CREATE ON 'keyspace'.table FROM role;
+================================================================================
+REVOKE CREATE ON 'keyspace'.table FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE DROP ON 'keyspace'.table FROM role;
+================================================================================
+REVOKE DROP ON 'keyspace'.table FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE MODIFY ON 'keyspace'.table FROM role;
+================================================================================
+REVOKE MODIFY ON 'keyspace'.table FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE SELECT ON 'keyspace'.table FROM role;
+================================================================================
+REVOKE SELECT ON 'keyspace'.table FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE ALL ON ALL FUNCTIONS FROM role;
+================================================================================
+REVOKE ALL ON ALL FUNCTIONS FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE ALL ON ALL FUNCTIONS IN KEYSPACE keyspace FROM role;
+================================================================================
+REVOKE ALL ON ALL FUNCTIONS IN KEYSPACE keyspace FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE ALL ON ALL KEYSPACES FROM role;
+================================================================================
+REVOKE ALL ON ALL KEYSPACES FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE ALL ON ALL ROLES FROM role;
+================================================================================
+REVOKE ALL ON ALL ROLES FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE ALL ON FUNCTION 'keyspace'.function FROM role;
+================================================================================
+REVOKE ALL ON FUNCTION 'keyspace'.function FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE ALL ON FUNCTION 'function' FROM role;
+================================================================================
+REVOKE ALL ON FUNCTION 'function' FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE ALL ON KEYSPACE 'keyspace' FROM role;
+================================================================================
+REVOKE ALL ON KEYSPACE 'keyspace' FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE ALL ON ROLE 'role' FROM role;
+================================================================================
+REVOKE ALL ON ROLE 'role' FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE ALL ON TABLE 'keyspace'.table FROM role;
+================================================================================
+REVOKE ALL ON TABLE 'keyspace'.table FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE ALL ON TABLE 'table' FROM role;
+================================================================================
+REVOKE ALL ON TABLE 'table' FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))
+
+================================================================================
+REVOKE ALL ON 'table' FROM role;
+================================================================================
+REVOKE ALL ON 'table' FROM role;
+--------------------------------------------------------------------------------
+(source_file (revoke (priviledge) (resource)))

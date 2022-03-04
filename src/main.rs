@@ -4,8 +4,8 @@ use tree_sitter::{
 };
 
 // const TEXT: &str = "SELECT column FROM table WHERE col = 5b6962dd-3f90-4c93-8f61-eabfa4a803e2;";
-const TEXT: &str = "SELECT column, folumn as junk, foo(*), bar(*) as baz FROM table WHERE col <= $$ a code's block $$ AND func(*) = 'foo';";
-const QUERY: &str = "where_spec / relation_element[ =|>= ] ";
+const TEXT: &str = "REVOKE ALL ON 'keyspace'.table FROM role;";
+const QUERY: &str = "expression_list/ expression[assignment_map|assignment_list|assignment_set|assignment_tuple] ";
 
 fn log(_x: LogType, message: &str) {
     println!("{}", message);

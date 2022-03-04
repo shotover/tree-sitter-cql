@@ -20,8 +20,43 @@ INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5) USING TIMESTAMP 3;
 (source_file (insert_statement (table_name) (insert_column_spec (column_list)) (insert_values_spec (expression_list (expression (constant)) (expression (constant)))) (using_ttl_timestamp (timestamp))))
 
 ================================================================================
-INSERT INTO table  VALUES ('hello', 5);
+INSERT INTO table VALUES ('hello', 5);
 ================================================================================
-INSERT INTO table  VALUES ('hello', 5);
+INSERT INTO table VALUES ('hello', 5);
 --------------------------------------------------------------------------------
 (source_file (insert_statement (table_name)  (insert_values_spec (expression_list (expression (constant)) (expression (constant))))))
+
+================================================================================
+INSERT INTO table (col1, col2) JSON $$ json code $$;
+================================================================================
+INSERT INTO table (col1, col2) JSON $$ json code $$;
+--------------------------------------------------------------------------------
+(source_file (insert_statement (table_name) (insert_column_spec (column_list)) (insert_values_spec (constant))))
+
+================================================================================
+INSERT INTO table (col1, col2) VALUES ({ 5 : 6 }, 'foo');
+================================================================================
+INSERT INTO table (col1, col2) VALUES ({ 5 : 6 }, 'foo');
+--------------------------------------------------------------------------------
+(source_file (insert_statement (table_name) (insert_column_spec (column_list)) (insert_values_spec (expression_list (expression (assignment_map (constant) (constant))) (expression (constant))))))
+
+================================================================================
+INSERT INTO table (col1, col2) VALUES ({ 5, 6 }, 'foo');
+================================================================================
+INSERT INTO table (col1, col2) VALUES ({ 5, 6 }, 'foo');
+--------------------------------------------------------------------------------
+(source_file (insert_statement (table_name) (insert_column_spec (column_list)) (insert_values_spec (expression_list (expression (assignment_set (constant) (constant))) (expression (constant))))))
+
+================================================================================
+INSERT INTO table (col1, col2) VALUES ([ 5, 6 ], 'foo');
+================================================================================
+INSERT INTO table (col1, col2) VALUES ([ 5, 6 ], 'foo');
+--------------------------------------------------------------------------------
+(source_file (insert_statement (table_name) (insert_column_spec (column_list)) (insert_values_spec (expression_list (expression (assignment_list (constant) (constant))) (expression (constant))))))
+
+================================================================================
+INSERT INTO table (col1, col2) VALUES (( 5, 6 ), 'foo');
+================================================================================
+INSERT INTO table (col1, col2) VALUES (( 5, 6 ), 'foo');
+--------------------------------------------------------------------------------
+(source_file (insert_statement (table_name) (insert_column_spec (column_list)) (insert_values_spec (expression_list (expression (assignment_tuple (constant) (constant))) (expression (constant))))))

@@ -3256,48 +3256,63 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[rR][eE][vV][oO][kK][eE]"
-          },
-          "named": false,
-          "value": "REVOKE"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[rR][eE][vV][oO][kK][eE]"
+              },
+              "named": false,
+              "value": "REVOKE"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "priviledge"
+            }
+          ]
         },
         {
-          "type": "SYMBOL",
-          "name": "priviledge"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[oO][nN]"
+              },
+              "named": false,
+              "value": "ON"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "resource"
+            }
+          ]
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[oO][nN]"
-          },
-          "named": false,
-          "value": "ON"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "resource"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[fF][rR][oO][mM]"
-          },
-          "named": false,
-          "value": "FROM"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "object_name"
-          },
-          "named": false,
-          "value": "role"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[fF][rR][oO][mM]"
+              },
+              "named": false,
+              "value": "FROM"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "object_name"
+              },
+              "named": false,
+              "value": "role"
+            }
+          ]
         }
       ]
     },
