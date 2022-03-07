@@ -314,8 +314,13 @@
           "value": "LIMIT"
         },
         {
-          "type": "SYMBOL",
-          "name": "_decimal_literal"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_decimal_literal"
+          },
+          "named": false,
+          "value": "limit_value"
         }
       ]
     },

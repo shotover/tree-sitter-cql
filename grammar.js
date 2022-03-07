@@ -110,7 +110,7 @@ const
                 optional($.limit_spec ),
                 optional(seq( kw("ALLOW"), kw("FILTERING"))),
             ),
-        limit_spec: $ => seq( kw("LIMIT"),$._decimal_literal),
+        limit_spec: $ => seq( kw("LIMIT"), alias($._decimal_literal, "limit_value")),
         select_elements: $ =>
             seq(
             choice( star, $.select_element),
