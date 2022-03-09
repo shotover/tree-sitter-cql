@@ -312,7 +312,7 @@ const
             seq(
                 kw("TRUNCATE"),
                 optional( kw ("TABLE") ),
-                dotted_name( $.object_name, $.object_name, "table"),
+                $.table_name,
             ),
         create_index : $ =>
             seq(
