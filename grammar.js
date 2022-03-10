@@ -247,7 +247,7 @@ const
                 optional(
                     seq(
                         "[",
-                        choice( $._string_literal, $._decimal_literal),
+                        alias( choice( $._string_literal, $._decimal_literal), "value"),
                         "]"
                     )
                 ),
@@ -291,12 +291,7 @@ const
         assignment_tuple : $ =>
             seq(
                 "(",
-                $.constant,
-                choice(
-                    repeat( seq( ",", $.constant)),
-                    repeat( seq( ",", $.assignment_tuple)),
-                    commaSep1( $.assignment_tuple ),
-                ),
+                $.expression_list,
                 ")",
             ),
         using_ttl_timestamp : $ =>

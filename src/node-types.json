@@ -385,15 +385,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "assignment_tuple",
-          "named": true
-        },
-        {
-          "type": "constant",
+          "type": "expression_list",
           "named": true
         }
       ]
@@ -2716,6 +2712,10 @@
   },
   {
     "type": "user",
+    "named": false
+  },
+  {
+    "type": "value",
     "named": false
   },
   {

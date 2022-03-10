@@ -483,11 +483,17 @@ SELECT column FROM table WHERE (col1, col2) IN (( 5, 'stuff'), (6, 'other'));
       (relation_elements
         (relation_element
           (assignment_tuple
-            (constant)
-            (constant))
+            (expression_list
+              (expression
+                (constant))
+              (expression
+                (constant))))
           (assignment_tuple
-            (constant)
-            (constant)))))))
+            (expression_list
+              (expression
+                (constant))
+              (expression
+                (constant)))))))))
 
 ================================================================================
 SELECT column FROM table WHERE (col1, col2) >= ( 5, 'stuff'), (6, 'other');
@@ -505,11 +511,17 @@ SELECT column FROM table WHERE (col1, col2) >= ( 5, 'stuff'), (6, 'other');
       (relation_elements
         (relation_element
           (assignment_tuple
-            (constant)
-            (constant))
+            (expression_list
+              (expression
+                (constant))
+              (expression
+                (constant))))
           (assignment_tuple
-            (constant)
-            (constant)))))))
+            (expression_list
+              (expression
+                (constant))
+              (expression
+                (constant)))))))))
 
 ================================================================================
 SELECT column FROM table WHERE col1 CONTAINS 'foo';

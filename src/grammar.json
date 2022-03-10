@@ -1231,69 +1231,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "constant"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ","
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "constant"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ","
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "assignment_tuple"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "assignment_tuple"
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": ","
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "assignment_tuple"
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          ]
+          "name": "expression_list"
         },
         {
           "type": "STRING",
@@ -1615,17 +1553,22 @@
                   "value": "["
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_string_literal"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "_decimal_literal"
-                    }
-                  ]
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_string_literal"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_decimal_literal"
+                      }
+                    ]
+                  },
+                  "named": false,
+                  "value": "value"
                 },
                 {
                   "type": "STRING",
