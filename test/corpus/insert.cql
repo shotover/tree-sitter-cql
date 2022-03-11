@@ -7,8 +7,7 @@ BEGIN LOGGED BATCH USING TIMESTAMP 5 INSERT INTO keyspace.table (col1, col2) VAL
 (source_file
   (insert_statement
     (begin_batch
-      (using_timestamp_spec
-        (timestamp)))
+      (using_timestamp_spec))
     (table_name)
     (insert_column_spec
       (column_list))
@@ -54,8 +53,7 @@ INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5) USING TIMESTAMP 3;
           (constant))
         (expression
           (constant))))
-    (using_ttl_timestamp
-      (timestamp))))
+    (using_ttl_timestamp)))
 
 ================================================================================
 INSERT INTO table VALUES ('hello', 5);

@@ -7,8 +7,7 @@ BEGIN LOGGED BATCH USING TIMESTAMP 5 UPDATE keyspace.table SET col1 = 'foo' WHER
 (source_file
   (update
     (begin_batch
-      (using_timestamp_spec
-        (timestamp)))
+      (using_timestamp_spec))
     (assignment_element
       (object_name)
       (constant))
@@ -25,8 +24,7 @@ UPDATE keyspace.table USING TIMESTAMP 3 SET col1 = 'foo' WHERE col2=5;
 
 (source_file
   (update
-    (using_ttl_timestamp
-      (timestamp))
+    (using_ttl_timestamp)
     (assignment_element
       (object_name)
       (constant))
@@ -329,8 +327,7 @@ UPDATE keyspace.table USING TIMESTAMP 3 SET col1 = 'foo' WHERE col2=5;
 
 (source_file
   (update
-    (using_ttl_timestamp
-      (timestamp))
+    (using_ttl_timestamp)
     (assignment_element
       (object_name)
       (constant))

@@ -1598,26 +1598,47 @@
           "value": "USING"
         },
         {
-          "type": "SYMBOL",
-          "name": "timestamp"
-        }
-      ]
-    },
-    "timestamp": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[tT][iI][mM][eE][sS][tT][aA][mM][pP]"
-          },
-          "named": false,
-          "value": "TIMESTAMP"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_decimal_literal"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[tT][iI][mM][eE][sS][tT][aA][mM][pP]"
+              },
+              "named": false,
+              "value": "TIMESTAMP"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": "-"
+                        },
+                        {
+                          "type": "BLANK"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "[0-9]+"
+                    }
+                  ]
+                }
+              },
+              "named": false,
+              "value": "time"
+            }
+          ]
         }
       ]
     },
@@ -2159,8 +2180,47 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "ttl"
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "PATTERN",
+                        "value": "[tT][tT][lL]"
+                      },
+                      "named": false,
+                      "value": "TTL"
+                    },
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "TOKEN",
+                        "content": {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "CHOICE",
+                              "members": [
+                                {
+                                  "type": "STRING",
+                                  "value": "-"
+                                },
+                                {
+                                  "type": "BLANK"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "PATTERN",
+                              "value": "[0-9]+"
+                            }
+                          ]
+                        }
+                      },
+                      "named": false,
+                      "value": "ttl"
+                    }
+                  ]
                 },
                 {
                   "type": "CHOICE",
@@ -2178,8 +2238,47 @@
                           "value": "AND"
                         },
                         {
-                          "type": "SYMBOL",
-                          "name": "timestamp"
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "PATTERN",
+                                "value": "[tT][iI][mM][eE][sS][tT][aA][mM][pP]"
+                              },
+                              "named": false,
+                              "value": "TIMESTAMP"
+                            },
+                            {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "TOKEN",
+                                "content": {
+                                  "type": "SEQ",
+                                  "members": [
+                                    {
+                                      "type": "CHOICE",
+                                      "members": [
+                                        {
+                                          "type": "STRING",
+                                          "value": "-"
+                                        },
+                                        {
+                                          "type": "BLANK"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "PATTERN",
+                                      "value": "[0-9]+"
+                                    }
+                                  ]
+                                }
+                              },
+                              "named": false,
+                              "value": "time"
+                            }
+                          ]
                         }
                       ]
                     },
@@ -2194,8 +2293,47 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "timestamp"
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "PATTERN",
+                        "value": "[tT][iI][mM][eE][sS][tT][aA][mM][pP]"
+                      },
+                      "named": false,
+                      "value": "TIMESTAMP"
+                    },
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "TOKEN",
+                        "content": {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "CHOICE",
+                              "members": [
+                                {
+                                  "type": "STRING",
+                                  "value": "-"
+                                },
+                                {
+                                  "type": "BLANK"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "PATTERN",
+                              "value": "[0-9]+"
+                            }
+                          ]
+                        }
+                      },
+                      "named": false,
+                      "value": "time"
+                    }
+                  ]
                 },
                 {
                   "type": "CHOICE",
@@ -2213,8 +2351,47 @@
                           "value": "AND"
                         },
                         {
-                          "type": "SYMBOL",
-                          "name": "ttl"
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "PATTERN",
+                                "value": "[tT][tT][lL]"
+                              },
+                              "named": false,
+                              "value": "TTL"
+                            },
+                            {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "TOKEN",
+                                "content": {
+                                  "type": "SEQ",
+                                  "members": [
+                                    {
+                                      "type": "CHOICE",
+                                      "members": [
+                                        {
+                                          "type": "STRING",
+                                          "value": "-"
+                                        },
+                                        {
+                                          "type": "BLANK"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "PATTERN",
+                                      "value": "[0-9]+"
+                                    }
+                                  ]
+                                }
+                              },
+                              "named": false,
+                              "value": "ttl"
+                            }
+                          ]
                         }
                       ]
                     },
@@ -2226,24 +2403,6 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    "ttl": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[tT][tT][lL]"
-          },
-          "named": false,
-          "value": "TTL"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_decimal_literal"
         }
       ]
     },
@@ -5925,15 +6084,6 @@
           },
           "named": false,
           "value": "VARINT"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[tT][iI][mM][eE][sS][tT][aA][mM][pP]"
-          },
-          "named": false,
-          "value": "TIMESTAMP"
         },
         {
           "type": "ALIAS",

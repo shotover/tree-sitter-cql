@@ -46,6 +46,8 @@ const
     float_str  = seq( optional("-"), decimal_digits, dot ,decimal_digits),
     code  =  seq( "$$",/(\$?[^$]+)+/, "$$"),
     name_chars  = /[a-zA-Z][A-Za-z0-9_$]*/
+    timestamp  = seq( kw("TIMESTAMP"), alias( token( decimal_str), "time")),
+        ttl  = seq( kw("TTL"), alias( token( decimal_str), "ttl")),
 
     module.exports = grammar({
     name: 'cql',
@@ -240,8 +242,8 @@ const
                     )
                 ),
             ),
-        using_timestamp_spec : $ => seq( kw("USING"), $.timestamp ),
-        timestamp : $ => seq( kw("TIMESTAMP"), $._decimal_literal),
+        using_timestamp_spec : $ => seq( kw("USING"), timestamp ),
+        //timestamp : $ => seq( kw("TIMESTAMP"), alias( $._decimal_literal, "timestamp")),
         if_exist : $ => token( if_exists),
         if_spec : $ => seq( kw( "IF"), $.if_condition_list),
         if_condition_list : $ => seq( $.if_condition, repeat( seq( kw("AND"), $.if_condition))),
@@ -286,11 +288,11 @@ const
             seq(
                 kw( "USING"),
                 choice(
-                    seq( $.ttl, optional( seq(kw("AND"), $.timestamp))),
-                    seq( $.timestamp, optional( seq(kw("AND"), $.ttl))),
+                    seq( ttl, optional( seq(kw("AND"), timestamp))),
+                    seq( timestamp, optional( seq(kw("AND"), ttl))),
                 )
             ),
-        ttl : $ => seq( kw("TTL"), $._decimal_literal),
+        //ttl : $ => seq( kw("TTL"), $._decimal_literal),
         truncate : $ =>
             seq(
                 kw("TRUNCATE"),
@@ -596,7 +598,6 @@ const
                 kw( "TUPLE"),
                 kw( "VARCHAR"),
                 kw( "VARINT"),
-                kw( "TIMESTAMP"),
                 kw( "UUID"),
             ),
         data_type_definition : $ => seq( "<", commaSep1( $.data_type_name), ">"),

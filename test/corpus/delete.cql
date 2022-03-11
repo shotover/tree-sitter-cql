@@ -7,8 +7,7 @@ BEGIN LOGGED BATCH USING TIMESTAMP 5 DELETE column [ 'hello' ] from table WHERE 
 (source_file
   (delete_statement
     (begin_batch
-      (using_timestamp_spec
-        (timestamp)))
+      (using_timestamp_spec))
     (delete_column_list
       (delete_column_item))
     (from_spec
@@ -31,8 +30,7 @@ BEGIN UNLOGGED BATCH DELETE column [ 6 ] from keyspace.table USING TIMESTAMP 5 W
       (delete_column_item))
     (from_spec
       (table_name))
-    (using_timestamp_spec
-      (timestamp))
+    (using_timestamp_spec)
     (where_spec
       (relation_elements
         (relation_element
