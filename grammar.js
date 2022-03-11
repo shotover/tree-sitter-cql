@@ -201,19 +201,6 @@ const
                 $.relation_contains,
 
             ),
-       assignment_tuple : $ =>
-            seq(
-                "(",
-                $.constant,
-                choice (
-                    repeat( seq( ",", $.constant)),
-                    repeat( seq( ",", $.assignment_tuple)),
-                    seq(
-                        $.assignment_tuple, repeat( seq(",", $.assignment_tuple))
-                    )
-                ),
-                ")",
-            ),
         relation_contains_key : $ => seq( alias( $.object_name, "column" ), kw("CONTAINS"),kw("KEY"), $.constant),
         relation_contains : $ => seq( alias( $.object_name, "column" ), kw("CONTAINS"), $.constant),
         order_spec : $ =>

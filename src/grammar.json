@@ -1222,23 +1222,6 @@
         }
       ]
     },
-    "assignment_tuple": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "SYMBOL",
-          "name": "expression_list"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
-    },
     "relation_contains_key": {
       "type": "SEQ",
       "members": [
@@ -2118,6 +2101,23 @@
         {
           "type": "STRING",
           "value": "]"
+        }
+      ]
+    },
+    "assignment_tuple": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression_list"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
