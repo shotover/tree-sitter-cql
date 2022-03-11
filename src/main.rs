@@ -4,8 +4,8 @@ use tree_sitter::{
 };
 
  //const TEXT: &str = "SELECT column as junk, col2 FROM table WHERE col = 5b6962dd-3f90-4c93-8f61-eabfa4a803e2 ORDER BY zoo LIMIT 10;" ;
-//const TEXT: &str = "INSERT INTO table (col1, col2) VALUES ({ 5 : 6 }, 'foo')";
- const TEXT: &str = "BEGIN LOGGED BATCH USING TIMESTAMP 5 INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5);";
+const TEXT: &str = "Drop aggregate if exists foo";
+ //const TEXT: &str = "BEGIN LOGGED BATCH USING TIMESTAMP 5 INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5);";
 const QUERY: &str = "expression_list/ expression[assignment_map|assignment_list|assignment_set|assignment_tuple] ";
 
 fn log(_x: LogType, message: &str) {

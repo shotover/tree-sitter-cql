@@ -726,7 +726,7 @@
   },
   {
     "type": "data_type",
-    "named": false,
+    "named": true,
     "fields": {},
     "children": {
       "multiple": true,
