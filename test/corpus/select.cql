@@ -587,8 +587,7 @@ SELECT column FROM table ORDER BY col1 ASC;
     (from_spec
       (table_name))
     (order_spec
-      (object_name)
-      (order_direction))))
+      (object_name))))
 
 ================================================================================
 SELECT column FROM table ORDER BY col1 DESC;
@@ -603,8 +602,7 @@ SELECT column FROM table ORDER BY col1 DESC;
     (from_spec
       (table_name))
     (order_spec
-      (object_name)
-      (order_direction))))
+      (object_name))))
 
 ================================================================================
 SELECT column FROM table LIMIT 5;

@@ -433,17 +433,7 @@
   {
     "type": "clustering_order",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "order_direction",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "column_definition",
@@ -1368,24 +1358,15 @@
     "fields": {}
   },
   {
-    "type": "order_direction",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "order_spec",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "object_name",
-          "named": true
-        },
-        {
-          "type": "order_direction",
           "named": true
         }
       ]

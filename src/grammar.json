@@ -1314,8 +1314,27 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "order_direction"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[aA][sS][cC]"
+                  },
+                  "named": false,
+                  "value": "ASC"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[dD][eE][sS][cC]"
+                  },
+                  "named": false,
+                  "value": "DESC"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -7088,8 +7107,27 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "order_direction"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[aA][sS][cC]"
+                  },
+                  "named": false,
+                  "value": "ASC"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[dD][eE][sS][cC]"
+                  },
+                  "named": false,
+                  "value": "DESC"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -7099,29 +7137,6 @@
         {
           "type": "STRING",
           "value": ")"
-        }
-      ]
-    },
-    "order_direction": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[aA][sS][cC]"
-          },
-          "named": false,
-          "value": "ASC"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[dD][eE][sS][cC]"
-          },
-          "named": false,
-          "value": "DESC"
         }
       ]
     },

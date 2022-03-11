@@ -19,6 +19,7 @@ const
     if_exists = seq(kw( "IF"),kw("EXISTS")),
     primary_key = seq(kw( "PRIMARY"),kw( "KEY")),
     or_replace = seq(kw( "OR"),kw("REPLACE")),
+    order_direction = choice( kw( "ASC"), kw("DESC")),
 
     string_str =  seq(squote, field("content", /[^']*/), squote),
 
@@ -208,7 +209,7 @@ const
                 kw("ORDER"),
                 kw("BY"),
                 $.object_name,
-                optional( $.order_direction)
+                optional( order_direction)
             ),
         delete_statement : $ =>
             seq(
@@ -708,10 +709,9 @@ const
                 kw( "BY"),
                 "(",
                 alias( $.object_name, "column" ),
-                optional( $.order_direction ),
+                optional( order_direction ),
                 ")",
             ),
-        order_direction : $ => choice( kw( "ASC"), kw("DESC")),
         create_trigger : $ =>
             seq(
                 kw("CREATE"),
