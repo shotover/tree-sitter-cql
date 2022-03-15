@@ -196,8 +196,7 @@ UPDATE keyspace.table SET col1 = { 5 : 'hello', 'world' : 5b6962dd-3f90-4c93-8f6
         (constant)
         (constant)
         (constant)
-        (constant))
-      (object_name))
+        (constant)))
     (where_spec
       (relation_elements
         (relation_element
@@ -242,8 +241,7 @@ UPDATE keyspace.table SET col1 = {  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803
       (object_name)
       (assignment_set
         (constant)
-        (constant))
-      (object_name))
+        (constant)))
     (where_spec
       (relation_elements
         (relation_element
@@ -288,8 +286,7 @@ UPDATE keyspace.table SET col1 = [  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803
       (object_name)
       (assignment_list
         (constant)
-        (constant))
-      (object_name))
+        (constant)))
     (where_spec
       (relation_elements
         (relation_element

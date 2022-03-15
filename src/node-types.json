@@ -366,6 +366,11 @@
     }
   },
   {
+    "type": "assignment_operand",
+    "named": false,
+    "fields": {}
+  },
+  {
     "type": "assignment_set",
     "named": true,
     "fields": {},
@@ -2569,6 +2574,10 @@
   },
   {
     "type": "alias",
+    "named": false
+  },
+  {
+    "type": "assignment_operand",
     "named": false
   },
   {

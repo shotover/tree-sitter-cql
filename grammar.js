@@ -338,13 +338,13 @@ const
         assignment_element : $ =>
             choice(
                 seq( $.object_name, "=", choice( $.constant, $.assignment_map, $.assignment_set, $.assignment_list )),
-                seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $._decimal_literal),
+                seq( $.object_name, "=", $.object_name, choice( "+", "-" ), alias($._decimal_literal, "assignment_operand")),
                 seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_set),
-                seq( $.object_name, "=", $.assignment_set, choice( "+", "-" ), $.object_name),
+                seq( $.object_name, "=", $.assignment_set, choice( "+", "-" ), alias($.object_name, "assignment_operand")),
                 seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_map),
-                seq( $.object_name, "=", $.assignment_map, choice( "+", "-" ), $.object_name),
+                seq( $.object_name, "=", $.assignment_map, choice( "+", "-" ), alias($.object_name, "assignment_operand")),
                 seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_list),
-                seq( $.object_name, "=", $.assignment_list, choice( "+", "-" ), $.object_name),
+                seq( $.object_name, "=", $.assignment_list, choice( "+", "-" ), alias($.object_name, "assignment_operand")),
                 seq( $.object_name, "[", $._decimal_literal, "]", "=", $.constant),
             ),
         use : $ => seq( kw("USE"), alias($.object_name, "keyspace")),
