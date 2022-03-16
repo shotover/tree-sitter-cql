@@ -1,14 +1,14 @@
 ================================================================================
-CREATE USER newuser WITH PASSWORD 'password';
+CREATE USER newuser if not exists WITH PASSWORD 'password';
 ================================================================================
-CREATE USER newuser WITH PASSWORD 'password';
+CREATE USER newuser if not exists WITH PASSWORD 'password';
 --------------------------------------------------------------------------------
 
 (source_file
-  (create_user
-    (user_name)
-    (user_with
-      (user_password))))
+  (ERROR
+    (ERROR
+      (user_name))
+    (user_name)))
 
 ================================================================================
 CREATE USER newuser WITH PASSWORD 'password' superuser;

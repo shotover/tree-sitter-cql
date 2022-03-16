@@ -6526,7 +6526,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "role_with_options"
+              "name": "role_with_option"
             },
             {
               "type": "REPEAT",
@@ -6544,7 +6544,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "role_with_options"
+                    "name": "role_with_option"
                   }
                 ]
               }
@@ -6553,7 +6553,7 @@
         }
       ]
     },
-    "role_with_options": {
+    "role_with_option": {
       "type": "CHOICE",
       "members": [
         {
@@ -6573,8 +6573,13 @@
               "value": "="
             },
             {
-              "type": "SYMBOL",
-              "name": "_string_literal"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_string_literal"
+              },
+              "named": false,
+              "value": "password"
             }
           ]
         },
@@ -6595,8 +6600,13 @@
               "value": "="
             },
             {
-              "type": "SYMBOL",
-              "name": "_boolean_literal"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_boolean_literal"
+              },
+              "named": false,
+              "value": "login"
             }
           ]
         },
@@ -6617,8 +6627,13 @@
               "value": "="
             },
             {
-              "type": "SYMBOL",
-              "name": "_boolean_literal"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_boolean_literal"
+              },
+              "named": false,
+              "value": "user"
             }
           ]
         },
@@ -6688,25 +6703,35 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_string_literal"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_string_literal"
+          },
+          "named": false,
+          "value": "property"
         },
         {
           "type": "STRING",
           "value": ":"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_string_literal"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_float_literal"
-            }
-          ]
+          "type": "ALIAS",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_string_literal"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_float_literal"
+              }
+            ]
+          },
+          "named": false,
+          "value": "value"
         }
       ]
     },
@@ -7747,8 +7772,13 @@
           "value": "PASSWORD"
         },
         {
-          "type": "SYMBOL",
-          "name": "_string_literal"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_string_literal"
+          },
+          "named": false,
+          "value": "password"
         }
       ]
     },

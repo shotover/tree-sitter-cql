@@ -649,16 +649,16 @@ const
                 alias( $.object_name, "role"),
                 optional( $.role_with ),
             ),
-        role_with : $ => seq( kw("WITH"), sep1( $.role_with_options, kw("AND"))),
-        role_with_options : $ =>
+        role_with : $ => seq( kw("WITH"), sep1( $.role_with_option, kw("AND"))),
+        role_with_option : $ =>
             choice(
-                seq( kw("PASSWORD"), "=", $._string_literal),
-                seq( kw("LOGIN"), "=", $._boolean_literal),
-                seq( kw("SUPERUSER"), "=", $._boolean_literal),
+                seq( kw("PASSWORD"), "=", alias($._string_literal, "password")),
+                seq( kw("LOGIN"), "=", alias( $._boolean_literal, "login")),
+                seq( kw("SUPERUSER"), "=", alias($._boolean_literal, "user")),
                 seq( kw("OPTIONS"), "=", $.option_hash),
             ),
         option_hash : $ => seq( "{", commaSep1( $.option_hash_item), "}"),
-        option_hash_item : $ => seq( $._string_literal, ":", choice( $._string_literal, $._float_literal), ),
+        option_hash_item : $ => seq( alias($._string_literal,"property"), ":", alias( choice( $._string_literal, $._float_literal), "value"), ),
         create_table : $ =>
             seq(
                 kw("CREATE"),
@@ -746,7 +746,7 @@ const
             ),
         user_name : $ => alias( $.object_name, "user"),
         user_with : $ => seq( kw("WITH"), $.user_password, optional( $.user_super_user)),
-        user_password : $ => seq( kw("PASSWORD"), $._string_literal),
+        user_password : $ => seq( kw("PASSWORD"), alias( $._string_literal, "password")),
         user_super_user : $ => choice( kw("SUPERUSER"), kw("NOSUPERUSER")),
 
         alter_materialized_view : $ =>

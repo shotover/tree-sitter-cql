@@ -3,11 +3,54 @@ ALTER ROLE 'role';
 ================================================================================
 ALTER ROLE 'role';
 --------------------------------------------------------------------------------
-(source_file (alter_role))
+
+(source_file
+  (alter_role))
 
 ================================================================================
 ALTER ROLE 'role' WITH PASSWORD = 'password';
 ================================================================================
 ALTER ROLE 'role' WITH PASSWORD = 'password';
 --------------------------------------------------------------------------------
-(source_file (alter_role (role_with (role_with_options))))
+
+(source_file
+  (alter_role
+    (role_with
+      (role_with_option))))
+
+================================================================================
+ALTER ROLE 'role' WITH PASSWORD = 'password' AND LOGIN=false;
+================================================================================
+ALTER ROLE 'role' WITH PASSWORD = 'password' AND LOGIN=false;
+--------------------------------------------------------------------------------
+
+(source_file
+  (alter_role
+    (role_with
+      (role_with_option)
+      (role_with_option))))
+
+================================================================================
+ALTER ROLE 'role' WITH SUPERUSER=false;
+================================================================================
+ALTER ROLE 'role' WITH SUPERUSER=false;
+--------------------------------------------------------------------------------
+
+(source_file
+  (alter_role
+    (role_with
+      (role_with_option))))
+
+================================================================================
+ALTER ROLE 'role' WITH OPTIONS={ 'foo' : 3.14, 'bar' : 'pi' }
+================================================================================
+ALTER ROLE 'role' WITH OPTIONS={ 'foo' : 3.14, 'bar' : 'pi' }
+--------------------------------------------------------------------------------
+
+(source_file
+  (alter_role
+    (role_with
+      (role_with_option
+        (option_hash
+          (option_hash_item)
+          (option_hash_item))))))

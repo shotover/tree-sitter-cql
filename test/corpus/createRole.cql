@@ -3,39 +3,63 @@ CREATE ROLE if not exists role;
 ================================================================================
 CREATE ROLE if not exists role;
 --------------------------------------------------------------------------------
-(source_file (create_role))
+
+(source_file
+  (create_role))
+
+================================================================================
+CREATE ROLE 'role';
+================================================================================
+CREATE ROLE 'role';
+--------------------------------------------------------------------------------
+
+(source_file
+  (create_role))
 
 ================================================================================
 CREATE ROLE 'role' WITH PASSWORD = 'password';
 ================================================================================
 CREATE ROLE 'role' WITH PASSWORD = 'password';
 --------------------------------------------------------------------------------
-(source_file (create_role (role_with (role_with_options))))
+
+(source_file
+  (create_role
+    (role_with
+      (role_with_option))))
 
 ================================================================================
-CREATE ROLE role WITH LOGIN = true;
+CREATE ROLE 'role' WITH PASSWORD = 'password' AND LOGIN=false;
 ================================================================================
-CREATE ROLE role WITH LOGIN = true;
+CREATE ROLE 'role' WITH PASSWORD = 'password' AND LOGIN=false;
 --------------------------------------------------------------------------------
-(source_file (create_role (role_with (role_with_options))))
+
+(source_file
+  (create_role
+    (role_with
+      (role_with_option)
+      (role_with_option))))
 
 ================================================================================
-CREATE ROLE role WITH SUPERUSER = true;
+CREATE ROLE 'role' WITH SUPERUSER=false;
 ================================================================================
-CREATE ROLE role WITH SUPERUSER = true;
+CREATE ROLE 'role' WITH SUPERUSER=false;
 --------------------------------------------------------------------------------
-(source_file (create_role (role_with (role_with_options))))
+
+(source_file
+  (create_role
+    (role_with
+      (role_with_option))))
 
 ================================================================================
-CREATE ROLE role WITH OPTIONS = { 'option1' : 'value', 'option2' : 4.5 };
+CREATE ROLE 'role' WITH OPTIONS={ 'foo' : 3.14, 'bar' : 'pi' }
 ================================================================================
-CREATE ROLE role WITH OPTIONS = { 'option1' : 'value', 'option2' : 4.5 };
+CREATE ROLE 'role' WITH OPTIONS={ 'foo' : 3.14, 'bar' : 'pi' }
 --------------------------------------------------------------------------------
-(source_file (create_role (role_with (role_with_options (option_hash (option_hash_item) (option_hash_item))))))
 
-================================================================================
-CREATE ROLE role WITH PASSWORD = 'password' AND SUPERUSER = false;
-================================================================================
-CREATE ROLE role WITH PASSWORD = 'password' AND SUPERUSER = false;
---------------------------------------------------------------------------------
-(source_file (create_role (role_with (role_with_options) (role_with_options))))
+(source_file
+  (create_role
+    (role_with
+      (role_with_option
+        (option_hash
+          (option_hash_item)
+          (option_hash_item))))))

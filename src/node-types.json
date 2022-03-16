@@ -1625,14 +1625,14 @@
       "required": true,
       "types": [
         {
-          "type": "role_with_options",
+          "type": "role_with_option",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "role_with_options",
+    "type": "role_with_option",
     "named": true,
     "fields": {},
     "children": {
@@ -2659,6 +2659,10 @@
     "named": false
   },
   {
+    "type": "login",
+    "named": false
+  },
+  {
     "type": "materialized_view",
     "named": false
   },
@@ -2679,7 +2683,15 @@
     "named": false
   },
   {
+    "type": "password",
+    "named": false
+  },
+  {
     "type": "primary_key",
+    "named": false
+  },
+  {
+    "type": "property",
     "named": false
   },
   {
@@ -2712,6 +2724,10 @@
   },
   {
     "type": "user",
+    "named": false
+  },
+  {
+    "type": "value",
     "named": false
   },
   {
