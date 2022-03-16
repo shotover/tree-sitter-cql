@@ -397,10 +397,9 @@ const
             seq(
                 kw("LIST"),
                 kw("ROLES"),
-                optional( seq( kw("OF"), $.role_name)),
+                optional( seq( kw("OF"), alias( $.object_name, "role"))),
                 optional( kw( "NORECURSIVE")),
             ),
-        role_name : $ => alias( $.object_name, "role"),
         list_permissions : $ =>
             seq(
                 kw("LIST"),
@@ -625,21 +624,19 @@ const
                 kw( "WITH"),
                 kw( "REPLICATION"),
                 "=",
-                "{",
                 $.replication_list,
-                "}",
                 optional( seq( kw("AND"), $.durable_writes)),
             ),
         replication_list_item : $ =>
             choice(
-                seq( $._string_literal, ":", $._string_literal),
-                seq( $._string_literal, ":", $._decimal_literal),
+                seq( alias($._string_literal,"key"), ":", alias( $._string_literal, "value")),
+                seq( alias($._string_literal, "key"), ":", alias($._decimal_literal,"value")),
             ),
         durable_writes : $ =>
             seq(
                 kw("DURABLE_WRITES"),
                 "=",
-                $._boolean_literal,
+                alias( $._boolean_literal, "value"),
             ),
         create_role : $ =>
             seq(
@@ -658,7 +655,7 @@ const
                 seq( kw("OPTIONS"), "=", $.option_hash),
             ),
         option_hash : $ => seq( "{", commaSep1( $.option_hash_item), "}"),
-        option_hash_item : $ => seq( alias($._string_literal,"property"), ":", alias( choice( $._string_literal, $._float_literal), "value"), ),
+        option_hash_item : $ => seq( alias($._string_literal,"key"), ":", alias( choice( $._string_literal, $._float_literal), "value"), ),
         create_table : $ =>
             seq(
                 kw("CREATE"),
@@ -765,13 +762,11 @@ const
                 kw("WITH"),
                 kw("REPLICATION"),
                 "=",
-                "{",
                 $.replication_list,
-                "}",
                 optional( seq( kw("AND"),$.durable_writes) ),
             ),
         keyspace_name : $ => alias( $.object_name, "keyspace"),
-        replication_list : $ => commaSep1( $.replication_list_item ),
+        replication_list : $ => seq( "{", commaSep1( $.replication_list_item ), "}" ),
         alter_role : $ =>
             seq(
                 kw("ALTER"),

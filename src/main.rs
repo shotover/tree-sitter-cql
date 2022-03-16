@@ -3,7 +3,7 @@ use tree_sitter::{
     Language, LogType, Node, Parser, Query, QueryCapture, QueryCursor, QueryMatch, Tree, TreeCursor,
 };
 
- const TEXT: &str = "ALTER ROLE role WITH PASSWORD = 'password' AND LOGIN = false AND SUPERUSER = true AND OPTIONS = { 'foo' : 3.14, 'bar' : 'pi' };" ;
+ const TEXT: &str = "ALTER KEYSPACE keyspace WITH REPLICATION = { 'foo' : 'bar', 'baz' : 5};" ;
 //const TEXT: &str = "Drop aggregate if exists foo";
  //const TEXT: &str = "BEGIN LOGGED BATCH USING TIMESTAMP 5 INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5);";
 const QUERY: &str = "expression_list/ expression[assignment_map|assignment_list|assignment_set|assignment_tuple] ";
