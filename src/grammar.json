@@ -7690,6 +7690,24 @@
           "name": "user_name"
         },
         {
+          "type": "SYMBOL",
+          "name": "user_with"
+        }
+      ]
+    },
+    "user_name": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "object_name"
+      },
+      "named": false,
+      "value": "user"
+    },
+    "user_with": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
@@ -7716,14 +7734,46 @@
         }
       ]
     },
-    "user_name": {
-      "type": "ALIAS",
-      "content": {
-        "type": "SYMBOL",
-        "name": "object_name"
-      },
-      "named": false,
-      "value": "user"
+    "user_password": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[pP][aA][sS][sS][wW][oO][rR][dD]"
+          },
+          "named": false,
+          "value": "PASSWORD"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_string_literal"
+        }
+      ]
+    },
+    "user_super_user": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[sS][uU][pP][eE][rR][uU][sS][eE][rR]"
+          },
+          "named": false,
+          "value": "SUPERUSER"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[nN][oO][sS][uU][pP][eE][rR][uU][sS][eE][rR]"
+          },
+          "named": false,
+          "value": "NOSUPERUSER"
+        }
+      ]
     },
     "alter_materialized_view": {
       "type": "SEQ",
@@ -8591,70 +8641,8 @@
           "name": "user_name"
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[wW][iI][tT][hH]"
-          },
-          "named": false,
-          "value": "WITH"
-        },
-        {
           "type": "SYMBOL",
-          "name": "user_password"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "user_super_user"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
-    "user_password": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[pP][aA][sS][sS][wW][oO][rR][dD]"
-          },
-          "named": false,
-          "value": "PASSWORD"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_string_literal"
-        }
-      ]
-    },
-    "user_super_user": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[sS][uU][pP][eE][rR][uU][sS][eE][rR]"
-          },
-          "named": false,
-          "value": "SUPERUSER"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[nN][oO][sS][uU][pP][eE][rR][uU][sS][eE][rR]"
-          },
-          "named": false,
-          "value": "NOSUPERUSER"
+          "name": "user_with"
         }
       ]
     },

@@ -742,11 +742,13 @@ const
                 kw("USER"),
                 optional( if_not_exists ),
                 $.user_name,
-                kw( "WITH"),
-                $.user_password,
-                optional( $.user_super_user),
+                $.user_with,
             ),
         user_name : $ => alias( $.object_name, "user"),
+        user_with : $ => seq( kw("WITH"), $.user_password, optional( $.user_super_user)),
+        user_password : $ => seq( kw("PASSWORD"), $._string_literal),
+        user_super_user : $ => choice( kw("SUPERUSER"), kw("NOSUPERUSER")),
+
         alter_materialized_view : $ =>
             seq(
                 kw("ALTER"),
@@ -832,12 +834,8 @@ const
                 kw("ALTER"),
                 kw( "USER"),
                 $.user_name,
-                kw("WITH"),
-                $.user_password,
-                optional( $.user_super_user ),
+                $.user_with,
             ),
-        user_password : $ => seq( kw("PASSWORD"), $._string_literal),
-        user_super_user : $ => choice( kw("SUPERUSER"), kw("NOSUPERUSER")),
         apply_batch : $ => seq( kw("APPLY"), kw("BATCH")),
 
         object_name : $ => token( choice( name_chars, seq(squote, name_chars, squote))),

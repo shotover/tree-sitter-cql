@@ -289,11 +289,7 @@
           "named": true
         },
         {
-          "type": "user_password",
-          "named": true
-        },
-        {
-          "type": "user_super_user",
+          "type": "user_with",
           "named": true
         }
       ]
@@ -723,11 +719,7 @@
           "named": true
         },
         {
-          "type": "user_password",
-          "named": true
-        },
-        {
-          "type": "user_super_user",
+          "type": "user_with",
           "named": true
         }
       ]
@@ -735,7 +727,7 @@
   },
   {
     "type": "data_type",
-    "named": false,
+    "named": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -2006,6 +1998,25 @@
     "type": "user_super_user",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "user_with",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "user_password",
+          "named": true
+        },
+        {
+          "type": "user_super_user",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "using_timestamp_spec",
