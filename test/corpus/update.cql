@@ -305,7 +305,8 @@ UPDATE keyspace.table SET col1[5] = 'hello' WHERE col2=5 IF col3=7;
 (source_file
   (update
     (assignment_element
-      (object_name)
+      (indexed_column
+        (object_name))
       (constant))
     (where_spec
       (relation_elements

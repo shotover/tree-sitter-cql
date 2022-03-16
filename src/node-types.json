@@ -329,6 +329,10 @@
           "named": true
         },
         {
+          "type": "indexed_column",
+          "named": true
+        },
+        {
           "type": "object_name",
           "named": true
         }
@@ -731,7 +735,7 @@
   },
   {
     "type": "data_type",
-    "named": true,
+    "named": false,
     "fields": {},
     "children": {
       "multiple": true,
@@ -1062,6 +1066,11 @@
     }
   },
   {
+    "type": "index",
+    "named": false,
+    "fields": {}
+  },
+  {
     "type": "index_column_spec",
     "named": true,
     "fields": {},
@@ -1103,6 +1112,21 @@
     "type": "index_name",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "indexed_column",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "object_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "init_cond_definition",
@@ -1994,11 +2018,6 @@
     "fields": {}
   },
   {
-    "type": "value",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "where_spec",
     "named": true,
     "fields": {},
@@ -2682,10 +2701,6 @@
   },
   {
     "type": "user",
-    "named": false
-  },
-  {
-    "type": "value",
     "named": false
   },
   {

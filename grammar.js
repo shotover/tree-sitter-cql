@@ -237,7 +237,7 @@ const
                 optional(
                     seq(
                         "[",
-                        alias( choice( $._string_literal, $._decimal_literal), "value"),
+                        alias( choice( $._string_literal, $._decimal_literal), "index"),
                         "]"
                     )
                 ),
@@ -345,8 +345,10 @@ const
                 seq( $.object_name, "=", $.assignment_map, choice( "+", "-" ), alias($.object_name, "assignment_operand")),
                 seq( $.object_name, "=", $.object_name, choice( "+", "-" ), $.assignment_list),
                 seq( $.object_name, "=", $.assignment_list, choice( "+", "-" ), alias($.object_name, "assignment_operand")),
-                seq( $.object_name, "[", $._decimal_literal, "]", "=", $.constant),
+                seq( $.indexed_column, "=", $.constant),
             ),
+        indexed_column : $ => seq($.object_name, "[", alias($._decimal_literal,"index"), "]",),
+
         use : $ => seq( kw("USE"), alias($.object_name, "keyspace")),
         grant : $ =>
             seq(
