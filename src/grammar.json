@@ -2608,7 +2608,7 @@
             "name": "object_name"
           },
           "named": false,
-          "value": "keys"
+          "value": "key"
         },
         {
           "type": "STRING",
@@ -2639,7 +2639,7 @@
             "name": "object_name"
           },
           "named": false,
-          "value": "entries"
+          "value": "entry"
         },
         {
           "type": "STRING",
@@ -3328,7 +3328,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "priviledge"
+              "name": "privilege"
             }
           ]
         },
@@ -3392,7 +3392,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "priviledge"
+              "name": "privilege"
             }
           ]
         },
@@ -3439,7 +3439,7 @@
         }
       ]
     },
-    "priviledge": {
+    "privilege": {
       "type": "CHOICE",
       "members": [
         {
@@ -3892,7 +3892,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "priviledge"
+          "name": "privilege"
         },
         {
           "type": "CHOICE",

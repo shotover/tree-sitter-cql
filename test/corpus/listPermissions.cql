@@ -6,7 +6,7 @@ LIST ALL;
 
 (source_file
   (list_permissions
-    (priviledge)))
+    (privilege)))
 
 ================================================================================
 LIST ALL OF coach;
@@ -17,7 +17,7 @@ OF coach;
 
 (source_file
   (list_permissions
-    (priviledge)))
+    (privilege)))
 
 ================================================================================
 LIST ALL ON cyclist.name;
@@ -28,5 +28,5 @@ ON cyclist.name;
 
 (source_file
   (list_permissions
-    (priviledge)
+    (privilege)
     (resource)))

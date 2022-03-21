@@ -314,8 +314,8 @@ const
         table_name : $ => dotted_name( $.object_name, $.object_name, "table"),
         index_name : $ => alias( choice( $.object_name, $._string_literal), "index" ),
         index_column_spec : $ => choice( alias($.object_name, "column"), $.index_keys_spec, $.index_entries_s_spec, $.index_full_spec),
-        index_keys_spec : $ => seq( kw("KEYS"), "(", alias( $.object_name, "keys"), ")"),
-        index_entries_s_spec : $ => seq( kw( "ENTRIES"), "(", alias( $.object_name, "entries"), ")"),
+        index_keys_spec : $ => seq( kw("KEYS"), "(", alias( $.object_name, "key"), ")"),
+        index_entries_s_spec : $ => seq( kw( "ENTRIES"), "(", alias( $.object_name, "entry"), ")"),
         index_full_spec : $ => seq( kw( "FULL"), "(", alias( $.object_name, "full"), ")"),
         drop_index : $ =>
             seq(
@@ -352,17 +352,17 @@ const
         use : $ => seq( kw("USE"), alias($.object_name, "keyspace")),
         grant : $ =>
             seq(
-                seq( kw("GRANT"), $.priviledge,),
+                seq( kw("GRANT"), $.privilege,),
                 seq( kw("ON"), $.resource, ),
                 seq( kw("TO"), alias( $.object_name, "role") ),
             ),
         revoke : $ =>
             seq(
-                seq( kw("REVOKE"), $.priviledge,),
+                seq( kw("REVOKE"), $.privilege,),
                 seq( kw("ON"), $.resource,),
                 seq( kw("FROM"), alias( $.object_name, "role"))
             ),
-        priviledge : $ =>
+        privilege : $ =>
             choice(
                 seq( kw( "ALL"), optional( kw("PERMISSIONS"))),
                 kw( "ALTER"),
@@ -403,7 +403,7 @@ const
         list_permissions : $ =>
             seq(
                 kw("LIST"),
-                $.priviledge,
+                $.privilege,
                 optional( seq( kw("ON"), $.resource)),
                 optional( seq( kw( "OF"), alias( $.object_name, "role")))
             ),
