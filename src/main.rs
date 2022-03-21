@@ -3,7 +3,7 @@ use tree_sitter::{
     Language, LogType, Node, Parser, Query, QueryCapture, QueryCursor, QueryMatch, Tree, TreeCursor,
 };
 
- const TEXT: &str = "GRANT ALL ON ALL FUNCTIONS IN KEYSPACE keyspace TO role" ;
+ const TEXT: &str = "GRANT ALL ON 'keyspace'.table TO role;" ;
 //const TEXT: &str = "Drop aggregate if exists foo";
  //const TEXT: &str = "BEGIN LOGGED BATCH USING TIMESTAMP 5 INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5);";
 const QUERY: &str = "expression_list/ expression[assignment_map|assignment_list|assignment_set|assignment_tuple] ";
