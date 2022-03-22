@@ -42,7 +42,8 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
         (object_name)))
     (materialized_view_options
       (table_option_item
-        (table_option_name)
+        (table_option_name
+          (object_name))
         (table_option_value)))))
 
 ================================================================================
@@ -61,7 +62,8 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
         (object_name)))
     (materialized_view_options
       (table_option_item
-        (table_option_name)
+        (table_option_name
+          (object_name))
         (table_option_value))
       (clustering_order))))
 
@@ -83,10 +85,12 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
         (constant)))
     (materialized_view_options
       (table_option_item
-        (table_option_name)
+        (table_option_name
+          (object_name))
         (table_option_value))
       (table_option_item
-        (table_option_name)
+        (table_option_name
+          (object_name))
         (table_option_value))
       (clustering_order))))
 
@@ -127,10 +131,12 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
         (constant)))
     (materialized_view_options
       (table_option_item
-        (table_option_name)
+        (table_option_name
+          (object_name))
         (table_option_value))
       (table_option_item
-        (table_option_name)
+        (table_option_name
+          (object_name))
         (table_option_value)))))
 
 ================================================================================
@@ -181,10 +187,12 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2, col3  FROM keyspace
         (object_name)))
     (materialized_view_options
       (table_option_item
-        (table_option_name)
+        (table_option_name
+          (object_name))
         (option_hash
           (option_hash_item)
           (option_hash_item)))
       (table_option_item
-        (table_option_name)
+        (table_option_name
+          (object_name))
         (table_option_value)))))

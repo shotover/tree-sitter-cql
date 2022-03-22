@@ -7115,28 +7115,8 @@
           "value": "WITH"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "table_options"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "clustering_order"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "table_options"
         }
       ]
     },
@@ -7147,8 +7127,21 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "table_option_item"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "clustering_order"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "compact_storage"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "table_option_item"
+              }
+            ]
           },
           {
             "type": "REPEAT",
@@ -7165,8 +7158,21 @@
                   "value": "AND"
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "table_option_item"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "clustering_order"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "compact_storage"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "table_option_item"
+                    }
+                  ]
                 }
               ]
             }
@@ -7214,13 +7220,8 @@
       ]
     },
     "table_option_name": {
-      "type": "ALIAS",
-      "content": {
-        "type": "SYMBOL",
-        "name": "object_name"
-      },
-      "named": false,
-      "value": "option"
+      "type": "SYMBOL",
+      "name": "object_name"
     },
     "table_option_value": {
       "type": "CHOICE",
@@ -7232,6 +7233,29 @@
         {
           "type": "SYMBOL",
           "name": "_float_literal"
+        }
+      ]
+    },
+    "compact_storage": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[cC][oO][mM][pP][aA][cC][tT]"
+          },
+          "named": false,
+          "value": "COMPACT"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[sS][tT][oO][rR][aA][gG][eE]"
+          },
+          "named": false,
+          "value": "STORAGE"
         }
       ]
     },

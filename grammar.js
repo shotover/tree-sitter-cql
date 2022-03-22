@@ -693,15 +693,21 @@ const
                 $.clustering_key_list
             ),
         partition_key_list : $ => commaSep1( $.object_name),
-        with_element : $ => seq( kw("WITH"), optional( $.table_options), optional( $.clustering_order)),
-        table_options : $ => prec.left(PREC.and,sep1( $.table_option_item, kw("AND"))),
+        with_element : $ => seq( kw("WITH"),  $.table_options),
+        table_options : $ => prec.left(PREC.and,sep1(
+            choice(
+                $.clustering_order,
+                $.compact_storage,
+                $.table_option_item,
+            ), kw("AND"))),
         table_option_item : $ =>
             choice(
                 seq( $.table_option_name, "=", $.table_option_value ),
                 seq( $.table_option_name, "=", $.option_hash ),
             ),
-        table_option_name : $ => alias( $.object_name, "option"),
+        table_option_name : $ => $.object_name,
         table_option_value : $ => choice( $._string_literal, $._float_literal ),
+        compact_storage : $ => seq( kw("COMPACT"), kw("STORAGE")),
         clustering_order : $ =>
             seq(
                 kw("CLUSTERING"),

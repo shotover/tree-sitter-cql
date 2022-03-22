@@ -494,6 +494,11 @@
     }
   },
   {
+    "type": "compact_storage",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "composite_key",
     "named": true,
     "fields": {},
@@ -726,7 +731,7 @@
   },
   {
     "type": "data_type",
-    "named": false,
+    "named": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -1880,7 +1885,17 @@
   {
     "type": "table_option_name",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "object_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "table_option_value",
@@ -1895,6 +1910,14 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "clustering_order",
+          "named": true
+        },
+        {
+          "type": "compact_storage",
+          "named": true
+        },
         {
           "type": "table_option_item",
           "named": true
@@ -2032,13 +2055,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
-        {
-          "type": "clustering_order",
-          "named": true
-        },
         {
           "type": "table_options",
           "named": true
@@ -2649,10 +2668,6 @@
   {
     "type": "object_name",
     "named": true
-  },
-  {
-    "type": "option",
-    "named": false
   },
   {
     "type": "param_name",
