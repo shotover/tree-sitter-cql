@@ -661,7 +661,7 @@ const
                 kw("CREATE"),
                 kw("TABLE"),
                 optional( if_not_exists ),
-                dotted_name( $.object_name, $.object_name, "table"),
+                $.table_name,
                 "(",
                 $.column_definition_list,
                 ")",
@@ -683,7 +683,7 @@ const
             ),
         primary_key_definition : $ => choice( alias($.object_name, "primary_key"), $.compound_key, $.composite_key ),
         compound_key : $ => seq( alias( $.object_name,"partition_key"), ",", $.clustering_key_list ),
-        clustering_key_list : $ => alias( commaSep1( $.object_name ), "clustering_key"),
+        clustering_key_list : $ => commaSep1( $.object_name ),
         composite_key : $ =>
             seq(
                 "(",
@@ -692,7 +692,7 @@ const
                 ",",
                 $.clustering_key_list
             ),
-        partition_key_list : $ => alias( commaSep1( $.object_name), "partition_key"),
+        partition_key_list : $ => commaSep1( $.object_name),
         with_element : $ => seq( kw("WITH"), optional( $.table_options), optional( $.clustering_order)),
         table_options : $ => prec.left(PREC.and,sep1( $.table_option_item, kw("AND"))),
         table_option_item : $ =>

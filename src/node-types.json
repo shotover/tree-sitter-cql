@@ -416,8 +416,8 @@
     }
   },
   {
-    "type": "clustering_key",
-    "named": false,
+    "type": "clustering_key_list",
+    "named": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -429,11 +429,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "clustering_key_list",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "clustering_order",
@@ -676,6 +671,10 @@
           "named": true
         },
         {
+          "type": "table_name",
+          "named": true
+        },
+        {
           "type": "with_element",
           "named": true
         }
@@ -727,7 +726,7 @@
   },
   {
     "type": "data_type",
-    "named": true,
+    "named": false,
     "fields": {},
     "children": {
       "multiple": true,
@@ -1404,8 +1403,8 @@
     }
   },
   {
-    "type": "partition_key",
-    "named": false,
+    "type": "partition_key_list",
+    "named": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -1417,11 +1416,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "partition_key_list",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "primary_key",
@@ -2598,10 +2592,6 @@
   },
   {
     "type": "assignment_operand",
-    "named": false
-  },
-  {
-    "type": "clustering_key",
     "named": false
   },
   {
