@@ -102,20 +102,15 @@
     }
   },
   {
-    "type": "alter_table_drop_column_list",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "alter_table_drop_columns",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "alter_table_drop_column_list",
+          "type": "object_name",
           "named": true
         }
       ]

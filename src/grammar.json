@@ -8190,43 +8190,29 @@
           "value": "DROP"
         },
         {
-          "type": "SYMBOL",
-          "name": "alter_table_drop_column_list"
-        }
-      ]
-    },
-    "alter_table_drop_column_list": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "object_name"
-          },
-          "named": false,
-          "value": "column"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": ","
-              },
-              {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "object_name"
-                },
-                "named": false,
-                "value": "column"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "object_name"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "object_name"
+                  }
+                ]
               }
-            ]
-          }
+            }
+          ]
         }
       ]
     },
