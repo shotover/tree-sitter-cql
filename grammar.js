@@ -784,7 +784,7 @@ const
             seq(
                 kw("ALTER"),
                 kw( "TABLE"),
-                dotted_name( $.object_name, $.object_name, "table"),
+                $.table_name,
                 $.alter_table_operation,
             ),
         alter_table_operation : $ =>
@@ -795,8 +795,8 @@ const
                 $.alter_table_rename,
                 $.alter_table_with,
             ),
-        alter_table_add : $ => seq( kw("ADD"), $.alter_table_column_definition ),
-        alter_table_column_definition : $ => commaSep1( seq( alias( $.object_name, "column"), $.data_type)),
+        alter_table_add : $ => seq( kw("ADD"), commaSep1( $.alter_table_column_definition )),
+        alter_table_column_definition : $ => seq( alias( $.object_name, "column"), $.data_type),
         alter_table_drop_columns : $ => seq( kw("DROP"), $.alter_table_drop_column_list ),
         alter_table_drop_column_list : $ => commaSep1( alias( $.object_name, "column") ),
         alter_table_drop_compact_storage : $ => seq( kw("DROP"), kw("COMPACT"), kw("STORAGE") ),
