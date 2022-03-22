@@ -455,10 +455,11 @@ const
                 kw( "DROP"),
                 kw( "TRIGGER"),
                 optional( if_exists ),
-                dotted_name( $.object_name, $.object_name, "trigger"),
+                $.trigger_name,
                 kw( "ON"),
-                dotted_name( $.object_name, $.object_name, "table"),
+                $.table_name,
             ),
+        trigger_name : $ => dotted_name( $.object_name, $.object_name, "trigger"),
 
         drop_type : $ =>
             seq(

@@ -4521,34 +4521,42 @@
           ]
         },
         {
-          "type": "CHOICE",
+          "type": "SYMBOL",
+          "name": "trigger_name"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[oO][nN]"
+          },
+          "named": false,
+          "value": "ON"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "table_name"
+        }
+      ]
+    },
+    "trigger_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "keyspace"
-                },
-                {
-                  "type": "STRING",
-                  "value": "."
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "trigger"
-                }
-              ]
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "object_name"
+              },
+              "named": false,
+              "value": "keyspace"
+            },
+            {
+              "type": "STRING",
+              "value": "."
             },
             {
               "type": "ALIAS",
@@ -4564,52 +4572,11 @@
         {
           "type": "ALIAS",
           "content": {
-            "type": "PATTERN",
-            "value": "[oO][nN]"
+            "type": "SYMBOL",
+            "name": "object_name"
           },
           "named": false,
-          "value": "ON"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "keyspace"
-                },
-                {
-                  "type": "STRING",
-                  "value": "."
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "table"
-                }
-              ]
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "object_name"
-              },
-              "named": false,
-              "value": "table"
-            }
-          ]
+          "value": "trigger"
         }
       ]
     },
@@ -7416,47 +7383,6 @@
         {
           "type": "SYMBOL",
           "name": "trigger_class"
-        }
-      ]
-    },
-    "trigger_name": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "object_name"
-              },
-              "named": false,
-              "value": "keyspace"
-            },
-            {
-              "type": "STRING",
-              "value": "."
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "object_name"
-              },
-              "named": false,
-              "value": "trigger"
-            }
-          ]
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "object_name"
-          },
-          "named": false,
-          "value": "trigger"
         }
       ]
     },

@@ -27,7 +27,8 @@ ALTER TABLE keyspace.table DROP column1, column2;
     (table_name)
     (alter_table_operation
       (alter_table_drop_columns
-        (alter_table_drop_column_list)))))
+        (object_name)
+        (object_name)))))
 
 ================================================================================
 ALTER TABLE keyspace.table DROP COMPACT STORAGE;
