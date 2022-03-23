@@ -2623,6 +2623,10 @@
     "named": false
   },
   {
+    "type": "code_block",
+    "named": false
+  },
+  {
     "type": "column",
     "named": false
   },

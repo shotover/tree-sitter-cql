@@ -44,7 +44,7 @@ const
     ),
     decimal_str =  seq( optional("-"), decimal_digits),
     float_str  = seq( optional("-"), decimal_digits, dot ,decimal_digits),
-    code  =  seq( "$$",/(\$?[^$]+)+/, "$$"),
+    code  =  /\$\$(\$?[^$]+)+\$\$/,
     name_chars  = /[a-zA-Z][A-Za-z0-9_$]*/
     timestamp  = seq( kw("TIMESTAMP"), alias( token( decimal_str), "time")),
         ttl  = seq( kw("TTL"), alias( token( decimal_str), "ttl")),
@@ -158,7 +158,7 @@ const
         _decimal_literal : $ =>  token( decimal_str ),
         _float_literal : $ => token( float_str),
         _boolean_literal : $ => token(choice( kw("TRUE"), kw("FALSE"))),
-        _code_block : $ => token( code ),
+        _code_block : $ => token(code),
         from_spec : $ => seq( kw("FROM"), $.table_name),
         table_name : $ => dotted_name( $.object_name, $.object_name, "table" ),
     where_spec : $ =>
@@ -558,7 +558,7 @@ const
                 kw("LANGUAGE"),
                 alias( $.object_name, "language"),
                 kw( "AS"),
-                $._code_block,
+                alias($._code_block,"code_block"),
             ),
         function_name : $ => dotted_name( $.object_name, $.object_name, "function"),
 

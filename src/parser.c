@@ -17,7 +17,7 @@
 #define STATE_COUNT 1083
 #define LARGE_STATE_COUNT 2
 #define SYMBOL_COUNT 305
-#define ALIAS_COUNT 29
+#define ALIAS_COUNT 30
 #define TOKEN_COUNT 145
 #define EXTERNAL_TOKEN_COUNT 0
 #define FIELD_COUNT 0
@@ -332,32 +332,33 @@ enum {
   anon_alias_sym_aggregate = 305,
   anon_alias_sym_alias = 306,
   anon_alias_sym_assignment_operand = 307,
-  anon_alias_sym_column = 308,
-  anon_alias_sym_entry = 309,
-  anon_alias_sym_finalfunc = 310,
-  anon_alias_sym_full = 311,
-  anon_alias_sym_function = 312,
-  anon_alias_sym_function_name = 313,
-  anon_alias_sym_hash_key = 314,
-  anon_alias_sym_index = 315,
-  anon_alias_sym_key = 316,
-  anon_alias_sym_keyspace = 317,
-  anon_alias_sym_language = 318,
-  anon_alias_sym_limit_value = 319,
-  anon_alias_sym_login = 320,
-  anon_alias_sym_materialized_view = 321,
-  anon_alias_sym_partition_key = 322,
-  anon_alias_sym_password = 323,
-  anon_alias_sym_primary_key = 324,
-  anon_alias_sym_role = 325,
-  anon_alias_sym_sfunc = 326,
-  anon_alias_sym_table = 327,
-  anon_alias_sym_time = 328,
-  anon_alias_sym_trigger = 329,
-  anon_alias_sym_ttl = 330,
-  anon_alias_sym_type = 331,
-  anon_alias_sym_user = 332,
-  anon_alias_sym_value = 333,
+  anon_alias_sym_code_block = 308,
+  anon_alias_sym_column = 309,
+  anon_alias_sym_entry = 310,
+  anon_alias_sym_finalfunc = 311,
+  anon_alias_sym_full = 312,
+  anon_alias_sym_function = 313,
+  anon_alias_sym_function_name = 314,
+  anon_alias_sym_hash_key = 315,
+  anon_alias_sym_index = 316,
+  anon_alias_sym_key = 317,
+  anon_alias_sym_keyspace = 318,
+  anon_alias_sym_language = 319,
+  anon_alias_sym_limit_value = 320,
+  anon_alias_sym_login = 321,
+  anon_alias_sym_materialized_view = 322,
+  anon_alias_sym_partition_key = 323,
+  anon_alias_sym_password = 324,
+  anon_alias_sym_primary_key = 325,
+  anon_alias_sym_role = 326,
+  anon_alias_sym_sfunc = 327,
+  anon_alias_sym_table = 328,
+  anon_alias_sym_time = 329,
+  anon_alias_sym_trigger = 330,
+  anon_alias_sym_ttl = 331,
+  anon_alias_sym_type = 332,
+  anon_alias_sym_user = 333,
+  anon_alias_sym_value = 334,
 };
 
 static const char * const ts_symbol_names[] = {
@@ -669,6 +670,7 @@ static const char * const ts_symbol_names[] = {
   [anon_alias_sym_aggregate] = "aggregate",
   [anon_alias_sym_alias] = "alias",
   [anon_alias_sym_assignment_operand] = "assignment_operand",
+  [anon_alias_sym_code_block] = "code_block",
   [anon_alias_sym_column] = "column",
   [anon_alias_sym_entry] = "entry",
   [anon_alias_sym_finalfunc] = "finalfunc",
@@ -1006,6 +1008,7 @@ static const TSSymbol ts_symbol_map[] = {
   [anon_alias_sym_aggregate] = anon_alias_sym_aggregate,
   [anon_alias_sym_alias] = anon_alias_sym_alias,
   [anon_alias_sym_assignment_operand] = anon_alias_sym_assignment_operand,
+  [anon_alias_sym_code_block] = anon_alias_sym_code_block,
   [anon_alias_sym_column] = anon_alias_sym_column,
   [anon_alias_sym_entry] = anon_alias_sym_entry,
   [anon_alias_sym_finalfunc] = anon_alias_sym_finalfunc,
@@ -2267,6 +2270,10 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = false,
   },
+  [anon_alias_sym_code_block] = {
+    .visible = true,
+    .named = false,
+  },
   [anon_alias_sym_column] = {
     .visible = true,
     .named = false,
@@ -2628,12 +2635,15 @@ static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE
   },
   [76] = {
     [9] = anon_alias_sym_language,
+    [11] = anon_alias_sym_code_block,
   },
   [77] = {
     [10] = anon_alias_sym_language,
+    [12] = anon_alias_sym_code_block,
   },
   [78] = {
     [11] = anon_alias_sym_language,
+    [13] = anon_alias_sym_code_block,
   },
   [79] = {
     [2] = anon_alias_sym_aggregate,
@@ -2642,12 +2652,14 @@ static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE
   },
   [80] = {
     [12] = anon_alias_sym_language,
+    [14] = anon_alias_sym_code_block,
   },
   [81] = {
     [13] = anon_alias_sym_primary_key,
   },
   [82] = {
     [13] = anon_alias_sym_language,
+    [15] = anon_alias_sym_code_block,
   },
   [83] = {
     [2] = anon_alias_sym_keyspace,
@@ -2662,6 +2674,7 @@ static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE
   },
   [85] = {
     [14] = anon_alias_sym_language,
+    [16] = anon_alias_sym_code_block,
   },
   [86] = {
     [5] = anon_alias_sym_aggregate,
@@ -2676,6 +2689,7 @@ static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE
   },
   [89] = {
     [15] = anon_alias_sym_language,
+    [17] = anon_alias_sym_code_block,
   },
   [90] = {
     [4] = anon_alias_sym_keyspace,
@@ -2691,6 +2705,7 @@ static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE
   },
   [92] = {
     [16] = anon_alias_sym_language,
+    [18] = anon_alias_sym_code_block,
   },
   [93] = {
     [7] = anon_alias_sym_aggregate,

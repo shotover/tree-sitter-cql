@@ -723,21 +723,8 @@
     "_code_block": {
       "type": "TOKEN",
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "$$"
-          },
-          {
-            "type": "PATTERN",
-            "value": "(\\$?[^$]+)+"
-          },
-          {
-            "type": "STRING",
-            "value": "$$"
-          }
-        ]
+        "type": "PATTERN",
+        "value": "\\$\\$(\\$?[^$]+)+\\$\\$"
       }
     },
     "from_spec": {
@@ -5603,8 +5590,13 @@
           "value": "AS"
         },
         {
-          "type": "SYMBOL",
-          "name": "_code_block"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_code_block"
+          },
+          "named": false,
+          "value": "code_block"
         }
       ]
     },
