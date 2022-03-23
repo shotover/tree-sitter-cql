@@ -795,7 +795,7 @@ const
             seq(
                 kw("ALTER"),
                 kw( "TYPE"),
-                dotted_name( $.object_name, $.object_name, "type"),
+                $.type_name,
                 $.alter_type_operation,
             ),
         alter_type_operation : $ =>
@@ -816,8 +816,7 @@ const
                 kw("ADD"),
                 commaSep1( $.typed_name ),
             ),
-        alter_type_rename : $ => seq( kw("RENAME"), $.alter_type_rename_list ),
-        alter_type_rename_list : $ => sep1( $.alter_type_rename_item, kw( "AND")),
+        alter_type_rename : $ => seq( kw("RENAME"), sep1( $.alter_type_rename_item, kw( "AND") )),
         alter_type_rename_item : $ => seq( alias( $.object_name, "column"), kw("TO"), alias( $.object_name, "column") ),
         alter_user : $ =>
             seq(

@@ -8069,45 +8069,8 @@
           "value": "TYPE"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "keyspace"
-                },
-                {
-                  "type": "STRING",
-                  "value": "."
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "type"
-                }
-              ]
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "object_name"
-              },
-              "named": false,
-              "value": "type"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "type_name"
         },
         {
           "type": "SYMBOL",
@@ -8220,38 +8183,34 @@
           "value": "RENAME"
         },
         {
-          "type": "SYMBOL",
-          "name": "alter_type_rename_list"
-        }
-      ]
-    },
-    "alter_type_rename_list": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "alter_type_rename_item"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "ALIAS",
-                "content": {
-                  "type": "PATTERN",
-                  "value": "[aA][nN][dD]"
-                },
-                "named": false,
-                "value": "AND"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "alter_type_rename_item"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "alter_type_rename_item"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "[aA][nN][dD]"
+                    },
+                    "named": false,
+                    "value": "AND"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "alter_type_rename_item"
+                  }
+                ]
               }
-            ]
-          }
+            }
+          ]
         }
       ]
     },

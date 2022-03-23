@@ -39,3 +39,10 @@ ALTER TYPE type RENAME column1 TO column2;
 ALTER TYPE type RENAME column1 TO column2;
 --------------------------------------------------------------------------------
 (source_file (alter_type (alter_type_operation (alter_type_rename (alter_type_rename_list (alter_type_rename_item))))))
+
+================================================================================
+ALTER TYPE type RENAME column1 TO column2 AND col3 TO col4;
+================================================================================
+ALTER TYPE type RENAME column1 TO column2 AND col3 TO col4;
+--------------------------------------------------------------------------------
+(source_file (alter_type (alter_type_operation (alter_type_rename (alter_type_rename_list (alter_type_rename_item))))))
