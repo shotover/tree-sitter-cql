@@ -63,7 +63,7 @@ CREATE AGGREGATE keyspace.aggregate  ( ASCII ) SFUNC sfunc STYPE BIGINT FINALFUN
     (data_type
       (data_type_name))
     (init_cond_definition
-      (init_cond_list_nested
+      (init_cond_nested_list
         (init_cond_list
           (constant)
           (constant)
@@ -88,8 +88,9 @@ CREATE AGGREGATE keyspace.aggregate  ( ASCII ) SFUNC sfunc STYPE BIGINT FINALFUN
       (data_type_name))
     (init_cond_definition
       (init_cond_hash
-        (init_cond_definition
-          (init_cond_list
-            (constant)
-            (constant)
-            (constant)))))))
+        (init_cond_hash_item
+          (init_cond_definition
+            (init_cond_list
+              (constant)
+              (constant)
+              (constant))))))))

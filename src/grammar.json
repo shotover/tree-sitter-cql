@@ -5004,26 +5004,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "hash_key"
-                },
-                {
-                  "type": "STRING",
-                  "value": ":"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "init_cond_definition"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "init_cond_hash_item"
             },
             {
               "type": "REPEAT",
@@ -5035,26 +5017,8 @@
                     "value": ","
                   },
                   {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "SYMBOL",
-                          "name": "object_name"
-                        },
-                        "named": false,
-                        "value": "hash_key"
-                      },
-                      {
-                        "type": "STRING",
-                        "value": ":"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "init_cond_definition"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "init_cond_hash_item"
                   }
                 ]
               }

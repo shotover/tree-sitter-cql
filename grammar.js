@@ -512,7 +512,7 @@ const
         init_cond_hash : $ =>
             seq(
                 "(",
-                commaSep1( seq( alias( $.object_name,"hash_key"), ":", $.init_cond_definition ) ),
+                commaSep1( $.init_cond_hash_item  ),
                 ")"
             ),
         init_cond_hash_item : $ => seq( alias( $.object_name,"hash_key"), ":", $.init_cond_definition ),
