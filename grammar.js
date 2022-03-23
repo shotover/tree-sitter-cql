@@ -548,7 +548,7 @@ const
                 optional( or_replace ),
                 kw( "FUNCTION"),
                 optional( if_not_exists ),
-                dotted_name( $.object_name, $.object_name, "function"),
+                $.function_name,
                 "(",
                 optional( commaSep1( $.typed_name ) ),
                 ")",
@@ -560,6 +560,8 @@ const
                 kw( "AS"),
                 $._code_block,
             ),
+        function_name : $ => dotted_name( $.object_name, $.object_name, "function"),
+
         data_type : $ => seq( $.data_type_name, optional($.data_type_definition)),
         data_type_name : $ =>
             choice (

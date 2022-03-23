@@ -5514,45 +5514,8 @@
           ]
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "keyspace"
-                },
-                {
-                  "type": "STRING",
-                  "value": "."
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "function"
-                }
-              ]
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "object_name"
-              },
-              "named": false,
-              "value": "function"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "function_name"
         },
         {
           "type": "STRING",
@@ -5642,6 +5605,47 @@
         {
           "type": "SYMBOL",
           "name": "_code_block"
+        }
+      ]
+    },
+    "function_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "object_name"
+              },
+              "named": false,
+              "value": "keyspace"
+            },
+            {
+              "type": "STRING",
+              "value": "."
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "object_name"
+              },
+              "named": false,
+              "value": "function"
+            }
+          ]
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "object_name"
+          },
+          "named": false,
+          "value": "function"
         }
       ]
     },

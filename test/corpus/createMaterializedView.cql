@@ -6,7 +6,9 @@ CREATE MATERIALIZED VIEW view AS SELECT col1, col2 FROM tbl WHERE col3 IS NOT NU
 
 (source_file
   (create_materialized_view
+    (materialized_view_name)
     (column_list)
+    (table_name)
     (materialized_view_where
       (column_not_null
         (object_name)))))
@@ -19,7 +21,9 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 
 (source_file
   (create_materialized_view
+    (materialized_view_name)
     (column_list)
+    (table_name)
     (materialized_view_where
       (column_not_null
         (object_name))
@@ -34,17 +38,20 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 
 (source_file
   (create_materialized_view
+    (materialized_view_name)
     (column_list)
+    (table_name)
     (materialized_view_where
       (column_not_null
         (object_name))
       (column_not_null
         (object_name)))
-    (materialized_view_options
-      (table_option_item
-        (table_option_name
-          (object_name))
-        (table_option_value)))))
+    (with_element
+      (table_options
+        (table_option_item
+          (table_option_name
+            (object_name))
+          (table_option_value))))))
 
 ================================================================================
 CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_target WHERE col3 IS NOT NULL AND col3 IS NOT NULL PRIMARY KEY (col1) WITH option1 = 'option' AND CLUSTERING ORDER BY (col2 DESC);
@@ -54,18 +61,21 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 
 (source_file
   (create_materialized_view
+    (materialized_view_name)
     (column_list)
+    (table_name)
     (materialized_view_where
       (column_not_null
         (object_name))
       (column_not_null
         (object_name)))
-    (materialized_view_options
-      (table_option_item
-        (table_option_name
-          (object_name))
-        (table_option_value))
-      (clustering_order))))
+    (with_element
+      (table_options
+        (table_option_item
+          (table_option_name
+            (object_name))
+          (table_option_value))
+        (clustering_order)))))
 
 ================================================================================
 CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_target WHERE col3 IS NOT NULL AND col4 IS NOT NULL AND col5 <> 'foo' PRIMARY KEY (col1) WITH option1 = 'option' AND option2 = 3.5 AND CLUSTERING ORDER BY (col2 DESC);
@@ -75,7 +85,9 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 
 (source_file
   (create_materialized_view
+    (materialized_view_name)
     (column_list)
+    (table_name)
     (materialized_view_where
       (column_not_null
         (object_name))
@@ -83,16 +95,17 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
         (object_name))
       (relation_element
         (constant)))
-    (materialized_view_options
-      (table_option_item
-        (table_option_name
-          (object_name))
-        (table_option_value))
-      (table_option_item
-        (table_option_name
-          (object_name))
-        (table_option_value))
-      (clustering_order))))
+    (with_element
+      (table_options
+        (table_option_item
+          (table_option_name
+            (object_name))
+          (table_option_value))
+        (table_option_item
+          (table_option_name
+            (object_name))
+          (table_option_value))
+        (clustering_order)))))
 
 ================================================================================
 CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_target WHERE col3 IS NOT NULL AND col4 IS NOT NULL AND col5 <> 'foo' PRIMARY KEY (col1) WITH CLUSTERING ORDER BY (col2 DESC);
@@ -102,7 +115,9 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 
 (source_file
   (create_materialized_view
+    (materialized_view_name)
     (column_list)
+    (table_name)
     (materialized_view_where
       (column_not_null
         (object_name))
@@ -110,8 +125,9 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
         (object_name))
       (relation_element
         (constant)))
-    (materialized_view_options
-      (clustering_order))))
+    (with_element
+      (table_options
+        (clustering_order)))))
 
 ================================================================================
 CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_target WHERE col3 IS NOT NULL AND col4 IS NOT NULL AND col5 <> 'foo' PRIMARY KEY (col1) WITH option1 = 'option' AND option2 = 3.5;
@@ -121,7 +137,9 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 
 (source_file
   (create_materialized_view
+    (materialized_view_name)
     (column_list)
+    (table_name)
     (materialized_view_where
       (column_not_null
         (object_name))
@@ -129,15 +147,16 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
         (object_name))
       (relation_element
         (constant)))
-    (materialized_view_options
-      (table_option_item
-        (table_option_name
-          (object_name))
-        (table_option_value))
-      (table_option_item
-        (table_option_name
-          (object_name))
-        (table_option_value)))))
+    (with_element
+      (table_options
+        (table_option_item
+          (table_option_name
+            (object_name))
+          (table_option_value))
+        (table_option_item
+          (table_option_name
+            (object_name))
+          (table_option_value))))))
 
 ================================================================================
 CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_target WHERE col3 IS NOT NULL AND col4 IS NOT NULL AND col5 <> 'foo' PRIMARY KEY (col1);
@@ -147,7 +166,9 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 
 (source_file
   (create_materialized_view
+    (materialized_view_name)
     (column_list)
+    (table_name)
     (materialized_view_where
       (column_not_null
         (object_name))
@@ -164,7 +185,9 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 
 (source_file
   (create_materialized_view
+    (materialized_view_name)
     (column_list)
+    (table_name)
     (materialized_view_where
       (column_not_null
         (object_name)))))
@@ -179,20 +202,23 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2, col3  FROM keyspace
 
 (source_file
   (create_materialized_view
+    (materialized_view_name)
     (column_list)
+    (table_name)
     (materialized_view_where
       (column_not_null
         (object_name))
       (column_not_null
         (object_name)))
-    (materialized_view_options
-      (table_option_item
-        (table_option_name
-          (object_name))
-        (option_hash
-          (option_hash_item)
-          (option_hash_item)))
-      (table_option_item
-        (table_option_name
-          (object_name))
-        (table_option_value)))))
+    (with_element
+      (table_options
+        (table_option_item
+          (table_option_name
+            (object_name))
+          (option_hash
+            (option_hash_item)
+            (option_hash_item)))
+        (table_option_item
+          (table_option_name
+            (object_name))
+          (table_option_value))))))

@@ -542,6 +542,10 @@
           "named": true
         },
         {
+          "type": "function_name",
+          "named": true
+        },
+        {
           "type": "return_mode",
           "named": true
         },
@@ -1005,6 +1009,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "function_name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "grant",

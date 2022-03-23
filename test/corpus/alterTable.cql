@@ -9,10 +9,10 @@ ALTER TABLE keyspace.table ADD column1 UUID, column2 BIGINT;
     (table_name)
     (alter_table_operation
       (alter_table_add
-        (alter_table_column_definition
+        (typed_name
           (data_type
             (data_type_name)))
-        (alter_table_column_definition
+        (typed_name
           (data_type
             (data_type_name)))))))
 
