@@ -459,7 +459,6 @@ const
                 kw( "ON"),
                 $.table_name,
             ),
-        trigger_name : $ => dotted_name( $.object_name, $.object_name, "trigger"),
 
         drop_type : $ =>
             seq(
@@ -520,19 +519,20 @@ const
             seq(
                 kw("CREATE"), kw("MATERIALIZED"), kw("VIEW"),
                 optional( if_not_exists),
-                dotted_name( $.object_name, $.object_name, "materialized_view"),
-                 kw( "AS"), kw( "SELECT"),
+                $.materialized_view_name,
+                kw( "AS"), kw( "SELECT"),
                 $.column_list,
                 kw( "FROM"),
-                dotted_name( $.object_name, $.object_name, "table"),
+                $.table_name,
                 $.materialized_view_where,
                 seq( primary_key,
                     "(",
                     alias( $.column_list, "primary_key"),
                     ")"),
-                optional( $.materialized_view_options ),
+                optional( $.with_element ),
             ),
 
+        materialized_view_name : $ => dotted_name( $.object_name, $.object_name, "materialized_view"),
         materialized_view_where : $ =>
             seq(
                 kw("WHERE"),
@@ -542,13 +542,6 @@ const
             ),
         column_not_null_list : $ => prec.left(sep1( $.column_not_null, kw("AND"))),
         column_not_null : $ => seq( $.object_name, kw("IS"), kw("NOT"), kw("NULL")),
-        materialized_view_options : $ =>
-            seq( kw("WITH"),
-            choice(
-                sep1( $.table_option_item, kw("AND")),
-                seq( sep1( $.table_option_item, kw("AND")), kw("AND"), $.clustering_order ),
-                $.clustering_order,
-            )),
         create_function : $ =>
             seq(
                 kw("CREATE"),
@@ -557,7 +550,7 @@ const
                 optional( if_not_exists ),
                 dotted_name( $.object_name, $.object_name, "function"),
                 "(",
-                optional( commaSep1( $.param ) ),
+                optional( commaSep1( $.typed_name ) ),
                 ")",
                 $.return_mode,
                 kw( "RETURNS"),
@@ -566,11 +559,6 @@ const
                 alias( $.object_name, "language"),
                 kw( "AS"),
                 $._code_block,
-            ),
-        param : $ =>
-            seq(
-                alias( $.object_name, "param_name"),
-                $.data_type
             ),
         data_type : $ => seq( $.data_type_name, optional($.data_type_definition)),
         data_type_name : $ =>
@@ -735,11 +723,13 @@ const
                 kw("CREATE"),
                 kw("TYPE"),
                 optional( if_not_exists ),
-                dotted_name( $.object_name, $.object_name, "type"),
+                $.type_name,
                 "(",
-                commaSep1( seq( alias( $.object_name, "column"), alias( $.data_type, "data_type")) ),
+                commaSep1( $.typed_name ),
                 ")",
             ),
+        typed_name : $ => seq( alias( $.object_name, "column"), $.data_type),
+        type_name : $ => dotted_name( $.object_name, $.object_name, "type"),
         create_user : $ =>
             seq(
                 kw("CREATE"),
@@ -796,8 +786,7 @@ const
                 $.alter_table_rename,
                 $.alter_table_with,
             ),
-        alter_table_add : $ => seq( kw("ADD"), commaSep1( $.alter_table_column_definition )),
-        alter_table_column_definition : $ => seq( alias( $.object_name, "column"), $.data_type),
+        alter_table_add : $ => seq( kw("ADD"), commaSep1( $.typed_name )),
         alter_table_drop_columns : $ => seq( kw("DROP"), commaSep1( $.object_name  )),
         alter_table_drop_compact_storage : $ => seq( kw("DROP"), kw("COMPACT"), kw("STORAGE") ),
         alter_table_rename : $ => seq( kw("RENAME"), alias( $.object_name, "column"), kw("TO"), alias( $.object_name, "column") ),
@@ -825,7 +814,7 @@ const
         alter_type_add : $ =>
             seq(
                 kw("ADD"),
-                commaSep1( seq(alias( $.object_name, "column"), $.data_type,)),
+                commaSep1( $.typed_name ),
             ),
         alter_type_rename : $ => seq( kw("RENAME"), $.alter_type_rename_list ),
         alter_type_rename_list : $ => sep1( $.alter_type_rename_item, kw( "AND")),

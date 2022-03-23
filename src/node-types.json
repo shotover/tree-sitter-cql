@@ -80,22 +80,7 @@
       "required": true,
       "types": [
         {
-          "type": "alter_table_column_definition",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "alter_table_column_definition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "data_type",
+          "type": "typed_name",
           "named": true
         }
       ]
@@ -196,7 +181,7 @@
       "required": true,
       "types": [
         {
-          "type": "data_type",
+          "type": "typed_name",
           "named": true
         }
       ]
@@ -568,11 +553,11 @@
           "named": true
         },
         {
-          "type": "param",
+          "type": "return_mode",
           "named": true
         },
         {
-          "type": "return_mode",
+          "type": "typed_name",
           "named": true
         }
       ]
@@ -637,11 +622,19 @@
           "named": true
         },
         {
-          "type": "materialized_view_options",
+          "type": "materialized_view_name",
           "named": true
         },
         {
           "type": "materialized_view_where",
+          "named": true
+        },
+        {
+          "type": "table_name",
+          "named": true
+        },
+        {
+          "type": "with_element",
           "named": true
         }
       ]
@@ -707,7 +700,21 @@
   {
     "type": "create_type",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "type_name",
+          "named": true
+        },
+        {
+          "type": "typed_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "create_user",
@@ -1333,23 +1340,9 @@
     "fields": {}
   },
   {
-    "type": "materialized_view_options",
+    "type": "materialized_view_name",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "clustering_order",
-          "named": true
-        },
-        {
-          "type": "table_option_item",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "materialized_view_where",
@@ -1400,21 +1393,6 @@
       "types": [
         {
           "type": "object_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "param",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "data_type",
           "named": true
         }
       ]
@@ -1958,6 +1936,26 @@
       "types": [
         {
           "type": "table_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "typed_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "data_type",
           "named": true
         }
       ]
@@ -2681,10 +2679,6 @@
   {
     "type": "object_name",
     "named": true
-  },
-  {
-    "type": "param_name",
-    "named": false
   },
   {
     "type": "partition_key",

@@ -220,3 +220,9 @@ CREATE TYPE if not exists keyspace.type ( col1 'foo' < 'subcol1', TIMESTAMP, BLO
 --------------------------------------------------------------------------------
 (source_file (create_type (data_type_name (object_name)) (data_type_definition (data_type_name (object_name)) (data_type_name) (data_type_name))))
 
+================================================================================
+CREATE TYPE type ( col1 UUID, Col2 int);
+================================================================================
+CREATE TYPE type ( col1 UUID, Col2 int);
+--------------------------------------------------------------------------------
+(source_file (create_type (data_type_name (object_name)) (data_type_definition (data_type_name (object_name)) (data_type_name) (data_type_name))))
