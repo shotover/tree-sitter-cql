@@ -5147,7 +5147,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "column_list"
+          "name": "materialized_view_columns"
         },
         {
           "type": "ALIAS",
@@ -5167,49 +5167,8 @@
           "name": "materialized_view_where"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[pP][rR][iI][mM][aA][rR][yY]"
-                  },
-                  "named": false,
-                  "value": "PRIMARY"
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[kK][eE][yY]"
-                  },
-                  "named": false,
-                  "value": "KEY"
-                }
-              ]
-            },
-            {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "column_list"
-              },
-              "named": false,
-              "value": "primary_key"
-            },
-            {
-              "type": "STRING",
-              "value": ")"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "primary_key_element"
         },
         {
           "type": "CHOICE",
@@ -5224,6 +5183,10 @@
           ]
         }
       ]
+    },
+    "materialized_view_columns": {
+      "type": "SYMBOL",
+      "name": "column_list"
     },
     "materialized_view_name": {
       "type": "CHOICE",

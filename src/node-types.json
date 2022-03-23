@@ -620,7 +620,7 @@
       "required": true,
       "types": [
         {
-          "type": "column_list",
+          "type": "materialized_view_columns",
           "named": true
         },
         {
@@ -629,6 +629,10 @@
         },
         {
           "type": "materialized_view_where",
+          "named": true
+        },
+        {
+          "type": "primary_key_element",
           "named": true
         },
         {
@@ -1347,6 +1351,21 @@
     "fields": {}
   },
   {
+    "type": "materialized_view_columns",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "column_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "materialized_view_name",
     "named": true,
     "fields": {}
@@ -1419,11 +1438,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "primary_key",
-    "named": false,
-    "fields": {}
   },
   {
     "type": "primary_key_column",

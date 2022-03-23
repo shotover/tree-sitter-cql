@@ -522,17 +522,14 @@ const
                 optional( if_not_exists),
                 $.materialized_view_name,
                 kw( "AS"), kw( "SELECT"),
-                $.column_list,
+                $.materialized_view_columns,
                 kw( "FROM"),
                 $.table_name,
                 $.materialized_view_where,
-                seq( primary_key,
-                    "(",
-                    alias( $.column_list, "primary_key"),
-                    ")"),
+                $.primary_key_element,
                 optional( $.with_element ),
             ),
-
+        materialized_view_columns : $ => $.column_list,
         materialized_view_name : $ => dotted_name( $.object_name, $.object_name, "materialized_view"),
         materialized_view_where : $ =>
             seq(
@@ -665,7 +662,7 @@ const
                 optional( seq( ",", $.primary_key_element)),
             ),
         column_definition : $ => seq( alias($.object_name, "column"), $.data_type, optional( $.primary_key_column)),
-        primary_key_column : $ => seq( kw("PRIMARY"), kw("KEY")),
+        primary_key_column : $ => primary_key,
         primary_key_element : $ =>
             seq(
                 primary_key,
