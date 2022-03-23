@@ -1,5 +1,10 @@
 [
   {
+    "type": "aggregate_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "alter_keyspace",
     "named": true,
     "fields": {},
@@ -518,6 +523,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "aggregate_name",
+          "named": true
+        },
         {
           "type": "data_type",
           "named": true
@@ -1175,21 +1184,6 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "init_cond_hash_item",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "init_cond_hash_item",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
       "required": true,
       "types": [
         {

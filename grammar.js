@@ -480,7 +480,7 @@ const
                 optional( or_replace ),
                 kw("AGGREGATE"),
                 optional( if_not_exists ),
-                dotted_name( $.object_name, $.object_name, "aggregate"),
+                $.aggregate_name,
                 "(",
                 $.data_type,
                 ")",
@@ -493,15 +493,16 @@ const
                 kw("INITCOND"),
                 $.init_cond_definition,
             ),
+        aggregate_name : $ => dotted_name( $.object_name, $.object_name, "aggregate"),
         init_cond_definition : $ =>
             choice(
                 $.constant,
                 $.init_cond_list,
-                $.init_cond_list_nested,
+                $.init_cond_nested_list,
                 $.init_cond_hash,
             ),
         init_cond_list : $ => seq( "(", commaSep1( $.constant), ")"),
-        init_cond_list_nested : $ =>
+        init_cond_nested_list : $ =>
             seq(
                 "(",
                 $.init_cond_list,
@@ -511,7 +512,7 @@ const
         init_cond_hash : $ =>
             seq(
                 "(",
-                commaSep1( $.init_cond_hash_item ),
+                commaSep1( seq( alias( $.object_name,"hash_key"), ":", $.init_cond_definition ) ),
                 ")"
             ),
         init_cond_hash_item : $ => seq( alias( $.object_name,"hash_key"), ":", $.init_cond_definition ),

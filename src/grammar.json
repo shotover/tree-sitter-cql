@@ -4772,45 +4772,8 @@
           ]
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "keyspace"
-                },
-                {
-                  "type": "STRING",
-                  "value": "."
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "aggregate"
-                }
-              ]
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "object_name"
-              },
-              "named": false,
-              "value": "aggregate"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "aggregate_name"
         },
         {
           "type": "STRING",
@@ -4885,6 +4848,47 @@
         {
           "type": "SYMBOL",
           "name": "init_cond_definition"
+        }
+      ]
+    },
+    "aggregate_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "object_name"
+              },
+              "named": false,
+              "value": "keyspace"
+            },
+            {
+              "type": "STRING",
+              "value": "."
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "object_name"
+              },
+              "named": false,
+              "value": "aggregate"
+            }
+          ]
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "object_name"
+          },
+          "named": false,
+          "value": "aggregate"
         }
       ]
     },
@@ -5000,8 +5004,26 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "init_cond_hash_item"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "object_name"
+                  },
+                  "named": false,
+                  "value": "hash_key"
+                },
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "init_cond_definition"
+                }
+              ]
             },
             {
               "type": "REPEAT",
@@ -5013,8 +5035,26 @@
                     "value": ","
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "init_cond_hash_item"
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "object_name"
+                        },
+                        "named": false,
+                        "value": "hash_key"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": ":"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "init_cond_definition"
+                      }
+                    ]
                   }
                 ]
               }
