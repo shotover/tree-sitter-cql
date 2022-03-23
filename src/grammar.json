@@ -4905,7 +4905,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "init_cond_list_nested"
+          "name": "init_cond_nested_list"
         },
         {
           "type": "SYMBOL",
@@ -4951,7 +4951,7 @@
         }
       ]
     },
-    "init_cond_list_nested": {
+    "init_cond_nested_list": {
       "type": "SEQ",
       "members": [
         {

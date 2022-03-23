@@ -1172,7 +1172,7 @@
           "named": true
         },
         {
-          "type": "init_cond_list_nested",
+          "type": "init_cond_nested_list",
           "named": true
         }
       ]
@@ -1209,7 +1209,7 @@
     }
   },
   {
-    "type": "init_cond_list_nested",
+    "type": "init_cond_nested_list",
     "named": true,
     "fields": {},
     "children": {
