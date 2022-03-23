@@ -522,7 +522,7 @@ const
                 optional( if_not_exists),
                 $.materialized_view_name,
                 kw( "AS"), kw( "SELECT"),
-                $.materialized_view_columns,
+                $.column_list,
                 kw( "FROM"),
                 $.table_name,
                 $.materialized_view_where,

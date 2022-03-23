@@ -5147,7 +5147,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "materialized_view_columns"
+          "name": "column_list"
         },
         {
           "type": "ALIAS",
