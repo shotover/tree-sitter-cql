@@ -3,29 +3,37 @@ DROP AGGREGATE IF EXISTS aggregate;
 ================================================================================
 DROP AGGREGATE IF EXISTS aggregate;
 --------------------------------------------------------------------------------
+
 (source_file
-  (drop_aggregate))
+  (drop_aggregate
+    (aggregate_name)))
 
 ================================================================================
 DROP AGGREGATE aggregate;
 ================================================================================
 DROP AGGREGATE aggregate;
 --------------------------------------------------------------------------------
+
 (source_file
-  (drop_aggregate))
+  (drop_aggregate
+    (aggregate_name)))
 
 ================================================================================
 DROP AGGREGATE IF EXISTS keyspace.aggregate;
 ================================================================================
 DROP AGGREGATE IF EXISTS keyspace.aggregate;
 --------------------------------------------------------------------------------
+
 (source_file
-    (drop_aggregate))
+  (drop_aggregate
+    (aggregate_name)))
 
 ================================================================================
 DROP AGGREGATE keyspace.aggregate;
 ================================================================================
 DROP AGGREGATE keyspace.aggregate;
 --------------------------------------------------------------------------------
+
 (source_file
-    (drop_aggregate))
+  (drop_aggregate
+    (aggregate_name)))

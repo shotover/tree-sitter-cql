@@ -5,7 +5,8 @@ DROP KEYSPACE keyspace;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_keyspace))
+  (drop_keyspace
+    (keyspace_name)))
 
 ================================================================================
 DROP KEYSPACE if exists keyspace;
@@ -14,4 +15,5 @@ DROP KEYSPACE if exists keyspace;
 --------------------------------------------------------------------------------
 
 (source_file
-  (drop_keyspace))
+  (drop_keyspace
+    (keyspace_name)))

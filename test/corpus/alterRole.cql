@@ -5,7 +5,8 @@ ALTER ROLE 'role';
 --------------------------------------------------------------------------------
 
 (source_file
-  (alter_role))
+  (alter_role
+    (role_name)))
 
 ================================================================================
 ALTER ROLE 'role' WITH PASSWORD = 'password';
@@ -15,6 +16,7 @@ ALTER ROLE 'role' WITH PASSWORD = 'password';
 
 (source_file
   (alter_role
+    (role_name)
     (role_with
       (role_with_option))))
 
@@ -26,6 +28,7 @@ ALTER ROLE 'role' WITH PASSWORD = 'password' AND LOGIN=false;
 
 (source_file
   (alter_role
+    (role_name)
     (role_with
       (role_with_option)
       (role_with_option))))
@@ -38,6 +41,7 @@ ALTER ROLE 'role' WITH SUPERUSER=false;
 
 (source_file
   (alter_role
+    (role_name)
     (role_with
       (role_with_option))))
 
@@ -49,6 +53,7 @@ ALTER ROLE 'role' WITH OPTIONS={ 'foo' : 3.14, 'bar' : 'pi' }
 
 (source_file
   (alter_role
+    (role_name)
     (role_with
       (role_with_option
         (option_hash

@@ -51,9 +51,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
+        {
+          "type": "role_name",
+          "named": true
+        },
         {
           "type": "role_with",
           "named": true
@@ -640,9 +644,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
+        {
+          "type": "role_name",
+          "named": true
+        },
         {
           "type": "role_with",
           "named": true
@@ -837,37 +845,107 @@
   {
     "type": "drop_aggregate",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregate_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "drop_function",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "function_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "drop_index",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "short_index_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "drop_keyspace",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "keyspace_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "drop_materialized_view",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "materialized_view_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "drop_role",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "role_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "drop_table",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "table_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "drop_trigger",
@@ -891,7 +969,17 @@
   {
     "type": "drop_type",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "type_name",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "drop_user",
@@ -1587,6 +1675,11 @@
     }
   },
   {
+    "type": "role_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "role_with",
     "named": true,
     "fields": {},
@@ -1680,6 +1773,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "short_index_name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "source_file",

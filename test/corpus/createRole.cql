@@ -5,7 +5,8 @@ CREATE ROLE if not exists role;
 --------------------------------------------------------------------------------
 
 (source_file
-  (create_role))
+  (create_role
+    (role_name)))
 
 ================================================================================
 CREATE ROLE 'role';
@@ -14,7 +15,8 @@ CREATE ROLE 'role';
 --------------------------------------------------------------------------------
 
 (source_file
-  (create_role))
+  (create_role
+    (role_name)))
 
 ================================================================================
 CREATE ROLE 'role' WITH PASSWORD = 'password';
@@ -24,6 +26,7 @@ CREATE ROLE 'role' WITH PASSWORD = 'password';
 
 (source_file
   (create_role
+    (role_name)
     (role_with
       (role_with_option))))
 
@@ -35,6 +38,7 @@ CREATE ROLE 'role' WITH PASSWORD = 'password' AND LOGIN=false;
 
 (source_file
   (create_role
+    (role_name)
     (role_with
       (role_with_option)
       (role_with_option))))
@@ -47,6 +51,7 @@ CREATE ROLE 'role' WITH SUPERUSER=false;
 
 (source_file
   (create_role
+    (role_name)
     (role_with
       (role_with_option))))
 
@@ -58,6 +63,7 @@ CREATE ROLE 'role' WITH OPTIONS={ 'foo' : 3.14, 'bar' : 'pi' }
 
 (source_file
   (create_role
+    (role_name)
     (role_with
       (role_with_option
         (option_hash
