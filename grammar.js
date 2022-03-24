@@ -245,9 +245,9 @@ const
         using_timestamp_spec : $ => seq( kw("USING"), timestamp ),
         //timestamp : $ => seq( kw("TIMESTAMP"), alias( $._decimal_literal, "timestamp")),
         if_exist : $ => token( if_exists),
-        if_spec : $ => seq( kw( "IF"), $.if_condition_list),
-        if_condition_list : $ => seq( $.if_condition, repeat( seq( kw("AND"), $.if_condition))),
-        if_condition : $ => seq( alias( $.object_name, "column"), "=", $.constant),
+        if_spec : $ => seq( kw( "IF"), $.relation_elements),
+//        if_condition_list : $ => seq( $.if_condition, repeat( seq( kw("AND"), $.if_condition))),
+//        if_condition : $ => seq( alias( $.object_name, "column"), "=", $.constant),
         insert_statement : $ =>
             seq(
                 optional( $.begin_batch),

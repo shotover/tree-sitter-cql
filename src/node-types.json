@@ -1125,36 +1125,6 @@
     }
   },
   {
-    "type": "if_condition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "constant",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "if_condition_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "if_condition",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "if_spec",
     "named": true,
     "fields": {},
@@ -1163,7 +1133,7 @@
       "required": true,
       "types": [
         {
-          "type": "if_condition_list",
+          "type": "relation_elements",
           "named": true
         }
       ]

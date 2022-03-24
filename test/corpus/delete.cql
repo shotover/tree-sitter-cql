@@ -36,8 +36,8 @@ BEGIN UNLOGGED BATCH DELETE column [ 6 ] from keyspace.table USING TIMESTAMP 5 W
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================
@@ -109,6 +109,6 @@ DELETE column, column3 from keyspace.table WHERE column2='foo' IF column4 = 'bar
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))

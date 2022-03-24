@@ -65,8 +65,8 @@ UPDATE keyspace.table SET col1 = 'foo' WHERE col2=5 IF col3=7;
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================
@@ -89,8 +89,8 @@ UPDATE keyspace.table SET col1 = { 5 : 'hello', 'world' : 5b6962dd-3f90-4c93-8f6
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================
@@ -111,8 +111,8 @@ UPDATE keyspace.table SET col1 = {  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================
@@ -133,8 +133,8 @@ UPDATE keyspace.table SET col1 = [  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================
@@ -153,8 +153,8 @@ UPDATE keyspace.table SET col1 = col2+5 WHERE col2=5 IF col3=7;
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================
@@ -178,8 +178,8 @@ UPDATE keyspace.table SET col1 = col2+{ 5 : 'hello', 'world' : 5b6962dd-3f90-4c9
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================
@@ -202,8 +202,8 @@ UPDATE keyspace.table SET col1 = { 5 : 'hello', 'world' : 5b6962dd-3f90-4c93-8f6
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================
@@ -225,8 +225,8 @@ UPDATE keyspace.table SET col1 = col2 + {  'hello',  5b6962dd-3f90-4c93-8f61-eab
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================
@@ -247,8 +247,8 @@ UPDATE keyspace.table SET col1 = {  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================
@@ -270,8 +270,8 @@ UPDATE keyspace.table SET col1 = col2+[  'hello',  5b6962dd-3f90-4c93-8f61-eabfa
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================
@@ -292,8 +292,8 @@ UPDATE keyspace.table SET col1 = [  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================
@@ -313,8 +313,8 @@ UPDATE keyspace.table SET col1[5] = 'hello' WHERE col2=5 IF col3=7;
         (relation_element
           (constant))))
     (if_spec
-      (if_condition_list
-        (if_condition
+      (relation_elements
+        (relation_element
           (constant))))))
 
 ================================================================================

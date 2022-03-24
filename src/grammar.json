@@ -1628,59 +1628,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "if_condition_list"
-        }
-      ]
-    },
-    "if_condition_list": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "if_condition"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "ALIAS",
-                "content": {
-                  "type": "PATTERN",
-                  "value": "[aA][nN][dD]"
-                },
-                "named": false,
-                "value": "AND"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "if_condition"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "if_condition": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "object_name"
-          },
-          "named": false,
-          "value": "column"
-        },
-        {
-          "type": "STRING",
-          "value": "="
-        },
-        {
-          "type": "SYMBOL",
-          "name": "constant"
+          "name": "relation_elements"
         }
       ]
     },
