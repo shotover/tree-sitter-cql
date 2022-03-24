@@ -56,22 +56,6 @@ INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5) USING TIMESTAMP 3;
     (using_ttl_timestamp)))
 
 ================================================================================
-INSERT INTO table VALUES ('hello', 5);
-================================================================================
-INSERT INTO table VALUES ('hello', 5);
---------------------------------------------------------------------------------
-
-(source_file
-  (insert_statement
-    (table_name)
-    (insert_values_spec
-      (expression_list
-        (expression
-          (constant))
-        (expression
-          (constant))))))
-
-================================================================================
 INSERT INTO table (col1, col2) JSON $$ json code $$;
 ================================================================================
 INSERT INTO table (col1, col2) JSON $$ json code $$;

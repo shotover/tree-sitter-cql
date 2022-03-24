@@ -1670,16 +1670,8 @@
           "name": "table_name"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "insert_column_spec"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "insert_column_spec"
         },
         {
           "type": "SYMBOL",

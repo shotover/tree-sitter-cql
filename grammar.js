@@ -246,15 +246,13 @@ const
         //timestamp : $ => seq( kw("TIMESTAMP"), alias( $._decimal_literal, "timestamp")),
         if_exist : $ => token( if_exists),
         if_spec : $ => seq( kw( "IF"), $.relation_elements),
-//        if_condition_list : $ => seq( $.if_condition, repeat( seq( kw("AND"), $.if_condition))),
-//        if_condition : $ => seq( alias( $.object_name, "column"), "=", $.constant),
         insert_statement : $ =>
             seq(
                 optional( $.begin_batch),
                 kw("INSERT"),
                 kw("INTO"),
                 $.table_name,
-                optional( $.insert_column_spec ),
+                $.insert_column_spec,
                 $.insert_values_spec,
                 optional( if_not_exists ),
                 optional( $.using_ttl_timestamp )
