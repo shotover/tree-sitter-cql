@@ -7547,66 +7547,15 @@
           "value": "VIEW"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "keyspace"
-                },
-                {
-                  "type": "STRING",
-                  "value": "."
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "object_name"
-                  },
-                  "named": false,
-                  "value": "materialized_view"
-                }
-              ]
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "object_name"
-              },
-              "named": false,
-              "value": "materialized_view"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "materialized_view_name"
         },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[wW][iI][tT][hH]"
-                  },
-                  "named": false,
-                  "value": "WITH"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "table_options"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "with_element"
             },
             {
               "type": "BLANK"
@@ -7837,7 +7786,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "alter_table_with"
+          "name": "with_element"
         }
       ]
     },
@@ -7989,24 +7938,6 @@
           },
           "named": false,
           "value": "column"
-        }
-      ]
-    },
-    "alter_table_with": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[wW][iI][tT][hH]"
-          },
-          "named": false,
-          "value": "WITH"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "table_options"
         }
       ]
     },

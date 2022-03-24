@@ -64,7 +64,7 @@ ALTER TABLE keyspace.table WITH option1 = 'option' AND option2 = 3.5;
   (alter_table
     (table_name)
     (alter_table_operation
-      (alter_table_with
+      (with_element
         (table_options
           (table_option_item
             (table_option_name

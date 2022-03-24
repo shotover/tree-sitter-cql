@@ -748,8 +748,8 @@ const
                 kw("ALTER"),
                 kw( "MATERIALIZED"),
                 kw( "VIEW"),
-                dotted_name( $.object_name, $.object_name, "materialized_view"),
-                optional( seq( kw("WITH"), $.table_options))
+                $.materialized_view_name,
+                optional( $.with_element),
             ),
         alter_keyspace : $ =>
             seq(
@@ -784,13 +784,12 @@ const
                 $.alter_table_drop_columns,
                 $.alter_table_drop_compact_storage,
                 $.alter_table_rename,
-                $.alter_table_with,
+                $.with_element,
             ),
         alter_table_add : $ => seq( kw("ADD"), commaSep1( $.typed_name )),
         alter_table_drop_columns : $ => seq( kw("DROP"), commaSep1( $.object_name  )),
         alter_table_drop_compact_storage : $ => seq( kw("DROP"), kw("COMPACT"), kw("STORAGE") ),
         alter_table_rename : $ => seq( kw("RENAME"), alias( $.object_name, "column"), kw("TO"), alias( $.object_name, "column") ),
-        alter_table_with : $ => seq( kw("WITH"), $.table_options ),
         alter_type : $ =>
             seq(
                 kw("ALTER"),

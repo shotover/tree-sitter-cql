@@ -32,11 +32,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
-          "type": "table_options",
+          "type": "materialized_view_name",
+          "named": true
+        },
+        {
+          "type": "with_element",
           "named": true
         }
       ]
@@ -136,7 +140,7 @@
           "named": true
         },
         {
-          "type": "alter_table_with",
+          "type": "with_element",
           "named": true
         }
       ]
@@ -146,21 +150,6 @@
     "type": "alter_table_rename",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "alter_table_with",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "table_options",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "alter_type",

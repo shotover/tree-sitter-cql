@@ -7,8 +7,7 @@ CREATE MATERIALIZED VIEW view AS SELECT col1, col2 FROM tbl WHERE col3 IS NOT NU
 (source_file
   (create_materialized_view
     (materialized_view_name)
-    (materialized_view_columns
-      (column_list))
+    (column_list)
     (table_name)
     (materialized_view_where
       (column_not_null
@@ -17,16 +16,15 @@ CREATE MATERIALIZED VIEW view AS SELECT col1, col2 FROM tbl WHERE col3 IS NOT NU
       (primary_key_definition))))
 
 ================================================================================
-CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_target WHERE col3 IS NOT NULL AND col3 IS NOT NULL PRIMARY KEY (col1)
+CREATE MATERIALIZED VIEW IF NOT EXISTS keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_target WHERE col3 IS NOT NULL AND col3 IS NOT NULL PRIMARY KEY (col1)
 ================================================================================
-CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_target WHERE col3 IS NOT NULL AND col3 IS NOT NULL PRIMARY KEY (col1)
+CREATE MATERIALIZED VIEW IF NOT EXISTS keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_target WHERE col3 IS NOT NULL AND col3 IS NOT NULL PRIMARY KEY (col1)
 --------------------------------------------------------------------------------
 
 (source_file
   (create_materialized_view
     (materialized_view_name)
-    (materialized_view_columns
-      (column_list))
+    (column_list)
     (table_name)
     (materialized_view_where
       (column_not_null
@@ -45,8 +43,7 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 (source_file
   (create_materialized_view
     (materialized_view_name)
-    (materialized_view_columns
-      (column_list))
+    (column_list)
     (table_name)
     (materialized_view_where
       (column_not_null
@@ -71,8 +68,7 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 (source_file
   (create_materialized_view
     (materialized_view_name)
-    (materialized_view_columns
-      (column_list))
+    (column_list)
     (table_name)
     (materialized_view_where
       (column_not_null
@@ -98,8 +94,7 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 (source_file
   (create_materialized_view
     (materialized_view_name)
-    (materialized_view_columns
-      (column_list))
+    (column_list)
     (table_name)
     (materialized_view_where
       (column_not_null
@@ -131,8 +126,7 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 (source_file
   (create_materialized_view
     (materialized_view_name)
-    (materialized_view_columns
-      (column_list))
+    (column_list)
     (table_name)
     (materialized_view_where
       (column_not_null
@@ -156,8 +150,7 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 (source_file
   (create_materialized_view
     (materialized_view_name)
-    (materialized_view_columns
-      (column_list))
+    (column_list)
     (table_name)
     (materialized_view_where
       (column_not_null
@@ -188,8 +181,7 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 (source_file
   (create_materialized_view
     (materialized_view_name)
-    (materialized_view_columns
-      (column_list))
+    (column_list)
     (table_name)
     (materialized_view_where
       (column_not_null
@@ -210,8 +202,7 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2 FROM ks_target.tbl_t
 (source_file
   (create_materialized_view
     (materialized_view_name)
-    (materialized_view_columns
-      (column_list))
+    (column_list)
     (table_name)
     (materialized_view_where
       (column_not_null
@@ -233,8 +224,7 @@ CREATE MATERIALIZED VIEW keyspace.view AS SELECT col1, col2, col3  FROM keyspace
 (source_file
   (create_materialized_view
     (materialized_view_name)
-    (materialized_view_columns
-      (column_list))
+    (column_list)
     (table_name)
     (materialized_view_where
       (column_not_null
