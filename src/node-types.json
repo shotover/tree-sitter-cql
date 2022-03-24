@@ -571,7 +571,7 @@
           "named": true
         },
         {
-          "type": "index_name",
+          "type": "short_index_name",
           "named": true
         },
         {
@@ -881,7 +881,7 @@
       "required": true,
       "types": [
         {
-          "type": "short_index_name",
+          "type": "index_name",
           "named": true
         }
       ]

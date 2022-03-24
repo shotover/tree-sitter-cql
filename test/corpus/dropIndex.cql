@@ -6,7 +6,7 @@ DROP INDEX idx;
 
 (source_file
   (drop_index
-    (short_index_name)))
+    (index_name)))
 
 ================================================================================
 DROP INDEX keyspace.idx;
@@ -16,9 +16,7 @@ DROP INDEX keyspace.idx;
 
 (source_file
   (drop_index
-    (short_index_name))
-  (ERROR
-    (UNEXPECTED 'd')))
+    (index_name)))
 
 ================================================================================
 DROP INDEX IF EXISTS idx;
@@ -28,7 +26,7 @@ DROP INDEX IF EXISTS idx;
 
 (source_file
   (drop_index
-    (short_index_name)))
+    (index_name)))
 
 ================================================================================
 DROP INDEX IF EXISTS keyspace.idx;
@@ -38,6 +36,4 @@ DROP INDEX IF EXISTS keyspace.idx;
 
 (source_file
   (drop_index
-    (short_index_name))
-  (ERROR
-    (UNEXPECTED 'd')))
+    (index_name)))

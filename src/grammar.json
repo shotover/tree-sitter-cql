@@ -2453,7 +2453,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "index_name"
+              "name": "short_index_name"
             },
             {
               "type": "BLANK"
@@ -2660,7 +2660,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "short_index_name"
+          "name": "index_name"
         }
       ]
     },

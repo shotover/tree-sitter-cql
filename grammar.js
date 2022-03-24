@@ -304,7 +304,7 @@ const
                 kw( "CREATE"),
                 kw("INDEX"),
                 optional( if_not_exists ),
-                optional( $.index_name ),
+                optional( $.short_index_name ),
                 kw( "ON"),
                 $.table_name,
                 "(",
@@ -320,7 +320,7 @@ const
                 kw( "DROP"),
                 kw("INDEX"),
                 optional( if_exists ),
-                $.short_index_name,
+                $.index_name,
         ),
         update : $ =>
             seq (
