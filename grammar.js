@@ -326,11 +326,11 @@ const
                 kw( "UPDATE"),
                 dotted_name( $.object_name, $.object_name, "table"),
                 optional( $.using_ttl_timestamp),
-                kw( "SET"),
-                commaSep1( $.assignment_element),
+                $.update_assignments,
                 $.where_spec,
                 optional( choice( if_exists, $.if_spec))
             ),
+        update_assignments : $ => seq( kw( "SET"), commaSep1( $.assignment_element)),
         assignment_element : $ =>
             choice(
                 seq( $.object_name, "=", choice( $.constant, $.assignment_map, $.assignment_set, $.assignment_list )),

@@ -2033,10 +2033,6 @@
       "required": true,
       "types": [
         {
-          "type": "assignment_element",
-          "named": true
-        },
-        {
           "type": "begin_batch",
           "named": true
         },
@@ -2045,11 +2041,30 @@
           "named": true
         },
         {
+          "type": "update_assignments",
+          "named": true
+        },
+        {
           "type": "using_ttl_timestamp",
           "named": true
         },
         {
           "type": "where_spec",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "update_assignments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment_element",
           "named": true
         }
       ]

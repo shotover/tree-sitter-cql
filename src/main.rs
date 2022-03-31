@@ -3,7 +3,7 @@ use tree_sitter::{
     Language, LogType, Node, Parser, Query, QueryCapture, QueryCursor, QueryMatch, Tree, TreeCursor,
 };
 
- const TEXT: &str = "INSERT INTO table (col1, col2) VALUES (( 5, 6 ), 'foo');";
+ const TEXT: &str = "UPDATE foo SET c = 'yo', v = 123 WHERE z = 1";
 //const TEXT: &str = "Drop aggregate if exists foo";
  //const TEXT: &str = "BEGIN LOGGED BATCH USING TIMESTAMP 5 INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5);";
 const QUERY: &str = "expression_list/ expression[assignment_map|assignment_list|assignment_set|assignment_tuple] ";
