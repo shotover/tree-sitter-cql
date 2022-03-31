@@ -324,7 +324,7 @@ const
             seq (
                 optional( $.begin_batch),
                 kw( "UPDATE"),
-                dotted_name( $.object_name, $.object_name, "table"),
+                $.table_name,
                 optional( $.using_ttl_timestamp),
                 $.update_assignments,
                 $.where_spec,

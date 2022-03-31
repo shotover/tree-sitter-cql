@@ -8,6 +8,7 @@ BEGIN LOGGED BATCH USING TIMESTAMP 5 UPDATE keyspace.table SET col1 = 'foo' WHER
   (update
     (begin_batch
       (using_timestamp_spec))
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -25,6 +26,7 @@ UPDATE keyspace.table USING TIMESTAMP 3 SET col1 = 'foo' WHERE col2=5;
 
 (source_file
   (update
+    (table_name)
     (using_ttl_timestamp)
     (update_assignments
       (assignment_element
@@ -43,6 +45,7 @@ UPDATE keyspace.table SET col1 = 'foo' WHERE col2=5 IF EXISTS;
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -60,6 +63,7 @@ UPDATE keyspace.table SET col1 = 'foo' WHERE col2=5 IF col3=7;
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -81,6 +85,7 @@ UPDATE keyspace.table SET col1 = { 5 : 'hello', 'world' : 5b6962dd-3f90-4c93-8f6
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -106,6 +111,7 @@ UPDATE keyspace.table SET col1 = {  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -129,6 +135,7 @@ UPDATE keyspace.table SET col1 = [  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -152,6 +159,7 @@ UPDATE keyspace.table SET col1 = col2+5 WHERE col2=5 IF col3=7;
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -173,6 +181,7 @@ UPDATE keyspace.table SET col1 = col2+{ 5 : 'hello', 'world' : 5b6962dd-3f90-4c9
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -199,6 +208,7 @@ UPDATE keyspace.table SET col1 = { 5 : 'hello', 'world' : 5b6962dd-3f90-4c93-8f6
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -224,6 +234,7 @@ UPDATE keyspace.table SET col1 = col2 + {  'hello',  5b6962dd-3f90-4c93-8f61-eab
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -248,6 +259,7 @@ UPDATE keyspace.table SET col1 = {  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -271,6 +283,7 @@ UPDATE keyspace.table SET col1 = col2+[  'hello',  5b6962dd-3f90-4c93-8f61-eabfa
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -295,6 +308,7 @@ UPDATE keyspace.table SET col1 = [  'hello',  5b6962dd-3f90-4c93-8f61-eabfa4a803
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (object_name)
@@ -318,6 +332,7 @@ UPDATE keyspace.table SET col1[5] = 'hello' WHERE col2=5 IF col3=7;
 
 (source_file
   (update
+    (table_name)
     (update_assignments
       (assignment_element
         (indexed_column
@@ -340,6 +355,7 @@ UPDATE keyspace.table USING TIMESTAMP 3 SET col1 = 'foo' WHERE col2=5;
 
 (source_file
   (update
+    (table_name)
     (using_ttl_timestamp)
     (update_assignments
       (assignment_element
