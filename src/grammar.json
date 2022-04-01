@@ -359,31 +359,41 @@
       ]
     },
     "select_element": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "object_name"
+              },
+              "named": false,
+              "value": "column"
+            },
+            {
               "type": "SYMBOL",
-              "name": "object_name"
-            },
-            {
-              "type": "STRING",
-              "value": "."
-            },
-            {
-              "type": "STRING",
-              "value": "*"
+              "name": "function_call"
             }
           ]
         },
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
-              "type": "CHOICE",
+              "type": "SEQ",
               "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[aA][sS]"
+                  },
+                  "named": false,
+                  "value": "AS"
+                },
                 {
                   "type": "ALIAS",
                   "content": {
@@ -391,44 +401,12 @@
                     "name": "object_name"
                   },
                   "named": false,
-                  "value": "column"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "function_call"
+                  "value": "alias"
                 }
               ]
             },
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "PATTERN",
-                        "value": "[aA][sS]"
-                      },
-                      "named": false,
-                      "value": "AS"
-                    },
-                    {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "object_name"
-                      },
-                      "named": false,
-                      "value": "alias"
-                    }
-                  ]
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
+              "type": "BLANK"
             }
           ]
         }

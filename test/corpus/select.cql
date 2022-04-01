@@ -24,20 +24,6 @@ SELECT column FROM table;
       (table_name))))
 
 ================================================================================
-SELECT column.* FROM table;
-================================================================================
-SELECT column.* FROM table;
---------------------------------------------------------------------------------
-
-(source_file
-  (select_statement
-    (select_elements
-      (select_element
-        (object_name)))
-    (from_spec
-      (table_name))))
-
-================================================================================
 SELECT column AS column2 FROM table;
 ================================================================================
 SELECT column AS column2 FROM table;

@@ -121,12 +121,9 @@ const
             repeat(seq(",", $.select_element)),
             ),
         select_element: $ =>
-            choice(
-                seq($.object_name, dot, star ),
-                seq(
-                    choice(  alias( $.object_name, "column"), $.function_call),
-                    optional( seq( kw("AS"), alias( $.object_name, "alias" ))),
-                ),
+            seq(
+                choice(  alias( $.object_name, "column"), $.function_call),
+                optional( seq( kw("AS"), alias( $.object_name, "alias" ))),
             ),
         function_call: $ =>
             seq(

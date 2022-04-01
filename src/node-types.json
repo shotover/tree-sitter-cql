@@ -1690,10 +1690,6 @@
         {
           "type": "function_call",
           "named": true
-        },
-        {
-          "type": "object_name",
-          "named": true
         }
       ]
     }
