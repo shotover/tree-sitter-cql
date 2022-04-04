@@ -14,7 +14,7 @@ const
     dot = ".",
     star = "*",
     comparative_operators = choice("<", "<=", "<>", "=", ">", ">="),
-    mathematical_operators = choice( "+", "-", star, "/", "%", ),
+    arithmetic_operators = choice( "+", "-", star, "/", "%", ),
     plus_or_minus = choice( "+", "-"),
 
     if_not_exists = seq(kw( "IF"),kw("NOT"),kw("EXISTS")),
@@ -30,17 +30,11 @@ const
     decimal_digits = /[0-9]+/,
     hex_str = choice(
         seq(
-            "X'",
-            repeat1(
-                seq(
-                    hex_digit,
-                    hex_digit,
-                )
-            ),
-            squote,
+            "0X",
+            repeat1( hex_digit ),
         ),
         seq(
-            "0X",
+            "0x",
             repeat1( hex_digit ),
         ),
     ),
@@ -49,7 +43,7 @@ const
     code  =  /\$\$(\$?[^$]+)+\$\$/,
     name_chars  = /[a-zA-Z][A-Za-z0-9_$]*/
     timestamp  = seq( kw("TIMESTAMP"), alias( token( decimal_str), "time")),
-        ttl  = seq( kw("TTL"), alias( token( decimal_str), "ttl")),
+    ttl  = seq( kw("TTL"), alias( token( decimal_str), "ttl")),
 
     module.exports = grammar({
     name: 'cql',
@@ -103,7 +97,6 @@ const
                 optional(";"),
             ),
 
-
         select_statement: $ =>
             seq(
                 kw("SELECT"),
@@ -154,6 +147,8 @@ const
                 $._string_literal,
                 token(uuid_str ),
             ),
+        bind_marker : $ => choice( "?", seq(":", $.object_name )),
+        _value_marker : $ => choice( $.constant, $.bind_marker ),
         _string_literal: $ => token(string_str),
         _decimal_literal : $ =>  token( decimal_str ),
         _float_literal : $ => token( float_str),
@@ -166,15 +161,14 @@ const
             choice (
                 seq( alias( $.object_name, "column" ),
                     comparative_operators,
-                    $.constant,),
+                    $._value_marker),
                 seq( $.function_call,
                     comparative_operators,
-                    $.constant,),
+                    $._value_marker),
                 seq(
                     $.function_call,
                     comparative_operators,
-                    $.function_call,
-                ),
+                    $.function_call),
                 seq(
                     alias( $.object_name, "column" ),
                     kw("IN"),
@@ -266,14 +260,15 @@ const
         expression : $ =>
             choice(
                 $.constant,
+                $.bind_marker,
                 $.assignment_map,
                 $.assignment_set,
                 $.assignment_list,
                 $.assignment_tuple,
             ),
-        assignment_map : $ => seq("{", commaSep1( seq( $.constant, ":", $.constant)),"}"),
-        assignment_set : $ => seq("{", optional( commaSep1( $.constant ) ),"}"),
-        assignment_list : $  => seq( "[", commaSep1( $.constant ), "]"),
+        assignment_map : $ => seq("{", commaSep1( seq( $.constant, ":", $._value_marker)),"}"),
+        assignment_set : $ => seq("{", optional( commaSep1( $._value_marker)),"}"),
+        assignment_list : $  => seq( "[", commaSep1( $._value_marker ), "]"),
         assignment_tuple : $ =>
             seq(
                 "(",

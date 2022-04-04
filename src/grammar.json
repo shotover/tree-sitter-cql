@@ -519,27 +519,14 @@
                 "members": [
                   {
                     "type": "STRING",
-                    "value": "X'"
+                    "value": "0X"
                   },
                   {
                     "type": "REPEAT1",
                     "content": {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "PATTERN",
-                          "value": "[0-9a-fA-F]"
-                        },
-                        {
-                          "type": "PATTERN",
-                          "value": "[0-9a-fA-F]"
-                        }
-                      ]
+                      "type": "PATTERN",
+                      "value": "[0-9a-fA-F]"
                     }
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "'"
                   }
                 ]
               },
@@ -548,7 +535,7 @@
                 "members": [
                   {
                     "type": "STRING",
-                    "value": "0X"
+                    "value": "0x"
                   },
                   {
                     "type": "REPEAT1",
@@ -589,6 +576,41 @@
             "type": "PATTERN",
             "value": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
           }
+        }
+      ]
+    },
+    "bind_marker": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "?"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": ":"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "object_name"
+            }
+          ]
+        }
+      ]
+    },
+    "_value_marker": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "constant"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "bind_marker"
         }
       ]
     },
@@ -821,7 +843,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "constant"
+              "name": "_value_marker"
             }
           ]
         },
@@ -863,7 +885,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "constant"
+              "name": "_value_marker"
             }
           ]
         },
@@ -1844,6 +1866,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "bind_marker"
+        },
+        {
+          "type": "SYMBOL",
           "name": "assignment_map"
         },
         {
@@ -1883,7 +1909,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "constant"
+                  "name": "_value_marker"
                 }
               ]
             },
@@ -1909,7 +1935,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "constant"
+                        "name": "_value_marker"
                       }
                     ]
                   }
@@ -1939,7 +1965,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "constant"
+                  "name": "_value_marker"
                 },
                 {
                   "type": "REPEAT",
@@ -1952,7 +1978,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "constant"
+                        "name": "_value_marker"
                       }
                     ]
                   }
@@ -1982,7 +2008,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "constant"
+              "name": "_value_marker"
             },
             {
               "type": "REPEAT",
@@ -1995,7 +2021,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "constant"
+                    "name": "_value_marker"
                   }
                 ]
               }

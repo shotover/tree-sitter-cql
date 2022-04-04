@@ -151,23 +151,6 @@ SELECT column FROM table WHERE col >= 3.5;
           (constant))))))
 
 ================================================================================
-SELECT column FROM table WHERE col = X'E0';
-================================================================================
-SELECT column FROM table WHERE col = X'E0';
---------------------------------------------------------------------------------
-
-(source_file
-  (select_statement
-    (select_elements
-      (select_element))
-    (from_spec
-      (table_name))
-    (where_spec
-      (relation_elements
-        (relation_element
-          (constant))))))
-
-================================================================================
 SELECT column FROM table WHERE col = 0XFF;
 ================================================================================
 SELECT column FROM table WHERE col = 0XFF;
@@ -328,24 +311,6 @@ SELECT column FROM table WHERE func(*) <> -5;
 SELECT column FROM table WHERE func(*) >= 3.5;
 ================================================================================
 SELECT column FROM table WHERE func(*) >= 3.5;
---------------------------------------------------------------------------------
-
-(source_file
-  (select_statement
-    (select_elements
-      (select_element))
-    (from_spec
-      (table_name))
-    (where_spec
-      (relation_elements
-        (relation_element
-          (function_call)
-          (constant))))))
-
-================================================================================
-SELECT column FROM table WHERE func(*) = X'E0';
-================================================================================
-SELECT column FROM table WHERE func(*) = X'E0';
 --------------------------------------------------------------------------------
 
 (source_file
@@ -616,3 +581,9 @@ SELECT column FROM table ALLOW FILTERING;
       (select_element))
     (from_spec
       (table_name))))
+
+================================================================================
+SELECT column FROM table WHERE col = ?;
+================================================================================
+SELECT column FROM table WHERE col = ?;
+--------------------------------------------------------------------------------

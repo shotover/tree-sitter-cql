@@ -315,6 +315,10 @@
       "required": true,
       "types": [
         {
+          "type": "bind_marker",
+          "named": true
+        },
+        {
           "type": "constant",
           "named": true
         }
@@ -329,6 +333,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "bind_marker",
+          "named": true
+        },
         {
           "type": "constant",
           "named": true
@@ -349,6 +357,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "bind_marker",
+          "named": true
+        },
         {
           "type": "constant",
           "named": true
@@ -381,6 +393,21 @@
       "types": [
         {
           "type": "using_timestamp_spec",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bind_marker",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "object_name",
           "named": true
         }
       ]
@@ -1026,6 +1053,10 @@
           "named": true
         },
         {
+          "type": "bind_marker",
+          "named": true
+        },
+        {
           "type": "constant",
           "named": true
         }
@@ -1555,6 +1586,10 @@
       "types": [
         {
           "type": "assignment_tuple",
+          "named": true
+        },
+        {
+          "type": "bind_marker",
           "named": true
         },
         {
@@ -2212,6 +2247,10 @@
   },
   {
     "type": ">=",
+    "named": false
+  },
+  {
+    "type": "?",
     "named": false
   },
   {
