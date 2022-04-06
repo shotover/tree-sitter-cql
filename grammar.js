@@ -235,7 +235,6 @@ const
                 ),
             ),
         using_timestamp_spec : $ => seq( kw("USING"), timestamp ),
-        //timestamp : $ => seq( kw("TIMESTAMP"), alias( $._decimal_literal, "timestamp")),
         if_exist : $ => token( if_exists),
         if_spec : $ => seq( kw( "IF"), $.relation_elements),
         insert_statement : $ =>
