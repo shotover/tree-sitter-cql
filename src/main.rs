@@ -1,14 +1,14 @@
 use regex::Regex;
-use tree_sitter::{
-    Language, LogType, Node, Parser, Query, QueryCapture, QueryCursor, QueryMatch, Tree, TreeCursor,
-};
+use tree_sitter::{LogType, Node, Parser};
 
- const TEXT: &str = "DELETE column, column3 FROM keyspace.table WHERE column2 = 'foo' IF column4 = ?";
+const TEXT: &str =
+    "DELETE column, column3 FROM keyspace.table WHERE column2 = 'foo' IF column4 = ?";
 //const TEXT: &str = "Drop aggregate if exists foo";
- //const TEXT: &str = "BEGIN LOGGED BATCH USING TIMESTAMP 5 INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5);";
-const QUERY: &str = "expression_list/ expression[assignment_map|assignment_list|assignment_set|assignment_tuple] ";
+//const TEXT: &str = "BEGIN LOGGED BATCH USING TIMESTAMP 5 INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5);";
+const QUERY: &str =
+    "expression_list/ expression[assignment_map|assignment_list|assignment_set|assignment_tuple] ";
 
-fn log(_x: LogType, message: &str) {
+fn _log(_x: LogType, message: &str) {
     println!("{}", message);
 }
 
@@ -23,7 +23,7 @@ fn main() {
     let tree = parser.parse(source_code, None).unwrap();
     println!("{}", tree.root_node().to_sexp());
 
-    _walk(&"".to_string(), &tree.root_node());
+    _walk("", &tree.root_node());
 
     //_map( tree.root_node() );
 
@@ -32,7 +32,7 @@ fn main() {
     let result = _search(tree.root_node(), QUERY);
     println!("=== QUERY RESULTS ===");
     for n in result.iter() {
-        _print_node("found: ", &n);
+        _print_node("found: ", n);
     }
 
     /*println!( "Executing query {}", &QUERY );
@@ -74,7 +74,7 @@ fn main() {
      */
 }
 
-fn _map<'tree>(node: Node<'tree>) {
+fn _map(node: Node) {
     print!("{} ({})-> ", node.kind(), node.id());
     if node.child_count() > 0 {
         for child_no in 0..node.child_count() {
@@ -93,20 +93,20 @@ fn _map<'tree>(node: Node<'tree>) {
 }
 
 pub struct Pattern {
-    pub name : Regex,
-    pub child : Option<Regex>,
+    pub name: Regex,
+    pub child: Option<Regex>,
 }
 
 impl Pattern {
-    pub fn from_str( pattern : &str ) -> Pattern {
-        let parts : Vec<&str> = pattern.split("[").collect();
-        let namePat = format!("^{}$", parts[0].trim() );
+    pub fn get_from_str(pattern: &str) -> Pattern {
+        let parts: Vec<&str> = pattern.split('[').collect();
+        let name_pat = format!("^{}$", parts[0].trim());
         Pattern {
-            name : Regex::new(  namePat.as_str() ).unwrap(),
-            child : if parts.len()==2 {
-                let name : Vec<&str> = parts[1].split("]").collect();
-                let namePat = format!("^{}$", name[0].trim() );
-                Some(Regex::new(namePat.as_str()).unwrap())
+            name: Regex::new(name_pat.as_str()).unwrap(),
+            child: if parts.len() == 2 {
+                let name: Vec<&str> = parts[1].split(']').collect();
+                let name_pat = format!("^{}$", name[0].trim());
+                Some(Regex::new(&name_pat).unwrap())
             } else {
                 None
             },
@@ -114,45 +114,44 @@ impl Pattern {
     }
 }
 
-fn _search<'tree>(node: Node<'tree>, path: &'static str) -> Box<Vec<Node<'tree>>> {
-    let mut nodes = Box::new(vec![node]);
+fn _search<'tree>(node: Node<'tree>, path: &'static str) -> Vec<Node<'tree>> {
+    let mut nodes = vec![node];
     for segment in path.split('/').map(|tok| tok.trim()) {
-        let mut newNodes = Box::new(vec![]);
-        let pattern = Pattern::from_str( segment );
+        let mut new_nodes = vec![];
+        let pattern = Pattern::get_from_str(segment);
         for node in nodes.iter() {
-            _find(&mut newNodes, *node, &pattern );
+            _find(&mut new_nodes, *node, &pattern);
         }
-        nodes = newNodes;
+        nodes = new_nodes;
     }
     nodes
 }
 
 fn _find<'tree>(nodes: &mut Vec<Node<'tree>>, node: Node<'tree>, pattern: &Pattern) {
-
-    let nm = node.kind();
-    let id = node.id();
+    let _nm = node.kind();
+    let _id = node.id();
     if pattern.name.is_match(node.kind()) {
         match &pattern.child {
             None => nodes.push(node),
-            Some( child ) => if _has( &node, child ) {
-                nodes.push(node);
+            Some(child) => {
+                if _has(&node, child) {
+                    nodes.push(node);
+                }
             }
         }
-    } else {
-        if node.child_count() > 0 {
-            for childNo in 0..node.child_count() {
-                _find(nodes, node.child(childNo).unwrap(), pattern);
-            }
+    } else if node.child_count() > 0 {
+        for child_no in 0..node.child_count() {
+            _find(nodes, node.child(child_no).unwrap(), pattern);
         }
     }
 }
 
-fn _has(node : &Node, name : &Regex) -> bool {
+fn _has(node: &Node, name: &Regex) -> bool {
     if node.child_count() > 0 {
         for child_no in 0..node.child_count() {
             let child: Node = node.child(child_no).unwrap();
             let k = child.kind();
-            let r = name.is_match( k );
+            let _r = name.is_match(k);
             if name.is_match(child.kind()) || _has(&child, name) {
                 return true;
             }
