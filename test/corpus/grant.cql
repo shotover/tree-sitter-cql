@@ -1,7 +1,7 @@
 ================================================================================
-GRANT ALL ON 'keyspace'.table TO role;
+GRANT ALL ON "keyspace".table TO role;
 ================================================================================
-GRANT ALL ON 'keyspace'.table TO role;
+GRANT ALL ON "keyspace".table TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -10,9 +10,9 @@ GRANT ALL ON 'keyspace'.table TO role;
     (resource)))
 
 ================================================================================
-GRANT ALL ON 'keyspace'.table TO role;
+GRANT ALL ON "keyspace".table TO role;
 ================================================================================
-GRANT ALL ON 'keyspace'.table TO role;
+GRANT ALL ON "keyspace".table TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -21,9 +21,9 @@ GRANT ALL ON 'keyspace'.table TO role;
     (resource)))
 
 ================================================================================
-GRANT ALL PERMISSIONS ON 'keyspace'.table TO role;
+GRANT ALL PERMISSIONS ON "keyspace".table TO role;
 ================================================================================
-GRANT ALL PERMISSIONS ON 'keyspace'.table TO role;
+GRANT ALL PERMISSIONS ON "keyspace".table TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -32,9 +32,9 @@ GRANT ALL PERMISSIONS ON 'keyspace'.table TO role;
     (resource)))
 
 ================================================================================
-GRANT ALTER ON 'keyspace'.table TO role;
+GRANT ALTER ON "keyspace".table TO role;
 ================================================================================
-GRANT ALTER ON 'keyspace'.table TO role;
+GRANT ALTER ON "keyspace".table TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -43,9 +43,9 @@ GRANT ALTER ON 'keyspace'.table TO role;
     (resource)))
 
 ================================================================================
-GRANT AUTHORIZE ON 'keyspace'.table TO role;
+GRANT AUTHORIZE ON "keyspace".table TO role;
 ================================================================================
-GRANT AUTHORIZE ON 'keyspace'.table TO role;
+GRANT AUTHORIZE ON "keyspace".table TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -54,9 +54,9 @@ GRANT AUTHORIZE ON 'keyspace'.table TO role;
     (resource)))
 
 ================================================================================
-GRANT DESCRIBE ON 'keyspace'.table TO role;
+GRANT DESCRIBE ON "keyspace".table TO role;
 ================================================================================
-GRANT DESCRIBE ON 'keyspace'.table TO role;
+GRANT DESCRIBE ON "keyspace".table TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -65,9 +65,9 @@ GRANT DESCRIBE ON 'keyspace'.table TO role;
     (resource)))
 
 ================================================================================
-GRANT EXECUTE ON 'keyspace'.table TO role;
+GRANT EXECUTE ON "keyspace".table TO role;
 ================================================================================
-GRANT EXECUTE ON 'keyspace'.table TO role;
+GRANT EXECUTE ON "keyspace".table TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -76,9 +76,9 @@ GRANT EXECUTE ON 'keyspace'.table TO role;
     (resource)))
 
 ================================================================================
-GRANT CREATE ON 'keyspace'.table TO role;
+GRANT CREATE ON "keyspace".table TO role;
 ================================================================================
-GRANT CREATE ON 'keyspace'.table TO role;
+GRANT CREATE ON "keyspace".table TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -87,9 +87,9 @@ GRANT CREATE ON 'keyspace'.table TO role;
     (resource)))
 
 ================================================================================
-GRANT DROP ON 'keyspace'.table TO role;
+GRANT DROP ON "keyspace".table TO role;
 ================================================================================
-GRANT DROP ON 'keyspace'.table TO role;
+GRANT DROP ON "keyspace".table TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -98,9 +98,9 @@ GRANT DROP ON 'keyspace'.table TO role;
     (resource)))
 
 ================================================================================
-GRANT MODIFY ON 'keyspace'.table TO role;
+GRANT MODIFY ON "keyspace".table TO role;
 ================================================================================
-GRANT MODIFY ON 'keyspace'.table TO role;
+GRANT MODIFY ON "keyspace".table TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -109,9 +109,9 @@ GRANT MODIFY ON 'keyspace'.table TO role;
     (resource)))
 
 ================================================================================
-GRANT SELECT ON 'keyspace'.table TO role;
+GRANT SELECT ON "keyspace".table TO role;
 ================================================================================
-GRANT SELECT ON 'keyspace'.table TO role;
+GRANT SELECT ON "keyspace".table TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -164,9 +164,9 @@ GRANT ALL ON ALL ROLES TO role;
     (resource)))
 
 ================================================================================
-GRANT ALL ON FUNCTION 'keyspace'.function TO role;
+GRANT ALL ON FUNCTION "keyspace".function TO role;
 ================================================================================
-GRANT ALL ON FUNCTION 'keyspace'.function TO role;
+GRANT ALL ON FUNCTION "keyspace".function TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -175,9 +175,9 @@ GRANT ALL ON FUNCTION 'keyspace'.function TO role;
     (resource)))
 
 ================================================================================
-GRANT ALL ON FUNCTION 'function' TO role;
+GRANT ALL ON FUNCTION "function" TO role;
 ================================================================================
-GRANT ALL ON FUNCTION 'function' TO role;
+GRANT ALL ON FUNCTION "function" TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -186,9 +186,9 @@ GRANT ALL ON FUNCTION 'function' TO role;
     (resource)))
 
 ================================================================================
-GRANT ALL ON KEYSPACE 'keyspace' TO role;
+GRANT ALL ON KEYSPACE "keyspace" TO role;
 ================================================================================
-GRANT ALL ON KEYSPACE 'keyspace' TO role;
+GRANT ALL ON KEYSPACE "keyspace" TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -197,9 +197,9 @@ GRANT ALL ON KEYSPACE 'keyspace' TO role;
     (resource)))
 
 ================================================================================
-GRANT ALL ON ROLE 'role' TO role;
+GRANT ALL ON ROLE "role" TO role;
 ================================================================================
-GRANT ALL ON ROLE 'role' TO role;
+GRANT ALL ON ROLE "role" TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -208,9 +208,9 @@ GRANT ALL ON ROLE 'role' TO role;
     (resource)))
 
 ================================================================================
-GRANT ALL ON TABLE 'keyspace'.table TO role;
+GRANT ALL ON TABLE "keyspace".table TO role;
 ================================================================================
-GRANT ALL ON TABLE 'keyspace'.table TO role;
+GRANT ALL ON TABLE "keyspace".table TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -219,9 +219,9 @@ GRANT ALL ON TABLE 'keyspace'.table TO role;
     (resource)))
 
 ================================================================================
-GRANT ALL ON TABLE 'table' TO role;
+GRANT ALL ON TABLE "table" TO role;
 ================================================================================
-GRANT ALL ON TABLE 'table' TO role;
+GRANT ALL ON TABLE "table" TO role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -230,9 +230,9 @@ GRANT ALL ON TABLE 'table' TO role;
     (resource)))
 
 ================================================================================
-GRANT ALL ON 'table' TO role;
+GRANT ALL ON "table" TO role;
 ================================================================================
-GRANT ALL ON 'table' TO role;
+GRANT ALL ON "table" TO role;
 --------------------------------------------------------------------------------
 
 (source_file

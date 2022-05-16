@@ -9,9 +9,9 @@ LIST ALL;
     (privilege)))
 
 ================================================================================
-LIST ALL ON TABLE 'keyspace'.table OF role;
+LIST ALL ON TABLE "keyspace".table OF role;
 ================================================================================
-LIST ALL ON TABLE 'keyspace'.table OF role;
+LIST ALL ON TABLE "keyspace".table OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -20,9 +20,9 @@ LIST ALL ON TABLE 'keyspace'.table OF role;
     (resource)))
 
 ================================================================================
-LIST ALL PERMISSIONS ON  TABLE 'keyspace'.table OF role;
+LIST ALL PERMISSIONS ON  TABLE "keyspace".table OF role;
 ================================================================================
-LIST ALL PERMISSIONS ON  TABLE 'keyspace'.table OF role;
+LIST ALL PERMISSIONS ON  TABLE "keyspace".table OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -31,9 +31,9 @@ LIST ALL PERMISSIONS ON  TABLE 'keyspace'.table OF role;
     (resource)))
 
 ================================================================================
-LIST ALTER ON TABLE 'keyspace'.table OF role;
+LIST ALTER ON TABLE "keyspace".table OF role;
 ================================================================================
-LIST ALTER ON TABLE 'keyspace'.table OF role;
+LIST ALTER ON TABLE "keyspace".table OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -42,9 +42,9 @@ LIST ALTER ON TABLE 'keyspace'.table OF role;
     (resource)))
 
 ================================================================================
-LIST AUTHORIZE ON TABLE 'keyspace'.table OF role;
+LIST AUTHORIZE ON TABLE "keyspace".table OF role;
 ================================================================================
-LIST AUTHORIZE ON TABLE 'keyspace'.table OF role;
+LIST AUTHORIZE ON TABLE "keyspace".table OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -53,9 +53,9 @@ LIST AUTHORIZE ON TABLE 'keyspace'.table OF role;
     (resource)))
 
 ================================================================================
-LIST DESCRIBE ON TABLE 'keyspace'.table OF role;
+LIST DESCRIBE ON TABLE "keyspace".table OF role;
 ================================================================================
-LIST DESCRIBE ON TABLE 'keyspace'.table OF role;
+LIST DESCRIBE ON TABLE "keyspace".table OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -64,9 +64,9 @@ LIST DESCRIBE ON TABLE 'keyspace'.table OF role;
     (resource)))
 
 ================================================================================
-LIST EXECUTE ON TABLE 'keyspace'.table OF role;
+LIST EXECUTE ON TABLE "keyspace".table OF role;
 ================================================================================
-LIST EXECUTE ON TABLE 'keyspace'.table OF role;
+LIST EXECUTE ON TABLE "keyspace".table OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -75,9 +75,9 @@ LIST EXECUTE ON TABLE 'keyspace'.table OF role;
     (resource)))
 
 ================================================================================
-LIST CREATE ON TABLE 'keyspace'.table OF role;
+LIST CREATE ON TABLE "keyspace".table OF role;
 ================================================================================
-LIST CREATE ON TABLE 'keyspace'.table OF role;
+LIST CREATE ON TABLE "keyspace".table OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -86,9 +86,9 @@ LIST CREATE ON TABLE 'keyspace'.table OF role;
     (resource)))
 
 ================================================================================
-LIST DROP ON TABLE 'keyspace'.table OF role;
+LIST DROP ON TABLE "keyspace".table OF role;
 ================================================================================
-LIST DROP ON TABLE 'keyspace'.table OF role;
+LIST DROP ON TABLE "keyspace".table OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -97,9 +97,9 @@ LIST DROP ON TABLE 'keyspace'.table OF role;
     (resource)))
 
 ================================================================================
-LIST MODIFY ON TABLE 'keyspace'.table OF role;
+LIST MODIFY ON TABLE "keyspace".table OF role;
 ================================================================================
-LIST MODIFY ON TABLE 'keyspace'.table OF role;
+LIST MODIFY ON TABLE "keyspace".table OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -108,9 +108,9 @@ LIST MODIFY ON TABLE 'keyspace'.table OF role;
     (resource)))
 
 ================================================================================
-LIST SELECT ON TABLE 'keyspace'.table OF role;
+LIST SELECT ON TABLE "keyspace".table OF role;
 ================================================================================
-LIST SELECT ON TABLE 'keyspace'.table OF role;
+LIST SELECT ON TABLE "keyspace".table OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -163,9 +163,9 @@ LIST ALL ON ALL ROLES OF role;
     (resource)))
 
 ================================================================================
-LIST ALL ON FUNCTION 'keyspace'.function OF role;
+LIST ALL ON FUNCTION "keyspace".function OF role;
 ================================================================================
-LIST ALL ON FUNCTION 'keyspace'.function OF role;
+LIST ALL ON FUNCTION "keyspace".function OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -174,9 +174,9 @@ LIST ALL ON FUNCTION 'keyspace'.function OF role;
     (resource)))
 
 ================================================================================
-LIST ALL ON FUNCTION 'function' OF role;
+LIST ALL ON FUNCTION "function" OF role;
 ================================================================================
-LIST ALL ON FUNCTION 'function' OF role;
+LIST ALL ON FUNCTION "function" OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -185,9 +185,9 @@ LIST ALL ON FUNCTION 'function' OF role;
     (resource)))
 
 ================================================================================
-LIST ALL ON KEYSPACE 'keyspace' OF role;
+LIST ALL ON KEYSPACE "keyspace" OF role;
 ================================================================================
-LIST ALL ON KEYSPACE 'keyspace' OF role;
+LIST ALL ON KEYSPACE "keyspace" OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -196,9 +196,9 @@ LIST ALL ON KEYSPACE 'keyspace' OF role;
     (resource)))
 
 ================================================================================
-LIST ALL ON ROLE 'role' OF role;
+LIST ALL ON ROLE "role" OF role;
 ================================================================================
-LIST ALL ON ROLE 'role' OF role;
+LIST ALL ON ROLE "role" OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -207,9 +207,9 @@ LIST ALL ON ROLE 'role' OF role;
     (resource)))
 
 ================================================================================
-LIST ALL ON TABLE 'keyspace'.table OF role;
+LIST ALL ON TABLE "keyspace".table OF role;
 ================================================================================
-LIST ALL ON TABLE 'keyspace'.table OF role;
+LIST ALL ON TABLE "keyspace".table OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -218,9 +218,9 @@ LIST ALL ON TABLE 'keyspace'.table OF role;
     (resource)))
 
 ================================================================================
-LIST ALL ON TABLE 'table' OF role;
+LIST ALL ON TABLE "table" OF role;
 ================================================================================
-LIST ALL ON TABLE 'table' OF role;
+LIST ALL ON TABLE "table" OF role;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -229,9 +229,9 @@ LIST ALL ON TABLE 'table' OF role;
     (resource)))
 
 ================================================================================
-LIST ALL ON  TABLE 'table' OF role;
+LIST ALL ON  TABLE "table" OF role;
 ================================================================================
-LIST ALL ON  TABLE 'table' OF role;
+LIST ALL ON  TABLE "table" OF role;
 --------------------------------------------------------------------------------
 
 (source_file

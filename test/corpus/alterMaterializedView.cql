@@ -1,7 +1,7 @@
 ================================================================================
-ALTER MATERIALIZED VIEW 'keyspace'.mview;
+ALTER MATERIALIZED VIEW "keyspace".mview;
 ================================================================================
-ALTER MATERIALIZED VIEW 'keyspace'.mview;
+ALTER MATERIALIZED VIEW "keyspace".mview;
 --------------------------------------------------------------------------------
 
 (source_file

@@ -23,7 +23,9 @@ const
     or_replace = seq(kw( "OR"),kw("REPLACE")),
     order_direction = choice( kw( "ASC"), kw("DESC")),
 
-    string_str =  seq(squote, field("content", /[^']*/), squote),
+    string_str =  seq(squote, field("content", /([^']|(\'\'))*/), squote),
+
+    ///\'[a-zA-Z]([A-Za-z0-9_$]|(\'\'))*\'/,
 
     uuid_str = /[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}/,
     hex_digit = /[0-9a-fA-F]/,
@@ -39,9 +41,11 @@ const
         ),
     ),
     decimal_str =  seq( optional("-"), decimal_digits),
-    float_str  = seq( optional("-"), decimal_digits, dot ,decimal_digits),
+    float_str  = choice( seq( optional("-"), decimal_digits, dot ,decimal_digits),
+    /'-'?[0-9]+('.'[0-9]*)?([eE][+-]?[0-9+])?/ )
     code  =  /\$\$(\$?[^$]+)+\$\$/,
-    name_chars  = /[a-zA-Z][A-Za-z0-9_$]*/
+    identifier  = /[a-zA-Z][A-Za-z0-9_$]*/
+    quoted_identifier = /\"[a-zA-Z]([A-Za-z0-9_$]|(\"\"))*\"/
     timestamp  = seq( kw("TIMESTAMP"), alias( token( decimal_str), "time")),
     ttl  = seq( kw("TTL"), alias( token( decimal_str), "ttl")),
 
@@ -806,7 +810,7 @@ const
             ),
         apply_batch : $ => seq( kw("APPLY"), kw("BATCH")),
 
-        object_name : $ => token( choice( name_chars, seq(squote, name_chars, squote))),
+        object_name : $ => token( choice( identifier, quoted_identifier)),
 
         // names
         aggregate_name : $ => dotted_name( $.object_name, $.object_name, "aggregate"),

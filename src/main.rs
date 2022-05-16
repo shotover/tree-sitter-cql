@@ -3,7 +3,7 @@ use tree_sitter::{
     Language, LogType, Node, Parser, Query, QueryCapture, QueryCursor, QueryMatch, Tree, TreeCursor,
 };
 
- const TEXT: &str = "DELETE column, column3 FROM keyspace.table WHERE column2 = 'foo' IF column4 = ?";
+ const TEXT: &str = r#"SELECT "col""umn" FROM table WHERE col = 'possessive''s';"#;
 //const TEXT: &str = "Drop aggregate if exists foo";
  //const TEXT: &str = "BEGIN LOGGED BATCH USING TIMESTAMP 5 INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5);";
 const QUERY: &str = "expression_list/ expression[assignment_map|assignment_list|assignment_set|assignment_tuple] ";
