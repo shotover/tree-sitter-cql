@@ -94,3 +94,19 @@ CREATE AGGREGATE keyspace.aggregate  ( ASCII ) SFUNC sfunc STYPE BIGINT FINALFUN
               (constant)
               (constant)
               (constant))))))))
+
+================================================================================
+CREATE OR REPLACE AGGREGATE keyspace.aggregate ( UUID ) SFUNC sfunkey.sfunc STYPE TIMESTAMP FINALFUNC finalfunkey.finalFunc INITCOND 5;
+================================================================================
+CREATE OR REPLACE AGGREGATE keyspace.aggregate ( UUID ) SFUNC sfunkey.sfunc STYPE TIMESTAMP FINALFUNC finalfunkey.finalFunc INITCOND 5;
+--------------------------------------------------------------------------------
+
+(source_file
+    (create_aggregate
+    (aggregate_name)
+    (data_type
+    (data_type_name))
+    (data_type
+    (data_type_name))
+    (init_cond_definition
+    (constant))))

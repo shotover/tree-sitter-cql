@@ -4416,7 +4416,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "object_name"
+            "name": "function_name"
           },
           "named": false,
           "value": "sfunc"
@@ -4447,7 +4447,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "object_name"
+            "name": "function_name"
           },
           "named": false,
           "value": "finalfunc"
