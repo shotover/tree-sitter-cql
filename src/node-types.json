@@ -1079,6 +1079,11 @@
     }
   },
   {
+    "type": "finalfunc",
+    "named": false,
+    "fields": {}
+  },
+  {
     "type": "from_spec",
     "named": true,
     "fields": {},
@@ -1774,6 +1779,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "sfunc",
+    "named": false,
+    "fields": {}
   },
   {
     "type": "short_index_name",
@@ -2754,10 +2764,6 @@
     "named": false
   },
   {
-    "type": "finalfunc",
-    "named": false
-  },
-  {
     "type": "full",
     "named": false
   },
@@ -2815,10 +2821,6 @@
   },
   {
     "type": "role",
-    "named": false
-  },
-  {
-    "type": "sfunc",
     "named": false
   },
   {

@@ -11,6 +11,20 @@ SELECT DISTINCT JSON * FROM table;
       (table_name))))
 
 ================================================================================
+SELECT "column" FROM "table";
+================================================================================
+SELECT "column" FROM "table";
+--------------------------------------------------------------------------------
+
+(source_file
+    (select_statement
+    (select_elements
+    (select_element))
+    (from_spec
+    (table_name))))
+
+
+================================================================================
 SELECT column FROM table;
 ================================================================================
 SELECT column FROM table;
@@ -587,3 +601,34 @@ SELECT column FROM table WHERE col = ?;
 ================================================================================
 SELECT column FROM table WHERE col = ?;
 --------------------------------------------------------------------------------
+(source_file
+    (select_statement
+    (select_elements
+    (select_element))
+    (from_spec
+    (table_name))
+    (where_spec
+    (relation_elements
+    (relation_element
+    (bind_marker)))))
+)
+
+
+================================================================================
+SELECT "col""umn" FROM table WHERE col = 'possessive''s';
+================================================================================
+SELECT "col""umn" FROM table WHERE col = 'possessive''s';
+--------------------------------------------------------------------------------
+
+(source_file
+    (select_statement
+    (select_elements
+    (select_element))
+    (from_spec
+    (table_name))
+    (where_spec
+    (relation_elements
+    (relation_element
+    (constant)))))
+)
+
