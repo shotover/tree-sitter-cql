@@ -9,9 +9,9 @@ CREATE ROLE if not exists role;
     (role_name)))
 
 ================================================================================
-CREATE ROLE 'role';
+CREATE ROLE "role";
 ================================================================================
-CREATE ROLE 'role';
+CREATE ROLE "role";
 --------------------------------------------------------------------------------
 
 (source_file
@@ -19,9 +19,9 @@ CREATE ROLE 'role';
     (role_name)))
 
 ================================================================================
-CREATE ROLE 'role' WITH PASSWORD = 'password';
+CREATE ROLE "role" WITH PASSWORD = 'password';
 ================================================================================
-CREATE ROLE 'role' WITH PASSWORD = 'password';
+CREATE ROLE "role" WITH PASSWORD = 'password';
 --------------------------------------------------------------------------------
 
 (source_file
@@ -31,9 +31,9 @@ CREATE ROLE 'role' WITH PASSWORD = 'password';
       (role_with_option))))
 
 ================================================================================
-CREATE ROLE 'role' WITH PASSWORD = 'password' AND LOGIN=false;
+CREATE ROLE "role" WITH PASSWORD = 'password' AND LOGIN=false;
 ================================================================================
-CREATE ROLE 'role' WITH PASSWORD = 'password' AND LOGIN=false;
+CREATE ROLE "role" WITH PASSWORD = 'password' AND LOGIN=false;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -44,9 +44,9 @@ CREATE ROLE 'role' WITH PASSWORD = 'password' AND LOGIN=false;
       (role_with_option))))
 
 ================================================================================
-CREATE ROLE 'role' WITH SUPERUSER=false;
+CREATE ROLE "role" WITH SUPERUSER=false;
 ================================================================================
-CREATE ROLE 'role' WITH SUPERUSER=false;
+CREATE ROLE "role" WITH SUPERUSER=false;
 --------------------------------------------------------------------------------
 
 (source_file
@@ -56,9 +56,9 @@ CREATE ROLE 'role' WITH SUPERUSER=false;
       (role_with_option))))
 
 ================================================================================
-CREATE ROLE 'role' WITH OPTIONS={ 'foo' : 3.14, 'bar' : 'pi' }
+CREATE ROLE "role" WITH OPTIONS={ 'foo' : 3.14, 'bar' : 'pi' }
 ================================================================================
-CREATE ROLE 'role' WITH OPTIONS={ 'foo' : 3.14, 'bar' : 'pi' }
+CREATE ROLE "role" WITH OPTIONS={ 'foo' : 3.14, 'bar' : 'pi' }
 --------------------------------------------------------------------------------
 
 (source_file

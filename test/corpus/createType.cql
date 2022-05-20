@@ -1,7 +1,7 @@
 ================================================================================
-CREATE TYPE if not exists keyspace.type ( 'col1' TIMESTAMP);
+CREATE TYPE if not exists keyspace.type ( "col1" TIMESTAMP);
 ================================================================================
-CREATE TYPE if not exists keyspace.type ( 'col1' TIMESTAMP);
+CREATE TYPE if not exists keyspace.type ( "col1" TIMESTAMP);
 --------------------------------------------------------------------------------
 
 (source_file
@@ -337,9 +337,9 @@ CREATE TYPE type ( col1 UUID);
         (data_type_name)))))
 
 ================================================================================
-CREATE TYPE type ( col1 'foo');
+CREATE TYPE type ( col1 "foo");
 ================================================================================
-CREATE TYPE type ( col1 'foo');
+CREATE TYPE type ( col1 "foo");
 --------------------------------------------------------------------------------
 
 (source_file
@@ -351,9 +351,9 @@ CREATE TYPE type ( col1 'foo');
           (object_name))))))
 
 ================================================================================
-CREATE TYPE if not exists keyspace.type ( col1 'foo' < 'subcol1', TIMESTAMP, BLOB > );
+CREATE TYPE if not exists keyspace.type ( col1 "foo" < "subcol1", TIMESTAMP, BLOB > );
 ================================================================================
-CREATE TYPE if not exists keyspace.type ( col1 'foo' < 'subcol1', TIMESTAMP, BLOB > );
+CREATE TYPE if not exists keyspace.type ( col1 "foo" < "subcol1", TIMESTAMP, BLOB > );
 --------------------------------------------------------------------------------
 
 (source_file
@@ -368,6 +368,25 @@ CREATE TYPE if not exists keyspace.type ( col1 'foo' < 'subcol1', TIMESTAMP, BLO
             (object_name))
           (data_type_name)
           (data_type_name))))))
+
+================================================================================
+CREATE TYPE if not exists keyspace.type ( col1 foo < subcol1, TIMESTAMP, BLOB > );
+================================================================================
+CREATE TYPE if not exists keyspace.type ( col1 foo < subcol1, TIMESTAMP, BLOB > );
+--------------------------------------------------------------------------------
+
+(source_file
+    (create_type
+    (type_name)
+    (typed_name
+    (data_type
+    (data_type_name
+    (object_name))
+    (data_type_definition
+    (data_type_name
+    (object_name))
+    (data_type_name)
+    (data_type_name))))))
 
 ================================================================================
 CREATE TYPE type ( col1 UUID, Col2 int);

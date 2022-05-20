@@ -628,7 +628,7 @@
             "name": "content",
             "content": {
               "type": "PATTERN",
-              "value": "[^']*"
+              "value": "([^']|(\\'\\'))*"
             }
           },
           {
@@ -665,31 +665,40 @@
     "_float_literal": {
       "type": "TOKEN",
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
-            "type": "CHOICE",
+            "type": "SEQ",
             "members": [
               {
-                "type": "STRING",
-                "value": "-"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "-"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               },
               {
-                "type": "BLANK"
+                "type": "PATTERN",
+                "value": "[0-9]+"
+              },
+              {
+                "type": "STRING",
+                "value": "."
+              },
+              {
+                "type": "PATTERN",
+                "value": "[0-9]+"
               }
             ]
           },
           {
             "type": "PATTERN",
-            "value": "[0-9]+"
-          },
-          {
-            "type": "STRING",
-            "value": "."
-          },
-          {
-            "type": "PATTERN",
-            "value": "[0-9]+"
+            "value": "'-'?[0-9]+('.'[0-9]*)?([eE][+-]?[0-9+])?"
           }
         ]
       }
@@ -4407,7 +4416,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "object_name"
+            "name": "function_name"
           },
           "named": false,
           "value": "sfunc"
@@ -4438,7 +4447,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "object_name"
+            "name": "function_name"
           },
           "named": false,
           "value": "finalfunc"
@@ -7578,21 +7587,8 @@
             "value": "[a-zA-Z][A-Za-z0-9_$]*"
           },
           {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "'"
-              },
-              {
-                "type": "PATTERN",
-                "value": "[a-zA-Z][A-Za-z0-9_$]*"
-              },
-              {
-                "type": "STRING",
-                "value": "'"
-              }
-            ]
+            "type": "PATTERN",
+            "value": "\\\"[a-zA-Z]([A-Za-z0-9_$]|(\\\"\\\"))*\\\""
           }
         ]
       }

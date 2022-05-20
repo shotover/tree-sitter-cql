@@ -1,8 +1,7 @@
 use regex::Regex;
 use tree_sitter::{LogType, Node, Parser};
 
-const TEXT: &str =
-    "DELETE column, column3 FROM keyspace.table WHERE column2 = 'foo' IF column4 = ?";
+const TEXT: &str = r#"CREATE INDEX foo ON table (column);"#;
 //const TEXT: &str = "Drop aggregate if exists foo";
 //const TEXT: &str = "BEGIN LOGGED BATCH USING TIMESTAMP 5 INSERT INTO keyspace.table (col1, col2) VALUES ('hello', 5);";
 const QUERY: &str =
