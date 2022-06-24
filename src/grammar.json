@@ -1431,6 +1431,15 @@
                   },
                   "named": false,
                   "value": "UNLOGGED"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[cC][oO][uU][nN][tT][eE][rR]"
+                  },
+                  "named": false,
+                  "value": "COUNTER"
                 }
               ]
             },
