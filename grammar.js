@@ -220,7 +220,7 @@ const
         begin_batch : $ =>
             seq(
                 kw("BEGIN"),
-                optional( choice( kw("LOGGED"), kw("UNLOGGED"))),
+                optional( choice( kw("LOGGED"), kw("UNLOGGED"), kw("COUNTER"))),
                 kw( "BATCH"),
                 optional( $.using_timestamp_spec),
             ),
