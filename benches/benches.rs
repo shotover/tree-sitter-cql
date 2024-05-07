@@ -8,7 +8,7 @@ fn parse(parser: &mut Parser, input: &str) -> Tree {
 fn criterion_benchmark(c: &mut Criterion) {
     let language = tree_sitter_cql::language();
     let mut parser = Parser::new();
-    if parser.set_language(language).is_err() {
+    if parser.set_language(&language).is_err() {
         panic!("language version mismatch");
     }
 
