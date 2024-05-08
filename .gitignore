@@ -1,4 +1,5 @@
 /.idea
 /target
 tree-sitter-cql.wasm
+node_modules
 
