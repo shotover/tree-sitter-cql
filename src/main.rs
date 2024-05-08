@@ -14,7 +14,7 @@ fn _log(_x: LogType, message: &str) {
 fn main() {
     let language = tree_sitter_cql::language();
     let mut parser = Parser::new();
-    if parser.set_language(language).is_err() {
+    if parser.set_language(&language).is_err() {
         panic!("language version mismatch");
     }
     //parser.set_logger( Some( Box::new( log)) );

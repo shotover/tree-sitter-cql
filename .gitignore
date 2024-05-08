@@ -1,5 +1,4 @@
 /.idea
 /target
 tree-sitter-cql.wasm
-Cargo.lock
 
