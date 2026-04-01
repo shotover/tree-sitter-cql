@@ -10,9 +10,14 @@ jobs:
     name: Test Suite
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
       - name: Install minimal toolchain with clippy and rustfmt
-        uses: actions-rs/toolchain@v1
+        uses: step-security/actions-rs-toolchain@89108ba4002283e5605717f806ebabf6526c4510 # v1.0.6
         with:
           profile: minimal
           toolchain: stable
